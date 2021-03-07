@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jack Davey</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="A personal website for Jack Davey, a full stack developer and web design student">
+  <meta name="keywords" content="jack, davey, john, jack davey, john davey">
+  <meta name="author" content="Jack Davey">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+  <div id="hero" class="container-fluid">
+    <h1 class="title">Hey, I'm Jack</h1>
+    <aside class="info">
+     <!-- Animated title description here -->
+     <p>Designer, Photographer, and Full-Stack Engineer</p>
+   </aside>
+ </div>
+
+ <div class="homeSection col-sm-12" style="background-color: white">
+  <h1> Projects </h1> 
+  <div class="project">
+    <a href="hub.html">Hub House Management Interface</a>
+  </div>
+</div>
+
+</body>
+<script>
+ $(document).ready(function(){
+  var resizeHero = function(){
+    var hero = $("#hero"), window1 = $(window);
+    hero.css({
+      "width": window1.width(),
+      "height": window1.height()
+    });
+  };
+
+  resizeHero();
+
+  $(window).resize(function(){
+    resizeHero();    
+  });
+});
+</script>
+</html>
+

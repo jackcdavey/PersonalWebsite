@@ -1,0 +1,53 @@
+body {
+  background-color: whitesmoke;
+  margin: 0;
+  font-family: -apple-system, sans-serif;
+}
+
+#hero{
+  display: flex;
+}
+
+.homeSection{
+  align-items: center;
+}
+
+.title {
+  color: midnightblue;
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 5em;
+  margin: 1rem 4rem;
+}
+
+.info {
+  color:lightslategray;
+  grid-column: 4;
+  grid-row: 2;
+  width: 90%;
+  font-size: 1.35em;
+  margin-left: -35%;
+}
+
+.project{
+  
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: midnightblue;
+  }
+
+  .title {
+    color: whitesmoke;
+  }
+
+
+  .info {
+    color:aliceblue;
+  }
+
+  .highlight {
+    color:coral;
+  }
+}
