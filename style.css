@@ -1,19 +1,58 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url('fonts/Montserrat/montserratalternates-regular-webfont.woff2') format('woff2'),
+         url('fonts/Montserrat/montserratalternates-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'athiti';
+    src: url('fonts/Athiti/athiti-regular-webfont.woff') format('woff2'),
+         url('fonts/Athiti/athiti-regular-webfont.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'didact';
+    src: url('fonts/Didact/didactgothic-regular-webfont.woff') format('woff2'),
+         url('fonts/Didact/didactgothic-regular-webfont.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-  background-color: whitesmoke;
+  background-color: #F9FBFB;
   margin: 0;
-  font-family: -apple-system, sans-serif;
+  font-family: montserrat;
+}
+
+@media (min-width: 500px) {
+  .grid-container {
+    grid-column-gap: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 740px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 48px;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
 }
 
 #hero{
   display: flex;
 }
 
-.homeSection{
-  align-items: center;
-}
+
 
 .title {
-  color: midnightblue;
+  color: #EE8583;
+  font-family: montserrat;
   grid-column: 2;
   grid-row: 2;
   font-size: 5em;
@@ -33,18 +72,21 @@ body {
   
 }
 
+
+
+
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: midnightblue;
+    background-color: #565668;
   }
 
   .title {
-    color: whitesmoke;
+    color: #E68886;
   }
 
 
   .info {
-    color:aliceblue;
+    color: #AA9490;
   }
 
   .highlight {
