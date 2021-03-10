@@ -26,29 +26,9 @@ body {
   font-family: montserrat;
 }
 
-@media (min-width: 500px) {
-  .grid-container {
-    grid-column-gap: 24px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-}
-
-@media (min-width: 740px) {
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-column-gap: 48px;
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-}
-
 #hero{
-  display: flex;
+  display: grid;
 }
-
-
 
 .title {
   color: #EE8583;
@@ -56,16 +36,12 @@ body {
   grid-column: 2;
   grid-row: 2;
   font-size: 5em;
-  margin: 1rem 4rem;
 }
 
 .info {
-  color:lightslategray;
   grid-column: 4;
-  grid-row: 2;
-  width: 90%;
+  grid-row: 3;
   font-size: 1.35em;
-  margin-left: -35%;
 }
 
 .project{
