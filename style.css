@@ -150,7 +150,7 @@ div.arrow:hover::before {
     color: #AA9490;
   }
 
-  .highlight {
-    color:coral;
+  .alert{
+    background: #AA9490;
   }
 }
