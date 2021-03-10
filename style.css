@@ -39,11 +39,15 @@ body {
 }
 
 .info {
+  color: #AA9490;
   grid-column: 4;
   grid-row: 3;
   font-size: 1.35em;
 }
 
+.about-section{
+
+}
 
 .project-section{
   /* Flex direction not working, needs to be applied to parent maybe? 
@@ -67,7 +71,7 @@ body {
 }
 
 
-
+/*Add smooth scroll functionality later via jQuery button listener */
  div.arrow {
    width: 6vmin;
    height: 6vmin;
@@ -102,7 +106,7 @@ body {
    transition: .2s ease;
 }
  div.arrow:hover::after {
-   transform: rotate(45deg) translate(3px);
+   transform: rotate(45deg) translateX(4px) translateY(5px);
    border-color: #EE8583;
    height: 120%;
 }
