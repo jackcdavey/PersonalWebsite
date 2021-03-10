@@ -44,11 +44,73 @@ body {
   font-size: 1.35em;
 }
 
+
+.project-section{
+  /* Flex direction not working, needs to be applied to parent maybe? 
+  display: flex;
+  flex-direction: row;
+  */
+}
 .project{
-  
+  display: flex;
+  justify-content: center;
+}
+.project-card{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  min-height: 300px;
+  max-width: 25%;
+  border-radius: 10px;
+}
+.project-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
 }
 
 
+
+ div.arrow {
+   width: 6vmin;
+   height: 6vmin;
+   box-sizing: border-box;
+   position: absolute;
+   left: 50%;
+   top: 90%;
+   transform: rotate(135deg);
+}
+ div.arrow::before {
+   content: '';
+   width: 100%;
+   height: 100%;
+   border-width: .8vmin .8vmin 0 0;
+   border-style: solid;
+   border-color: #AA9490;
+   transition: .1s ease;
+   display: block;
+   transform-origin: 100% 0;
+}
+ div.arrow:after {
+   content: '';
+   float: left;
+   position: relative;
+   top: -100%;
+   width: 100%;
+   height: 100%;
+   border-width: 0 .8vmin 0 0;
+   border-style: solid;
+   border-color: #AA9490;
+   transform-origin: 100% 0;
+   transition: .2s ease;
+}
+ div.arrow:hover::after {
+   transform: rotate(45deg) translate(3px);
+   border-color: #EE8583;
+   height: 120%;
+}
+ div.arrow:hover::before {
+   border-color: #EE8583;
+   transform: scale(.8);
+}
+ 
 
 
 @media (prefers-color-scheme: dark) {
