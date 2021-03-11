@@ -1,8 +1,14 @@
+/*
+Jack Davey, 2021
+Copyright n stuff I guess? 
+I know using px is a sin, I'll update it soon lmao
+*/
+
 :root {
   --lightShade: #F9FBFB;
   --lightAccent: #E0CAC5;
   --mainBrand: #E68886;
-  --darkAccent: #AA9490;/* <-- old thatch color, replace later */
+  --darkAccent: #AA9490;/* <-- boring old thatch color, replace later */
   --darkShade: #565668;
 }
 
@@ -42,6 +48,7 @@ a{
 
 #hero-section{
   display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .title {
@@ -54,9 +61,9 @@ a{
 
 .info {
   color: var(--lightAccent);
-  grid-column: 4;
-  grid-row: 3;
-  font-size: 1.35em;
+  grid-column: 3;
+  grid-row: 4;
+  font-size: 1.5em;
 }
 
 
@@ -181,7 +188,9 @@ div.arrow:hover::before {
 }
 
 @media only screen and (max-width: 768px) {
-
+div.arrow:hover::after {
+ transform: rotate(45deg) translateX(2px) translateY(4px);
+}
   .project-card{
     margin-left: 5%;
     max-width: 90%;
