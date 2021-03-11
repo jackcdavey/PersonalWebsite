@@ -36,6 +36,9 @@ body {
 h1{
   color: var(--mainBrand);
 }
+a{
+  color: var(--darkShade);
+}
 
 #hero-section{
   display: grid;
@@ -59,13 +62,14 @@ h1{
 
 
 .about-section{
-
+  display: grid;
+  background: var(--lightAccent);
 }
 
 
 
 .project-section{
-  background: var(--lightAccent);
+  background: var(--lightShade);
   /* Flex direction not working, needs to be applied to parent maybe? 
   display: flex;
   flex-direction: row;
@@ -74,14 +78,17 @@ h1{
 .project{
   display: flex;
   justify-content: center;
+  text-align: center;
+  color: var(--darkShade);
 }
 .project-card{
-  background: var(--lightShade);
+  background: var(--lightAccent);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   min-height: 300px;
   max-width: 25%;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 .project-card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
@@ -89,7 +96,8 @@ h1{
 
 
 .contact-section{
-
+ display: grid;
+  background: var(--lightAccent);
 }
 
 
@@ -169,5 +177,13 @@ div.arrow:hover::before {
 
   .alert{
     background: var(--darkAccent);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .project-card{
+    margin-left: 5%;
+    max-width: 90%;
   }
 }
