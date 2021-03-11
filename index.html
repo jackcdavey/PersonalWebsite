@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Jack Davey</title>
+
+  <!-- Organize this later srsly -->
   <meta charset="UTF-8">
   <meta name="description" content="A personal website for Jack Davey, a full stack developer and web design student">
   <meta name="keywords" content="jack, davey, john, jack davey, john davey">
@@ -13,17 +15,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
 </head>
 <body>
   <div class="alert alert-secondary alert-dismissible" role="alert">
-    <strong>Alert:</strong> 
+    <strong>Alert:&nbsp</strong> 
     This site is still very early in development, daily updates may significantly change its look, feel, and functionality.
     <button type="button" class="close" data-dismiss="alert">×</button>
-
   </div>
+
   <div id="hero-section" class="container-fluid">
     <h1 class="title">Hey, I'm Jack</h1>
     <aside class="info">
@@ -31,7 +30,6 @@
      <p>Developer, Designer, and Photographer</p>
    </aside>
    <div class="arrow"></div>
-
  </div>
 
  <div class="col-sm-12 container about-section">
@@ -40,8 +38,8 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-    <p>This is where I'll put some stuff about myself and a link to my resume when I get around to that bit</p>
-  </div>
+      <p>This is where I'll put some stuff about myself and a link to my resume when I get around to that bit</p>
+    </div>
   </div>
 </div>
 
@@ -54,19 +52,18 @@
   </div>
 </div>
 
- <div class="col-sm-12 container contact-section">
+<div class="col-sm-12 container contact-section">
   <div class="row">
     <h1 style="padding-left: 1.7%"> Contact Me!</h1>
   </div>
   <div class="row">
     <div class="col-sm-12">
-    <p>This is where I'll put a form to contact me (you guessed it, when I get around to that bit) so my personal info doesn't get scraped to hell by bots</p>
-  </div>
+      <p>This is where I'll put a form to contact me (you guessed it, when I get around to that bit) so my personal info doesn't get scraped to hell by bots</p>
+    </div>
   </div>
 </div>
 </body>
 <script>
-
  //Force hero to fill screen size
  $(document).ready(function(){
   var resizeHero = function(){
@@ -107,6 +104,14 @@
   delay: (el, i) => 100 + 30 * i
 });
   //End info text animation
+
+  //Arrow scroll button listener
+  $(".arrow").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".about-section").offset().top},
+        'slow');
+});
+  //End scroll listener
 </script>
 </html>
 

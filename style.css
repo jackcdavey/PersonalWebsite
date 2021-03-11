@@ -8,7 +8,7 @@ I know using px is a sin, I'll update it soon lmao
   --lightShade: #F9FBFB;
   --lightAccent: #E0CAC5;
   --mainBrand: #f78381;
-  --darkAccent: #8c92a2;/* <-- boring old thatch color, replace later */
+  --darkAccent: #8c92a2;
   --darkShade: #565668;
 }
 
@@ -41,6 +41,9 @@ body {
 }
 h1{
   color: var(--mainBrand);
+}
+p{
+  color: var(--darkShade);
 }
 a{
   color: var(--darkShade);
@@ -167,6 +170,7 @@ div.arrow:hover::before {
 .close{
   background-color: var(--darkShade);
   opacity: 1;
+  padding-top: .6rem !important;
 
 }
 
@@ -175,14 +179,16 @@ div.arrow:hover::before {
     background-color: var(--darkShade);
   }
 
+  p{
+    /*color: var(--lightShade);*/
+  }
+
   .title {
     color: var(--mainBrand);
   }
 
-
   .info {
     color: var(--darkAccent);
-
   }
 
   .alert{
@@ -191,35 +197,35 @@ div.arrow:hover::before {
 
   div.arrow::before {
     border-color: var(--darkAccent);
- }
- div.arrow:after {
-   border-color: var(--darkAccent);
- }
+  }
 
-.project-section{
-  background: var(--darkShade);
-}
-.project-card{
-  /* Eventually custom for each project */
-  background: var(--darkAccent);
-}
+  div.arrow:after {
+    border-color: var(--darkAccent);
+  }
 
-.about-section{
-  background: var(--darkAccent);
-}
-.contact-section{
-  background: var(--darkAccent);
-}
+  .project-section{
+    background: var(--darkShade);
+  }
+  .project-card{
+    /* Eventually custom for each project */
+    background: var(--darkAccent);
+  }
+
+  .about-section{
+    background: var(--darkAccent);
+  }
+  
+  .contact-section{
+    background: var(--darkAccent);
+  }
 }
 
 @media only screen and (max-width: 768px) {
-
-
-  div.arrow:hover::after {
-   transform: rotate(45deg) translateX(2px) translateY(4px);
- }
- .project-card{
-  margin-left: 5%;
-  max-width: 90%;
-}
+    div.arrow:hover::after {
+     transform: rotate(45deg) translateX(2px) translateY(4px);
+   }
+   .project-card{
+    margin-left: 5%;
+    max-width: 90%;
+  }
 }
