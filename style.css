@@ -1,3 +1,11 @@
+:root {
+  --lightShade: #F9FBFB;
+  --lightAccent: #E0CAC5;
+  --mainBrand: #E68886;
+  --darkAccent: #AA9490;/* <-- old thatch color, replace later */
+  --darkShade: #565668;
+}
+
 @font-face {
   font-family: 'montserrat';
   src: url('fonts/Montserrat/montserratalternates-regular-webfont.woff2') format('woff2'),
@@ -21,9 +29,12 @@
 }
 
 body {
-  background-color: #F9FBFB;
+  background-color: var(--lightShade);
   margin: 0;
   font-family: montserrat;
+}
+h1{
+  color: var(--mainBrand);
 }
 
 #hero-section{
@@ -31,7 +42,7 @@ body {
 }
 
 .title {
-  color: #EE8583;
+  color: var(--mainBrand);
   font-family: montserrat;
   grid-column: 2;
   grid-row: 2;
@@ -39,7 +50,7 @@ body {
 }
 
 .info {
-  color: #AA9490;
+  color: var(--lightAccent);
   grid-column: 4;
   grid-row: 3;
   font-size: 1.35em;
@@ -54,6 +65,7 @@ body {
 
 
 .project-section{
+  background: var(--lightAccent);
   /* Flex direction not working, needs to be applied to parent maybe? 
   display: flex;
   flex-direction: row;
@@ -64,6 +76,7 @@ body {
   justify-content: center;
 }
 .project-card{
+  background: var(--lightShade);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   min-height: 300px;
@@ -96,7 +109,7 @@ div.arrow::before {
  height: 100%;
  border-width: .8vmin .8vmin 0 0;
  border-style: solid;
- border-color: #AA9490;
+ border-color: var(--lightAccent);
  transition: .1s ease;
  display: block;
  transform-origin: 100% 0;
@@ -110,47 +123,51 @@ div.arrow:after {
  height: 100%;
  border-width: 0 .8vmin 0 0;
  border-style: solid;
- border-color: #AA9490;
+ border-color: var(--lightAccent);
  transform-origin: 100% 0;
  transition: .2s ease;
 }
+/* Color no longer switches to mainBrand here??? */
 div.arrow:hover::after {
  transform: rotate(45deg) translateX(3px) translateY(5px);
- border-color: #EE8583;
+ color: var(--mainBrand);
  height: 110%;
 }
 div.arrow:hover::before {
- border-color: #EE8583;
+ color: var(--mainBrand);
  transform: scale(.8);
 }
 
 .alert{
-  background: #565668;
-  color: #F9FBFB;
+  background: var(--darkShade);
+  color: var(--lightShade);
+  padding-top: 5px;
+  padding-bottom: 5px;
   text-align: center;
   border-radius: 0px;
 }
 .close{
-  background-color: #565668;
-      opacity: 1;
+  background-color: var(--darkShade);
+  opacity: 1;
 
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #565668;
+    background-color: var(--darkShade);
   }
 
   .title {
-    color: #E68886;
+    color: var(--mainBrand);
   }
 
 
   .info {
-    color: #AA9490;
+    color: var(--darkAccent);
+
   }
 
   .alert{
-    background: #AA9490;
+    background: var(--darkAccent);
   }
 }
