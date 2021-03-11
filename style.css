@@ -8,7 +8,7 @@ I know using px is a sin, I'll update it soon lmao
   --lightShade: #F9FBFB;
   --lightAccent: #E0CAC5;
   --mainBrand: #E68886;
-  --darkAccent: #AA9490;/* <-- boring old thatch color, replace later */
+  --darkAccent: #8c92a2;/* <-- boring old thatch color, replace later */
   --darkShade: #565668;
 }
 
@@ -89,7 +89,7 @@ a{
   color: var(--darkShade);
 }
 .project-card{
-  background: var(--lightAccent);
+  background: var(--lightAccent); /* Eventually add custom colors for each project */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   min-height: 300px;
@@ -183,6 +183,21 @@ div.arrow:hover::before {
   }
 
   .alert{
+    background: var(--darkAccent);
+  }
+
+  .project-section{
+    background: var(--darkShade);
+  }
+  .project-card{
+    /* Eventually custom for each project */
+    background: var(--darkAccent);
+  }
+  
+  .about-section{
+    background: var(--darkAccent);
+  }
+  .contact-section{
     background: var(--darkAccent);
   }
 }
