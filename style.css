@@ -7,7 +7,7 @@ I know using px is a sin, I'll update it soon lmao
 :root {
   --lightShade: #F9FBFB;
   --lightAccent: #E0CAC5;
-  --mainBrand: #E68886;
+  --mainBrand: #f78381;
   --darkAccent: #8c92a2;/* <-- boring old thatch color, replace later */
   --darkShade: #565668;
 }
@@ -44,6 +44,9 @@ h1{
 }
 a{
   color: var(--darkShade);
+}
+a:hover{
+  color: var(--mainBrand);
 }
 
 #hero-section{
@@ -104,7 +107,7 @@ a{
 
 .contact-section{
  display: grid;
-  background: var(--lightAccent);
+ background: var(--lightAccent);
 }
 
 
@@ -186,28 +189,37 @@ div.arrow:hover::before {
     background: var(--darkAccent);
   }
 
-  .project-section{
-    background: var(--darkShade);
-  }
-  .project-card{
-    /* Eventually custom for each project */
-    background: var(--darkAccent);
-  }
-  
-  .about-section{
-    background: var(--darkAccent);
-  }
-  .contact-section{
-    background: var(--darkAccent);
-  }
+  div.arrow::before {
+    border-color: var(--darkAccent);
+ }
+ div.arrow:after {
+   border-color: var(--darkAccent);
+ }
+
+.project-section{
+  background: var(--darkShade);
+}
+.project-card{
+  /* Eventually custom for each project */
+  background: var(--darkAccent);
+}
+
+.about-section{
+  background: var(--darkAccent);
+}
+.contact-section{
+  background: var(--darkAccent);
+}
 }
 
 @media only screen and (max-width: 768px) {
-div.arrow:hover::after {
- transform: rotate(45deg) translateX(2px) translateY(4px);
+
+
+  div.arrow:hover::after {
+   transform: rotate(45deg) translateX(2px) translateY(4px);
+ }
+ .project-card{
+  margin-left: 5%;
+  max-width: 90%;
 }
-  .project-card{
-    margin-left: 5%;
-    max-width: 90%;
-  }
 }
