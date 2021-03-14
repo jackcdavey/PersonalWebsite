@@ -1,3 +1,41 @@
+//Navbar Listener
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("contentSection").style.filter = "blur(7px)";
+  document.getElementById("navOpen").style.visibility = "hidden";
+
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("contentSection").style.filter = "blur(0px)";
+  document.getElementById("navOpen").style.visibility = "visible";
+
+}
+
+ $("#aboutMeNav").click(function() {
+    $('html,body').animate({
+      scrollTop: $(".about-section").offset().top},
+      'slow');
+    closeNav();
+  });
+
+ $("#projectsNav").click(function() {
+    $('html,body').animate({
+      scrollTop: $(".project-section").offset().top},
+      'slow');
+    closeNav();
+  });
+
+  $("#contactNav").click(function() {
+    $('html,body').animate({
+      scrollTop: $(".contact-section").offset().top},
+      'slow');
+    closeNav();
+  });
+
+//end navbar
+
 
  //Force hero to fill screen size
  $(document).ready(function(){

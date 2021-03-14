@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Jack Davey</title>
 
@@ -17,12 +17,22 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <div class="alert alert-secondary alert-dismissible" role="alert">
-    <strong>Alert:&nbsp</strong> 
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#" id="aboutMeNav">About Me</a>
+    <a href="#" id="projectsNav">Projects</a>
+    <a href="#" id="contactNav">Contact</a>
+  </div>
+  <div id="alertBar" class="alert alert-secondary alert-dismissible" role="alert">
+    <strong>Alert:&nbsp;</strong> 
     This site is still very early in development, daily updates may significantly change its look, feel, and functionality.
     <button type="button" class="close" >×</button>
   </div>
 
+  <span id="navOpen" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+
+<div id="contentSection">
   <div id="hero-section" class="container-fluid">
     <h1 class="title">Hey, I'm Jack</h1>
     <aside class="info">
@@ -69,7 +79,7 @@
               <div class="chip">Java</div>
               <div class="chip">C</div>
               <div class="chip">PHP</div>
-              <div class="chip">SQL</div>
+              <div class="chip">MySQL</div>
               <div class="chip">Bootstrap 3</div>
 
             </div>
@@ -87,6 +97,7 @@
               <div class="chip">Professional Writing</div>
               <div class="chip">Leadership</div>
               <div class="chip">Organization</div>
+              <div class="chip">Design</div>
               <div class="chip">Wiring</div>
               <div class="chip">Soldering</div>
               <div class="chip">PC Building</div>
@@ -98,7 +109,6 @@
     </div>
   </div>
 </div>
-
 
 
 <div class="col-sm-12 container project-section">
@@ -133,7 +143,9 @@
     </div>
   </div>
 </div>
-</body>
+</div>
 <script src="scripts.js"></script>
+
+</body>
 </html>
 
