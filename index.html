@@ -32,24 +32,91 @@
    <div class="arrow"></div>
  </div>
 
+
+
  <div class="col-sm-12 container about-section">
   <div class="row">
     <h1 style="padding-left: 1.7%"> About Me </h1>
   </div>
   <div class="row">
-    <div class="col-sm-12">
-      <p>This is where I'll put some stuff about myself and a link to my resume when I get around to that bit</p>
+    <div class="col-sm-3">
+      <div id="aboutMePicWrap">
+        <img src="images/me.jpg" id="aboutMePic" class="img-fluid rounded center-block" alt="Photo of Jack Davey">
+      </div>
+    </div>
+
+    <div class="col-sm-9" id="introFacts">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+            <h3>Intro</h3>
+            <p>This is where I'll put a lil blurb about myself and a link to my resume when I get around to that bit</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="row">
+            <h3>Technologies</h3>
+          </div>
+          <div class="row">
+            <div class="row box">
+              <div class="chip">HTML</div>
+              <div class="chip">CSS</div>
+              <div class="chip">JavaScript</div>
+              <div class="chip">C</div>
+              <div class="chip">PHP</div>
+              <div class="chip">SQL</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <h3>Skills</h3>
+          </div>
+          <div class="row">
+            <div class="row box">
+              <div class="chip">Creative Cloud</div>
+              <div class="chip">UI / UX</div>
+              <div class="chip">SolidWorks</div>
+              <div class="chip">Professional Writing</div>
+              <div class="chip">Leadership</div>
+              <div class="chip">Organization</div>
+              <div class="chip">Wiring</div>
+              <div class="chip">Soldering</div>
+              <div class="chip">PC Building</div>
+            </div>
+          </div>
+        </div>
+      </div>    
+
     </div>
   </div>
 </div>
 
-<div class="col-sm-12 project-section">
+
+
+<div class="col-sm-12 container project-section">
   <h1> Projects </h1> 
   <div class="project-card">
     <div class="project"> <!-- Add card styling to project elements -->
       <h3><a href="hubMgmtInterface/hub.html">Hub House Management Interface</a></h3>
     </div>
   </div>
+
+  <!--
+
+  <div class="project-card">
+    <div class="project"> 
+      <h3><a href="Exit Band Page URL">The Emergency Exit Band Website</a></h3>
+    </div>
+  </div>
+
+-->
+
+<!-- Add link to github with different styling at end of section -->
 </div>
 
 <div class="col-sm-12 container contact-section">
@@ -58,7 +125,7 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <p>This is where I'll put a form to contact me (you guessed it, when I get around to that bit) so my personal info doesn't get scraped to hell by bots</p>
+      <p>This is where I'll put a PHP form to contact me (you guessed it, when I get around to that bit) so my personal info doesn't get scraped to hell by bots</p>
     </div>
   </div>
 </div>
@@ -108,9 +175,9 @@
   //Arrow scroll button listener
   $(".arrow").click(function() {
     $('html,body').animate({
-        scrollTop: $(".about-section").offset().top},
-        'slow');
-});
+      scrollTop: $(".about-section").offset().top},
+      'slow');
+  });
   //End scroll listener
 </script>
 </html>
