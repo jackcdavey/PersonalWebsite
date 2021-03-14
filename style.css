@@ -35,6 +35,10 @@ I know using px is a sin, I'll update it soon lmao
   font-style: normal;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 body {
   background-color: var(--lightShade);
   margin: 0;
