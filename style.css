@@ -179,11 +179,11 @@ div.arrow:after {
 /* Color no longer switches to mainBrand here??? */
 div.arrow:hover::after {
  transform: rotate(45deg) translateX(4.5px) translateY(4.5px);
- color: var(--mainBrand);
+ border-color: var(--mainBrand);
  height: 110%;
 }
 div.arrow:hover::before {
- color: var(--mainBrand);
+ border-color: var(--mainBrand);
  transform: scale(.8);
 }
 
