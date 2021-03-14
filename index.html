@@ -20,7 +20,7 @@
   <div class="alert alert-secondary alert-dismissible" role="alert">
     <strong>Alert:&nbsp</strong> 
     This site is still very early in development, daily updates may significantly change its look, feel, and functionality.
-    <button type="button" class="close" data-dismiss="alert">×</button>
+    <button type="button" class="close" >×</button>
   </div>
 
   <div id="hero-section" class="container-fluid">
@@ -146,12 +146,15 @@
   };
 
   resizeHero();
-
   $(window).resize(function(){
     resizeHero();    
   });
 });
  //End hero resizing
+
+$(".alert button.close").click(function (e) {
+    $(this).parent().slideUp('slow');
+});
 
  //Info text animation
  var textWrapper = document.querySelector('.info');
