@@ -66,9 +66,12 @@
               <div class="chip">HTML</div>
               <div class="chip">CSS</div>
               <div class="chip">JavaScript</div>
+              <div class="chip">Java</div>
               <div class="chip">C</div>
               <div class="chip">PHP</div>
               <div class="chip">SQL</div>
+              <div class="chip">Bootstrap 3</div>
+
             </div>
           </div>
         </div>
@@ -99,22 +102,23 @@
 
 
 <div class="col-sm-12 container project-section">
-  <h1> Projects </h1> 
-  <div class="project-card">
-    <div class="project"> <!-- Add card styling to project elements -->
-      <h3><a href="hubMgmtInterface/hub.html">Hub House Management Interface</a></h3>
-    </div>
+  <div class="row">
+    <h1 style="padding-left: 1.7%"> Projects </h1> 
   </div>
+  <div class="row">
+    <div class="project-card col-sm-3">
+      <div class="project"> <!-- Add card styling to project elements -->
+        <h3><a href="hubMgmtInterface/hub.html">Hub House Management Interface</a></h3>
 
-  <!--
-
-  <div class="project-card">
+      </div>
+    </div>
+  <div class="project-card col-sm-3">
     <div class="project"> 
-      <h3><a href="Exit Band Page URL">The Emergency Exit Band Website</a></h3>
+      <h3><a href="">The Emergency Exit Band Website</a></h3>
     </div>
   </div>
 
--->
+</div>
 
 <!-- Add link to github with different styling at end of section -->
 </div>
@@ -153,22 +157,15 @@
  var textWrapper = document.querySelector('.info');
  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
- anime.timeline({loop: true})
+ anime.timeline({loop: false})
  .add({
   targets: '.info .letter',
   translateX: [40,0],
   translateZ: 0,
   opacity: [0,1],
   easing: "easeOutExpo",
-  duration: 1200,
+  duration: 1500,
   delay: (el, i) => 500 + 30 * i
-}).add({
-  targets: '.info .letter',
-  translateX: [0,-30],
-  opacity: [1,0],
-  easing: "easeInExpo",
-  duration: 1100,
-  delay: (el, i) => 100 + 30 * i
 });
   //End info text animation
 

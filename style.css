@@ -86,6 +86,7 @@ a:hover{
 #aboutMePicWrap{
   padding: 3%;
   height: 100%;
+
 }
 #aboutMePic{
   border-radius:3% !important; 
@@ -124,9 +125,9 @@ a:hover{
 .project-card{
   background: var(--lightAccent); /* Eventually add custom colors for each project */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-left: 2%;
   transition: 0.3s;
   min-height: 300px;
-  max-width: 25%;
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -222,6 +223,10 @@ div.arrow:hover::before {
   background: var(--darkAccent);
 }
 
+#aboutMePicWrap{
+    filter:brightness(85%);
+
+}
 .chip{
   background-color: var(--darkShade);
   color: var(--lightShade);
@@ -253,6 +258,7 @@ div.arrow:after {
 }
 
 @media only screen and (max-width: 768px) {
+  
   #introFacts{
     padding-left: 5%;
   }
