@@ -96,7 +96,7 @@ a:hover{
   float: right;
   right: 10px;
   top: 60px;
-  color: var(--lightAccent);
+  color: var(--darkShade);
 }
 #navOpen:hover{
   color: var(--mainBrand);
@@ -264,6 +264,13 @@ div.arrow:hover::before {
   p{
    color: var(--darkShade);
  }
+
+#navOpen{
+	color: var(--lightShade);
+}
+.sidenav a{
+	color: var(--lightShade);
+}
 
  .title {
   color: var(--mainBrand);
