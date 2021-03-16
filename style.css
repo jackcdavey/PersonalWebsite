@@ -330,6 +330,9 @@ div.arrow:after {
   /* Eventually custom for each project */
   background: var(--darkAccent);
 }
+.gitHubCard{
+  background: var(--darkAccent);
+}
 
 .about-section{
   background: var(--darkAccent);
