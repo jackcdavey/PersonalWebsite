@@ -1,150 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Jack Davey</title>
+	<title>Jack Davey</title>
 
-  <!-- Organize this later srsly -->
-  <meta charset="UTF-8">
-  <meta name="description" content="A personal website for Jack Davey, a full stack developer and web design student">
-  <meta name="keywords" content="jack, davey, john, jack davey, john davey">
-  <meta name="author" content="Jack Davey">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="style.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- Organize this later srsly -->
+	<meta charset="UTF-8">
+	<meta name="description" content="A personal website for Jack Davey, a full stack developer and web design student">
+	<meta name="keywords" content="jack, davey, john, jack davey, john davey">
+	<meta name="author" content="Jack Davey">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link href="style.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#" id="aboutMeNav">About Me</a>
-    <a href="#" id="projectsNav">Projects</a>
-    <a href="#" id="contactNav">Contact</a>
-  </div>
-  <div id="alertBar" class="alert alert-secondary alert-dismissible" role="alert">
-    <strong>Alert:&nbsp;</strong> 
-    This site is still very early in development, daily updates may significantly change its look, feel, and functionality.
-    <button type="button" class="close" >×</button>
-  </div>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#" id="aboutMeNav">About Me</a>
+		<a href="#" id="projectsNav">Projects</a>
+		<a href="#" id="contactNav">Contact</a>
+	</div>
+	<div id="alertBar" class="alert alert-secondary alert-dismissible" role="alert">
+		<strong>Alert:&nbsp;</strong> 
+		This site is still very early in development, daily updates may significantly change its look, feel, and functionality.
+		<button type="button" class="close" >×</button>
+	</div>
 
-  <span id="navOpen" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
-
-
-<div id="contentSection">
-  <div id="hero-section" class="container-fluid">
-    <h1 class="title">Hey, I'm Jack</h1>
-    <aside class="info">
-     <!-- Animated title description here -->
-     <p>Developer, Designer, and Photographer</p>
-   </aside>
-   <div class="arrow"></div>
- </div>
+	<span id="navOpen" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
 
 
-
- <div class="col-sm-12 container about-section">
-  <div class="row">
-    <h1 style="padding-left: 1.7%"> About Me </h1>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
-      <div id="aboutMePicWrap">
-        <img src="images/me.jpg" id="aboutMePic" class="img-fluid rounded center-block" alt="Photo of Jack Davey">
-      </div>
-    </div>
-
-    <div class="col-sm-9" id="introFacts">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="row">
-            <h3>Intro</h3>
-            <p>This is where I'll put a lil blurb about myself and a link to my resume when I get around to that bit</p>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="row">
-            <h3>Technologies</h3>
-          </div>
-          <div class="row">
-            <div class="row box">
-              <div class="chip">HTML</div>
-              <div class="chip">CSS</div>
-              <div class="chip">JavaScript</div>
-              <div class="chip">Java</div>
-              <div class="chip">C</div>
-              <div class="chip">PHP</div>
-              <div class="chip">MySQL</div>
-              <div class="chip">Bootstrap 3</div>
-
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="row">
-            <h3>Skills</h3>
-          </div>
-          <div class="row">
-            <div class="row box">
-              <div class="chip">Creative Cloud</div>
-              <div class="chip">UI / UX</div>
-              <div class="chip">SolidWorks</div>
-              <div class="chip">Professional Writing</div>
-              <div class="chip">Leadership</div>
-              <div class="chip">Organization</div>
-              <div class="chip">Design</div>
-              <div class="chip">Wiring</div>
-              <div class="chip">Soldering</div>
-              <div class="chip">PC Building</div>
-            </div>
-          </div>
-        </div>
-      </div>    
-
-    </div>
-  </div>
-</div>
+	<div id="contentSection">
+		<div id="hero-section" class="container-fluid">
+			<h1 class="title">Hey, I'm Jack</h1>
+			<aside class="info">
+				<!-- Animated title description here -->
+				<p>Developer, Designer, and Photographer</p>
+			</aside>
+			<div class="arrow"></div>
+		</div>
 
 
-<div class="col-sm-12 container project-section">
-  <div class="row">
-    <h1 style="padding-left: 1.7%"> Projects </h1> 
-  </div>
-  <div class="row">
-    <div class="project-card col-sm-3">
-      <div class="project"> <!-- Add card styling to project elements -->
-        <h3><a href="hubMgmtInterface/hub.html">Hub House Management Interface</a></h3>
 
-      </div>
-    </div>
-    <div class="project-card col-sm-3">
-      <div class="project"> 
-        <h3><a href="" onclick="return false;">The Emergency Exit Band Website</a></h3>
-      </div>
-    </div>
+		<div class="col-sm-12 container about-section">
+			<div class="row">
+				<h1 style="padding-left: 1.7%"> About Me </h1>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div id="aboutMePicWrap">
+						<img src="images/me.jpg" id="aboutMePic" class="img-fluid rounded center-block" alt="Photo of Jack Davey">
+					</div>
+				</div>
 
-  </div>
+				<div class="col-sm-9" id="introFacts">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<h3>Intro</h3>
+								<p>This is where I'll put a lil blurb about myself and a link to my resume when I get around to that bit</p>
 
-  <!-- Add link to github with different styling at end of section -->
-</div>
+							</div>
+						</div>
+					</div>
 
-<div class="col-sm-12 container contact-section">
-  <div class="row">
-    <h1 style="padding-left: 1.7%"> Contact Me!</h1>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <p>This is where I'll put a PHP form to contact me (you guessed it, when I get around to that bit) so my personal info doesn't get scraped to hell by bots</p>
-    </div>
-  </div>
-</div>
-</div>
-<script src="scripts.js"></script>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="row">
+								<h3>Technologies</h3>
+							</div>
+							<div class="row">
+								<div class="row box">
+									<div class="chip">HTML</div>
+									<div class="chip">CSS</div>
+									<div class="chip">JavaScript</div>
+									<div class="chip">Java</div>
+									<div class="chip">C</div>
+									<div class="chip">PHP</div>
+									<div class="chip">MySQL</div>
+									<div class="chip">Bootstrap 3</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<h3>Skills</h3>
+							</div>
+							<div class="row">
+								<div class="row box">
+									<div class="chip">Creative Cloud</div>
+									<div class="chip">UI / UX</div>
+									<div class="chip">SolidWorks</div>
+									<div class="chip">Professional Writing</div>
+									<div class="chip">Leadership</div>
+									<div class="chip">Organization</div>
+									<div class="chip">Design</div>
+									<div class="chip">Wiring</div>
+									<div class="chip">Soldering</div>
+									<div class="chip">PC Building</div>
+								</div>
+							</div>
+						</div>
+					</div>    
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-sm-12 container project-section">
+			<div class="row">
+				<h1 style="padding-left: 1.7%"> Projects </h1> 
+			</div>
+			<div class="row">
+				<div class="project-card col-sm-3">
+					<div class="project"> <!-- Add card styling to project elements -->
+						<h3><a href="hubMgmtInterface/hub.html">Hub House Management Interface</a></h3>
+
+					</div>
+				</div>
+				<div class="project-card col-sm-3 blocked">
+					<div class="project"> 
+						<h3><a href="" onclick="return false;">The Emergency Exit Band Website</a></h3>
+					</div>
+				</div>
+				<div class="project-card col-sm-3 blocked">
+					<div class="project"> 
+						<h3><a href="" onclick="return false;">Some Other Project</a></h3>
+					</div>
+				</div>
+				<div class="col-sm-1 gitHubCard">
+						<img src="images/github.png" id="githubimg"class="img-fluid rounded center-block" alt="GitHub Logo">
+						<h5> More on GitHub! &#8594;</h5>
+			
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 container contact-section">
+			<div class="row">
+				<h1 style="padding-left: 1.7%"> Contact Me!</h1>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p>This is where I'll put a PHP form to contact me (you guessed it, when I get around to that bit) so my personal info doesn't get scraped to hell by bots</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="scripts.js"></script>
 
 </body>
 </html>
