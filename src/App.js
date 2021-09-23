@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import About from "./components/About";
+import Splash from "./components/Splash";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import React, {useRef} from "react";
+
 import './App.css';
 
+
+function ScrollArrow () {
+  return <div onclick={executeScroll} class="arrow"></div>;
+  //Create arrow component here alongside scrolling function, import to Splash componenet and 
+}
+
+function executeScroll(){
+  //something here later
+}
+
 function App() {
+  const aboutRef = useRef(null)
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="App">
+      <Splash scroll={executeScroll} />
+      <About ref={aboutRef}/>
+      <Projects/>
+      <Contact/>
     </div>
   );
 }
 
+export {ScrollArrow}
 export default App;
