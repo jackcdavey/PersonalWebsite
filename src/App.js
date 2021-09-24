@@ -3,6 +3,7 @@ import Splash from "./components/Splash";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import AlertBar from "./components/AlertBar"
+import { Link } from "react-scroll";
 import React, {useRef} from "react";
 
 import './App.css';
@@ -24,8 +25,9 @@ function App() {
   return (
     <div class="App">
       <AlertBar />
-      <Splash scroll={executeScroll} />
-      <About ref={aboutRef}/>
+      <Link to="aboutSect" spy={true} smooth={true} offset={50} duration={500}>Test</Link>
+      <Splash />
+      <About id="aboutSect"/>
       <Projects/>
       <Contact/>
     </div>

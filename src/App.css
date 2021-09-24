@@ -397,7 +397,7 @@ div.arrow:after {
 }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 585px) {
 
   #introFacts{
     padding-left: 5%;
@@ -405,6 +405,9 @@ div.arrow:after {
 
   div.arrow:hover::after {
    transform: rotate(45deg) translateX(2px) translateY(4px);
+ }
+ aboutMePic{
+  margin-left: 20vw;
  }
  .project-section{
   flex-direction: column;
