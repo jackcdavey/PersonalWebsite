@@ -6,10 +6,10 @@ I know using px is a sin, I'll update it soon lmao
 
 :root {
   --lightShade: #F9FBFB;
-  --lightAccent: #E0CAC5;
-  --mainBrand: #f78381;
-  --darkAccent: #8c92a2;
-  --darkShade: #565668;
+  --lightAccent: #cddde4;
+  --mainBrand: #6bc3ed;
+  --darkAccent: #838793;
+  --darkShade: #474758;
 }
 
 
@@ -183,19 +183,26 @@ a:hover{
   background: var(--lightShade);
   display: grid;
 }
+.project-wrap{
+  margin-left: auto !important;
+  /* Not working?? Project cards are off center on narrow screens */
+}
+
 .project{
-  display: flex;
-  justify-content: center;
   text-align: center;
+  display: inline-block;
   color: var(--darkShade);
+
 }
 .project-card{
   background: var(--lightAccent); /* Eventually add custom colors for each project */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   margin-left: 2%;
   margin-right: 0%;
+  
   transition: 0.3s;
-  min-height: 300px;
+  max-width: 82vw !important;
+  min-height: 175px !important;
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -232,6 +239,7 @@ a:hover{
 }
 
 #formWrap{
+  filter: blur(15px);
  display: grid;
  grid-template-rows: 1fr 1fr;
  grid-template-columns: 1fr 2fr 1fr 2fr 1fr;

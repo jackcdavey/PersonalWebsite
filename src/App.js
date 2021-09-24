@@ -2,6 +2,7 @@ import About from "./components/About";
 import Splash from "./components/Splash";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import AlertBar from "./components/AlertBar"
 import React, {useRef} from "react";
 
 import './App.css';
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div class="App">
+      <AlertBar />
       <Splash scroll={executeScroll} />
       <About ref={aboutRef}/>
       <Projects/>

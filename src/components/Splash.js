@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import {ScrollArrow} from "../App.js";
-
+import Tagline from "./Tagline";
 
 
 export default function Splash(){
@@ -10,7 +10,7 @@ export default function Splash(){
           <h1 class="title">Hey, I'm Jack</h1>
         </div>
         <div class="infoWrap">
-          <p class="info">Developer, Designer, and Photographer</p>
+          <Tagline />
         </div>
         <ScrollArrow/>
       </div>
