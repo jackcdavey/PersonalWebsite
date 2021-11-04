@@ -205,7 +205,8 @@ a:hover{
 .project-card{
   background: var(--lightAccent); /* Eventually add custom colors for each project */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin-left: 2%;
+  margin-left: 1%;
+  margin-right: 1%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -433,7 +434,6 @@ div.arrow:after {
   flex-direction: column;
 }
 .project-card{
-  margin-left: 5%;
   max-width: 90%;
 }
 .gitHubCard{
