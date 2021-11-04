@@ -42,7 +42,7 @@ html, body {
 }
 
 body {
-  
+
   background-color: var(--lightShade);
   margin: 0;
   font-family: montserrat !important;
@@ -408,12 +408,15 @@ div.arrow:after {
 }
 
 @media only screen and (max-width: 585px) {
-  h1{
-      font-size: 52px !important;
-  }
-  h2{
-    font-size: 22px !important;
-  }
+  
+  
+  #hero-grid{
+  grid-template-areas: 
+    ". . . . ."
+    ". titleWrap titleWrap . ."
+    ". . infoWrap infoWrap ."
+    ". . . . ."; 
+}
 
 
   #introFacts{
