@@ -58,8 +58,6 @@ a:hover{
   color: var(--mainBrand) !important;
 }
 
-#alertBar{
-}
 
 /* Navbar Styling */
 .sidenav {
@@ -303,7 +301,7 @@ div.arrow:hover::before {
  transform: scale(.8);
 }
 
-.alert{
+#alertBar{
   background: var(--darkShade);
   color: var(--lightShade);
   padding-top: 5px;
@@ -313,6 +311,7 @@ div.arrow:hover::before {
 }
 .close{
   background-color: var(--darkShade);
+  float: right;
   opacity: 1;
   padding-top: .2rem !important;
 
@@ -351,7 +350,7 @@ div.arrow:hover::before {
   color: var(--darkAccent) !important;
 }
 
-.alert{
+#alertBar{
   background: var(--darkAccent);
 }
 

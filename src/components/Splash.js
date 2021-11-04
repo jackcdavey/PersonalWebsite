@@ -1,6 +1,8 @@
-import React, { useRef } from "react";
-import {ScrollArrow} from "../App.js";
 import Tagline from "./Tagline";
+
+import React from 'react';
+
+import {Link} from 'react-scroll';
 
 
 export default function Splash(){
@@ -12,7 +14,9 @@ export default function Splash(){
         <div class="infoWrap">
           <Tagline />
         </div>
-        <ScrollArrow/>
+        <Link activeClass="active" to="aboutSection" spy={true} smooth={true} duration={1000}>
+          <div class="arrow"></div>
+        </Link>
       </div>
     );
 }

@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-
-
 
 export default function AlertBar(){
   return(
-     <div></div>
+     <div id="alertBar">Test 
+     <span id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</span>
+
+     </div>
     );
 }
 

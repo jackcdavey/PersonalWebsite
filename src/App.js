@@ -2,33 +2,33 @@ import About from "./components/About";
 import Splash from "./components/Splash";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import AlertBar from "./components/AlertBar"
-import { Link } from "react-scroll";
+import AlertBar from "./components/AlertBar";
+
+
+import React, {Component, useRef, useEffect, forwardRef} from 'react'
+
+import Scroll from 'react-scroll'
+import Link from 'react-scroll'
 
 import './App.css';
 
 
-function ScrollArrow () {
-  return <div class="arrow"></div>;
-  //Create arrow component here alongside scrolling function, import to Splash componenet and 
-}
-
 
 
 function App() {
-  
 
   return (
     <div class="App">
-      {/*<AlertBar />*/}
-      <Link to="aboutSect" spy={true} smooth={true} offset={50} duration={500}>Test</Link>
+      
+      <AlertBar />
       <Splash />
-      <About id="aboutSect"/>
+      <About id="aboutsection"/>
       <Projects/>
       <Contact/>
+
     </div>
   );
 }
+//<button onClick={}>Clickme dammit </button>
 
-export {ScrollArrow}
 export default App;
