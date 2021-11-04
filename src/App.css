@@ -196,8 +196,11 @@ a:hover{
   text-align: center;
   display: inline-block;
   color: var(--darkShade);
-
 }
+#gitHubCard h5{
+  font-weight: 1000;
+}
+
 .project-card{
   background: var(--lightAccent); /* Eventually add custom colors for each project */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
