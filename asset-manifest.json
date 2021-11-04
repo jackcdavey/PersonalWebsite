@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/PersonalWebsite/static/css/main.f909ca63.chunk.css",
+    "main.js": "/PersonalWebsite/static/js/main.a0cb6ebd.chunk.js",
+    "main.js.map": "/PersonalWebsite/static/js/main.a0cb6ebd.chunk.js.map",
+    "runtime-main.js": "/PersonalWebsite/static/js/runtime-main.5ca620ce.js",
+    "runtime-main.js.map": "/PersonalWebsite/static/js/runtime-main.5ca620ce.js.map",
+    "static/js/2.ac97c9df.chunk.js": "/PersonalWebsite/static/js/2.ac97c9df.chunk.js",
+    "static/js/2.ac97c9df.chunk.js.map": "/PersonalWebsite/static/js/2.ac97c9df.chunk.js.map",
+    "static/js/3.54e13185.chunk.js": "/PersonalWebsite/static/js/3.54e13185.chunk.js",
+    "static/js/3.54e13185.chunk.js.map": "/PersonalWebsite/static/js/3.54e13185.chunk.js.map",
+    "index.html": "/PersonalWebsite/index.html",
+    "static/css/main.f909ca63.chunk.css.map": "/PersonalWebsite/static/css/main.f909ca63.chunk.css.map",
+    "static/js/2.ac97c9df.chunk.js.LICENSE.txt": "/PersonalWebsite/static/js/2.ac97c9df.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/PersonalWebsite/static/media/montserratalternates-regular-webfont.c36fbf0f.woff2",
+    "static/media/me.9b1739a7.jpg": "/PersonalWebsite/static/media/me.9b1739a7.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5ca620ce.js",
+    "static/js/2.ac97c9df.chunk.js",
+    "static/css/main.f909ca63.chunk.css",
+    "static/js/main.a0cb6ebd.chunk.js"
+  ]
+}
