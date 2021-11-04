@@ -152,6 +152,9 @@ a:hover{
   background: var(--lightAccent);
 }
 #aboutMePicWrap{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   padding: 3%;
   height: 100%;
   margin-bottom: 15px;
