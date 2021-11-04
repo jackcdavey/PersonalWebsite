@@ -113,32 +113,35 @@ a:hover{
 #hero-grid{
   /*height:  50%;*/
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 3fr 2fr;
+  grid-template-rows: 0.5fr 1fr 1fr 0.5fr;
+  grid-template-columns: 1fr 1.5fr 1.5fr 2fr 1fr;
   background-color: var(--lightShade);
   height: 100vh;
+  text-overflow: clip;
 
+  grid-template-areas: 
+    ". . . . ."
+    ". titleWrap titleWrap . ."
+    ". . . infoWrap infoWrap "
+    ". . . . ."; 
 }
 
 
 
 .titleWrap {
-  grid-column: 2;
-  grid-row: 2;
+  grid-area: titleWrap;
+  
 }
 
 .title {
   color: var(--mainBrand) !important;
   font-family: montserrat !important;
-  grid-column: 1;
-  grid-row: 2;
   font-size: 5em;
 }
 
 .infoWrap {
   color: var(--lightAccent);
-  grid-column: 3;
-  grid-row: 3;
+  grid-area: infoWrap;
   font-size: 1.5em;
 }
 
@@ -397,6 +400,13 @@ div.arrow:after {
 }
 
 @media only screen and (max-width: 585px) {
+  h1{
+      font-size: 52px !important;
+  }
+  h2{
+    font-size: 22px !important;
+  }
+
 
   #introFacts{
     padding-left: 5%;

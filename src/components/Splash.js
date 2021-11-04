@@ -14,7 +14,7 @@ export default function Splash(){
         <div className="infoWrap">
           <Tagline />
         </div>
-        <Link activeclass="active" to="aboutSection" spy={true} smooth={true} duration={1000}>
+        <Link activeclass="active" to="aboutSection" spy={true} smooth={true} duration={700}>
           <div className="arrow"></div>
         </Link>
       </div>
