@@ -19,7 +19,7 @@ export default function Tagline(){
   }, []);
 
   return(
-    <h2 class = "info">
+    <h2 className = "info">
       <TextTransition
         text={ words[index % words.length] }
         springConfig={ presets.wobbly }

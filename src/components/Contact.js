@@ -23,11 +23,11 @@ const Contact = () => {
     alert(result.status);
   };
   return (
-<div class="col-sm-12 container contact-section">
-      <div class="row">
-        <h1 class="sectionHeader"> Contact Me!</h1>
+<div className="col-sm-12 container contact-section">
+      <div className="row">
+        <h1 className="sectionHeader"> Contact Me!</h1>
       </div>
-      <div class="row">
+      <div className="row">
 
     <form onSubmit={handleSubmit}>
     <div id="formWrap">
