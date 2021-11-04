@@ -40,7 +40,9 @@ html, body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+
 body {
+  
   background-color: var(--lightShade);
   margin: 0;
   font-family: montserrat !important;
@@ -57,7 +59,6 @@ a{
 a:hover{
   color: var(--mainBrand) !important;
 }
-
 
 /* Navbar Styling */
 .sidenav {

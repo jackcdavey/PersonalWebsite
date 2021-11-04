@@ -14,8 +14,12 @@ import './App.css';
 
 
 //<AlertBar />
-
+const isIOS = navigator.userAgent.match(/OS/i) != null;
+  if (isIOS)
+    document.body.classList.add('ios-status-bar');
 function App() {
+
+  
 
   return (
     <div className="App">
