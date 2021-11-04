@@ -34,6 +34,15 @@ function closeNav() {
     closeNav();
   });
 
+/* Make Navbar close when clicked outside
+  $(document).click(function (e){
+            var container = $(".toggle-button");
+            if ((!container.is(e.target))){
+                closeNav();
+            }
+        });
+*/
+
 //end navbar
 
 
@@ -69,7 +78,7 @@ $(".alert button.close").click(function (e) {
   translateZ: 0,
   opacity: [0,1],
   easing: "easeOutExpo",
-  duration: 1500,
+  duration: 4000,
   delay: (el, i) => 500 + 30 * i
 });
   //End info text animation
