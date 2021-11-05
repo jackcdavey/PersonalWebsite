@@ -3,7 +3,7 @@ import gitLogo from './images/github.png'
 
 export default function Projects(){
   return(
-  <div class="col-sm-12 container project-section">
+  <div id="projectSection"class="col-sm-12 container project-section">
       <div class="row">
         <h1 class="sectionHeader"> Projects </h1> 
       </div>

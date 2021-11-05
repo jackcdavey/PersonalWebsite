@@ -23,7 +23,7 @@ const Contact = () => {
     alert(result.status);
   };
   return (
-<div className="col-sm-12 container contact-section">
+<div id="contactSection" className="col-sm-12 container contact-section">
       <div className="row">
         <h1 className="sectionHeader"> Contact Me!</h1>
       </div>

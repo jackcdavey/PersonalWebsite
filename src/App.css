@@ -61,45 +61,106 @@ a:hover{
 }
 
 /* Navbar Styling */
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 30px;
-  right: 0;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: var(--darkShade);
-  display: block;
-  transition: 0.3s;
-}
-.sidenav a:hover {
-  color: var(--mainBrand);
-}
-.sidenav .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
+
 #navOpen{
-  z-index: 100;
+  display: block;
+  z-index: 1;
   position: fixed;
-  float: right;
-  right: 10px;
-  top: 60px;
-  color: var(--darkShade);
+  right: 1rem;
+  top: 1rem;
 }
-#navOpen:hover{
-  color: var(--mainBrand);
+#navOpen a{/* Replace a with proper react-scroll link component tag */
+  text-decoration: none;
+  color: #232323;
+  
+  transition: color 0.3s ease;
+}
+#navOpen:hover span{
+  background-color: var(--mainBrand);
+}
+#navOpen:hover input:checked ~ span{
+  background-color: var(--mainBrand);
+}
+#navOpen input{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+#navOpen span{
+  display: block;
+  width: 2rem;
+  height: .2rem;
+  margin: .3rem;
+  border-radius: 3px;
+  background-color: var(--lightAccent);
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+#navOpen span:first-child{
+  transform-origin: 0% 0%;
+}
+#navOpen span:nth-last-child(2){
+  transform-origin: 0% 100%;
+}
+#navOpen input:checked ~ span{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: var(--lightAccent);
+}
+#navOpen input:checked ~ span:nth-last-child(3){
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+#navOpen input:checked ~ span:nth-last-child(2){
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu {
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+  margin: -100px 0 0 -95vw;
+  padding: 50px;
+  padding-top: 20vh;  /* Area above slideover menu links */
+  padding-bottom: 70vh; /* Area under slideover menu links */
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  background-color: rgba(0, 0, 0, 0.61);
+  backdrop-filter: blur(5px);
+  transform-origin: 0% 0%;
+  transform: translate(100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li{
+  color: var(--darkAccent);
+  padding: 30px 44vw 0 50%;
+  font-size: 22px;
+}
+ #menu li:hover{
+   color: var(--mainBrand);
+ }
+
+/*
+ * And let's slide it in from the left
+ */
+#navOpen input:checked ~ ul{
+  transform: none;
 }
 
 .sectionHeader{
@@ -131,7 +192,6 @@ a:hover{
 
 .titleWrap {
   grid-area: titleWrap;
-  
 }
 
 .title {
@@ -410,7 +470,12 @@ div.arrow:after {
 
 @media only screen and (max-width: 585px) {
   
-  
+  #menu{
+    margin: -100px 0 0 -87vw;
+  }
+  #menu li{
+    padding: 30px 44vw 0 35%;
+  }
   #hero-grid{
   grid-template-areas: 
     ". . . . ."

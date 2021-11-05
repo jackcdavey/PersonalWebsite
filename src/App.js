@@ -1,3 +1,4 @@
+import NavMenu from "./components/NavMenu";
 import About from "./components/About";
 import Splash from "./components/Splash";
 import Projects from "./components/Projects";
@@ -22,11 +23,11 @@ function App() {
   return (
     <div className="App">
       
-      
+      <NavMenu/>
       <Splash />
       <About id="aboutsection"/>
-      <Projects/>
-      <Contact/>
+      <Projects id="projectSection"/>
+      <Contact id="contactSection"/>
 
     </div>
   );
