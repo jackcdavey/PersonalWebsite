@@ -32,14 +32,6 @@ export default function Projects(){
           </div>
         
           <div class="project-card col-sm-2 blocked">
-            <a href={""}>
-              <div class="project"> 
-                <h5>Some Other Project</h5>
-              </div>
-            </a>
-          </div>
-        
-          <div class="project-card col-sm-2 blocked">
           <a href={"https://github.com/jackcdavey"}>
             <div class="project" id="gitHubCard">
               <img src={gitLogo} id="githubimg"class="img-fluid rounded center-block" alt="GitHub Logo"></img>
