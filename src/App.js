@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       
-      <NavMenu/>
+      
       <Splash />
       <About id="aboutsection"/>
       <Projects id="projectSection"/>
