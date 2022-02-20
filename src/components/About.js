@@ -52,6 +52,7 @@ export default function About(){
                     <div className="chip">C</div>
                     <div className="chip">PHP</div>
                     <div className="chip">SQL</div>
+                    <div className="chip">Ruby</div>
                     <div className="chip">Bootstrap 3</div>
                   </div>
                 </div>

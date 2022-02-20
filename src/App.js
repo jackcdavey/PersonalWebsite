@@ -3,6 +3,7 @@ import About from "./components/About";
 import Splash from "./components/Splash";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import PicGallery from "./components/Gallery";
 //import AlertBar from "./components/AlertBar";
 
 
@@ -23,10 +24,10 @@ function App() {
   return (
     <div className="App">
       
-      
       <Splash />
       <About id="aboutsection"/>
       <Projects id="projectSection"/>
+      <PicGallery />
       <Contact id="contactSection"/>
 
     </div>
