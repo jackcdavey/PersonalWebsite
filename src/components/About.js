@@ -1,5 +1,5 @@
 import jackProfile from '../assets/images/me.jpg'
-import resume from '../assets/images/resume.png'
+import resume from '../assets/images/ResumeApril2022.png'
 
 import React, { Component } from 'react'
 
