@@ -6,6 +6,8 @@ import { Link } from 'react-scroll';
 import { SplashTitle, SplashWrap } from "../styles/stylesheet";
 
 export default function Splash() {
+
+
     return (
         <SplashWrap>
             <div className="titleWrap">

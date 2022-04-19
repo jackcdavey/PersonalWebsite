@@ -15,6 +15,7 @@ export const Wrapper = styled.section`
 export const SplashWrap = styled.section`
   height: 100vh;
   background: ${COLORS.lightAccent};
+  opacity: 0.5;
   marginTop: 0;
 `;
 
