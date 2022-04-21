@@ -3,7 +3,7 @@ import resume from '../assets/images/ResumeApril2022.png'
 
 import React, { Component } from 'react'
 
-import { SectionWrap, SectionRow, ContentColumn, ContentRow, SectionTitle, ProfileImageWrap } from '../styles/stylesheet.js';
+import { SectionWrap, SectionRow, ContentColumn, ContentRow, ContentBox, ChipContainer, SectionTitle, ProfileImageWrap } from '../styles/stylesheet.js';
 
 export default function About() {
     return (
@@ -46,18 +46,18 @@ export default function About() {
                                 <h3>Technologies</h3>
                             </ContentRow>
                             <ContentRow>
-                                <div className="box">
-                                    <div className="chip">React Native</div>
-                                    <div className="chip">ReactJS</div>
-                                    <div className="chip">JavaScript</div>
-                                    <div className="chip">Java</div>
-                                    <div className="chip">HTML</div>
-                                    <div className="chip">CSS</div>
-                                    <div className="chip">C</div>
-                                    <div className="chip">PHP</div>
-                                    <div className="chip">SQL</div>
-                                    <div className="chip">Ruby</div>
-                                </div>
+                                <ContentBox>
+                                    <ChipContainer>React Native</ChipContainer>
+                                    <ChipContainer>ReactJS</ChipContainer>
+                                    <ChipContainer>JavaScript</ChipContainer>
+                                    <ChipContainer>Java</ChipContainer>
+                                    <ChipContainer>HTML</ChipContainer>
+                                    <ChipContainer>CSS</ChipContainer>
+                                    <ChipContainer>C</ChipContainer>
+                                    <ChipContainer>PHP</ChipContainer>
+                                    <ChipContainer>SQL</ChipContainer>
+                                    <ChipContainer>Ruby</ChipContainer>
+                                </ContentBox>
                             </ContentRow>
                         </ContentColumn>
                         <ContentColumn>
@@ -65,15 +65,15 @@ export default function About() {
                                 <h3>Skills</h3>
                             </ContentRow>
                             <ContentRow>
-                                <div className="box">
-                                    <div className="chip">Creative Cloud</div>
-                                    <div className="chip">Professional Writing</div>
-                                    <div className="chip">UI / UX</div>
-                                    <div className="chip">SolidWorks</div>
-                                    <div className="chip">Graphic Design</div>
-                                    <div className="chip">Electronics</div>
-                                    <div className="chip">PC Assembly</div>
-                                </div>
+                                <ContentBox>
+                                    <ChipContainer>Creative Cloud</ChipContainer>
+                                    <ChipContainer>Professional Writing</ChipContainer>
+                                    <ChipContainer>UI / UX</ChipContainer>
+                                    <ChipContainer>SolidWorks</ChipContainer>
+                                    <ChipContainer>Graphic Design</ChipContainer>
+                                    <ChipContainer>Electronics</ChipContainer>
+                                    <ChipContainer>PC Assembly</ChipContainer>
+                                </ContentBox>
                             </ContentRow>
                         </ContentColumn>
                     </ContentRow>

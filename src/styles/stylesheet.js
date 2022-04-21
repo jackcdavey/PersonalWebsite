@@ -58,6 +58,24 @@ export const ContentRow = styled.div`
   align-items: center;
   `;
 
+export const ContentBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1%;
+  `;
+
+export const ChipContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3%;
+  margin: 3%;
+  border-radius: 20px;
+  background: ${COLORS.lightAccent};
+  `;
+
 
 export const ProfileImageWrap = styled.div`
 display: flex;
