@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Wrapper, Title, BlurBackground } from './styles/stylesheet';
 import Splash from './components/Splash';
 import AboutMe from './components/AboutMe';
 import { COLORS } from './styles/colors';
 import Canvas, { resizeCanvasToDisplaySize } from './components/Canvas.js';
+import { AppContainer } from './styles/stylesheet.js';
 
 function App() {
 
@@ -48,12 +48,12 @@ function App() {
 
   console.log(COLORS.mainBrand);
   return (
-    <div className="App">
+    <AppContainer>
       <Canvas draw={draw} />
 
       <Splash />
       <AboutMe />
-    </div>
+    </AppContainer>
   );
 }
 

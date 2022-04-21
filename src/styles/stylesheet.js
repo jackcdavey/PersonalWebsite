@@ -1,16 +1,11 @@
 import styled from 'styled-components';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import { COLORS } from '../styles/colors';
-export const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`;
-export const Wrapper = styled.section`
-  padding: 4em;
-  height: 100vh;
-  background: papayawhip;
-`;
+
+export const AppContainer = styled.div`
+  
+  `;
+
 
 export const SplashWrap = styled.section`
   height: 100vh;
@@ -25,18 +20,49 @@ export const SplashTitle = styled.h1`
   color: ${COLORS.mainBrand};
 `;
 
-export const BlurBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: ${COLORS.mainBrand};
-  background-image: url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
-  background-size: cover; 
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(50px);
-  z-index: -1;
-`;
+export const SectionWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+  `;
 
+export const SectionTitle = styled.h1`
+text-align: left;
+width: 100%;
+padding: 1%;
+  `;
+
+export const SectionRow = styled.div`
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  `;
+
+export const ContentColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  `;
+
+export const ContentRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  `;
+
+
+export const ProfileImageWrap = styled.div`
+display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3%;
+  margin-bottom: 15px;
+  `;
