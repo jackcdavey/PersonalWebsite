@@ -2,6 +2,7 @@ import styled from "styled-components";
 import jackProfile from "../assets/images/me.jpg";
 import resume from "../assets/images/ResumeApril2022.png";
 import AnimatedTitle from "../hooks/revealText";
+import { COLORS } from "../styles/colors";
 
 import {
   SectionWrap,
@@ -16,7 +17,7 @@ import {
 
 export default function AboutMe() {
   const AbtWrap = styled(SectionWrap)`
-    background-color: red;
+    background-color: ${COLORS.lightAccent};
     padding: 0;
     margin: 0;
   `;

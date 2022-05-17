@@ -7,6 +7,7 @@ import FramerBG from "./components/FramerBG";
 import { COLORS } from "./styles/colors";
 import Canvas, { resizeCanvasToDisplaySize } from "./components/Canvas.js";
 import { AppContainer } from "./styles/stylesheet.js";
+import Contact from "./components/Contact";
 
 function App() {
   let circles: {
@@ -58,6 +59,7 @@ function App() {
       <Splash />
       <AboutMe />
       <Projects />
+      <Contact />
     </AppContainer>
   );
 }

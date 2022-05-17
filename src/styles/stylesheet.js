@@ -8,7 +8,7 @@ export const AppContainer = styled.div``;
 
 export const SplashWrap = styled.section`
   height: 90vh;
-  background: ${COLORS.lightAccent};
+  background: ${COLORS.lightShade};
   opacity: 0.5;
   padding-left: 10vw;
   padding-top: 10vw;
@@ -27,6 +27,7 @@ export const SectionWrap = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
+  min-height: 30vh;
 `;
 
 export const SectionTitle = styled.h1`
@@ -74,7 +75,7 @@ export const ChipContainer = styled.div`
   padding: 3%;
   margin: 3%;
   border-radius: 20px;
-  background: ${COLORS.lightAccent};
+  background: ${COLORS.lightShade};
 `;
 
 export const ProjectCard = styled.div`
@@ -98,4 +99,12 @@ export const FramerContainer = styled.div`
   top: 0;
   left: 0;
   z-index: -1;
+  filter: blur(10px);
+`;
+
+export const FramerObject = styled.div`
+  background: black;
+  border-radius: 75px;
+  width: 150px;
+  height: 150px;
 `;

@@ -36,12 +36,6 @@ canvas {
   filter: blur(40px);
 }
 
-.example-container div {
-  background: black;
-  border-radius: 30px;
-  width: 150px;
-  height: 150px;
-}
 
 
 div.arrow {

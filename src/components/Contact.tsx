@@ -18,23 +18,24 @@ import {
 } from "../styles/stylesheet.js";
 import { COLORS } from "../styles/colors";
 
-export default function Projects() {
-  const ProjWrap = styled(SectionWrap)`
-    background-color: ${COLORS.lightShade};
-    opacity: 0.5;
+export default function Contact() {
+  const ContWrap = styled(SectionWrap)`
+    background-color: ${COLORS.lightAccent};
+    padding: 0;
+    margin: 0;
   `;
 
   return (
-    <ProjWrap>
+    <ContWrap>
       <SectionRow>
         <SectionTitle>
           {" "}
-          <AnimatedTitle {..."Projects"} />{" "}
+          <AnimatedTitle {..."Contact Me!"} />{" "}
         </SectionTitle>
       </SectionRow>
       <SectionRow>
-        <p> Yup</p>
+        <p> It'll go here i guess</p>
       </SectionRow>
-    </ProjWrap>
+    </ContWrap>
   );
 }

@@ -28,17 +28,21 @@ export default function FramerBG() {
 
   return (
     <FramerContainer>
-      <div className="example-container">
-        <motion.div
-          animate={{
-            x: (xPos += xDir),
-            y: (yPos += yDir),
-            //scale: [1, 2, 1, 2, 1],
-            //rotate: [0, 0, 270, 270, 0],
-            //borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-          }}
-        />
-      </div>
+      <motion.div
+        style={{
+          width: bWidth,
+          height: bHeight,
+          borderRadius: bHeight / 2,
+          background: "black",
+        }}
+        animate={{
+          x: (xPos += xDir),
+          y: (yPos += yDir),
+          //scale: [1, 2, 1, 2, 1],
+          //rotate: [0, 0, 270, 270, 0],
+          //borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
+      />
     </FramerContainer>
   );
 }
