@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import jackProfile from "../assets/images/me.jpg";
 import resume from "../assets/images/ResumeApril2022.png";
 import AnimatedTitle from "../hooks/revealText";
@@ -14,8 +15,14 @@ import {
 } from "../styles/stylesheet.js";
 
 export default function AboutMe() {
+  const AbtWrap = styled(SectionWrap)`
+    background-color: red;
+    padding: 0;
+    margin: 0;
+  `;
+
   return (
-    <SectionWrap>
+    <AbtWrap>
       <SectionRow>
         <SectionTitle>
           <AnimatedTitle {..."About Me"} />
@@ -99,6 +106,6 @@ export default function AboutMe() {
           </ContentBox>
         </div>
       </SectionRow>
-    </SectionWrap>
+    </AbtWrap>
   );
 }
