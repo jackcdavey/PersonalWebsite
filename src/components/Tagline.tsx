@@ -1,29 +1,21 @@
-import React from "react";
-import TextTransition, { presets } from "react-text-transition";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import AnimatedTitle from "../hooks/revealText";
 
-const words = [
-    "Developer",
-    "Designer",
-    "Photographer"
-];
+const words = ["Developer", "Designer", "Photographer"];
 
 export default function Tagline() {
-    const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(0);
+  useEffect(() => {
+    const intervalId = setInterval(() => setIndex((index) => index + 1), 1000);
+    return () => {
+      clearTimeout(intervalId);
+    };
+  }, []);
 
-    React.useEffect(() => {
-        const intervalId = setInterval(() =>
-            setIndex(index => index + 1),
-            1000
-        );
-        return () => clearTimeout(intervalId);
-    }, []);
-
-    return (
-        <h2 className="info">
-            <TextTransition
-                text={words[index % words.length]}
-                springConfig={presets.wobbly}
-            />
-        </h2>
-    )
+  return (
+    <h2 className="info">
+      <AnimatedTitle {...words[index % words.length]} />
+    </h2>
+  );
 }

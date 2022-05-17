@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import Splash from './components/Splash';
 import AboutMe from './components/AboutMe';
+import Projects from './components/Projects';
+import FramerBG from './components/FramerBG';
 import { COLORS } from './styles/colors';
 import Canvas, { resizeCanvasToDisplaySize } from './components/Canvas.js';
 import { AppContainer } from './styles/stylesheet.js';
@@ -26,33 +28,32 @@ function App() {
     circles.push(j);
   }
 
-  const draw = (ctx: any, frameCount: number) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    console.log('Now drawing ' + circles.length + ' circles');
-    for (let i = 0; i < circles.length; i++) {
-      ctx.beginPath();
-      ctx.arc(circles[i].x * Math.sin(frameCount * Math.abs(circles[i].offset) / 500) * circles[i].offset + ctx.canvas.width / 3, circles[i].y * Math.sin(frameCount * Math.abs(circles[i].offset) / 500) * circles[i].offset + ctx.canvas.height / 3, circles[i].radius * Math.abs(Math.sin(frameCount * Math.abs(circles[i].offset) / 500) * circles[i].offset), 0, Math.PI * 2, false);
-      ctx.fillStyle = circles[i].color;
-      ctx.fill();
-      ctx.closePath();
-    }
+  // const draw = (ctx: any, frameCount: number) => {
+  //   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+  //   console.log('Now drawing ' + circles.length + ' circles');
+  //   for (let i = 0; i < circles.length; i++) {
+  //     ctx.beginPath();
+  //     ctx.arc(circles[i].x * Math.sin(frameCount * Math.abs(circles[i].offset) / 500) * circles[i].offset + ctx.canvas.width / 3, circles[i].y * Math.sin(frameCount * Math.abs(circles[i].offset) / 500) * circles[i].offset + ctx.canvas.height / 3, circles[i].radius * Math.abs(Math.sin(frameCount * Math.abs(circles[i].offset) / 500) * circles[i].offset), 0, Math.PI * 2, false);
+  //     ctx.fillStyle = circles[i].color;
+  //     ctx.fill();
+  //     ctx.closePath();
+  //   }
 
-    resizeCanvasToDisplaySize(ctx.canvas);
-    // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    // ctx.fillStyle = '#000000'
-    // ctx.beginPath()
-    // ctx.arc(ctx.canvas.width / 2 * Math.sin(frameCount * 0.01) * 1.1 + ctx.canvas.width / 2, ctx.canvas.height / 2 * Math.sin(frameCount * 0.01) * 1.1 + ctx.canvas.height / 2, 150, 0, 2 * Math.PI)
-    // ctx.fill()
-  }
+  //   resizeCanvasToDisplaySize(ctx.canvas);
+  // }
 
 
   console.log(COLORS.mainBrand);
   return (
     <AppContainer>
-      <Canvas draw={draw} />
+      <div style={{ height: '100vh', width: '100vw', position: 'absolute', top: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+        <FramerBG />
+      </div>
+      {/* <Canvas draw={draw} /> ` */}
 
       <Splash />
       <AboutMe />
+      <Projects />
     </AppContainer>
   );
 }

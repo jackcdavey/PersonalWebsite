@@ -1,17 +1,17 @@
-import styled from 'styled-components';
-import useWindowDimensions from '../hooks/useWindowDimensions';
-import { COLORS } from '../styles/colors';
+import styled from "styled-components";
+import useWindowDimensions from "../hooks/useWindowDimensions";
+import { COLORS } from "../styles/colors";
 
-export const AppContainer = styled.div`
-  
-  `;
+//let fonts = require("https://use.typekit.net/pzl7jlg.css");
 
+export const AppContainer = styled.div``;
 
 export const SplashWrap = styled.section`
-  height: 100vh;
+  height: 82vh;
   background: ${COLORS.lightAccent};
   opacity: 0.5;
-  marginTop: 0;
+  padding-left: 10vw;
+  padding-top: 10vw;
 `;
 
 export const SplashTitle = styled.h1`
@@ -23,23 +23,23 @@ export const SplashTitle = styled.h1`
 export const SectionWrap = styled.div`
   display: flex;
   flex-direction: column;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-  `;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const SectionTitle = styled.h1`
-text-align: left;
-width: 100%;
-padding: 1%;
-  `;
+  text-align: left;
+  width: 100%;
+  padding: 1%;
+`;
 
 export const SectionRow = styled.div`
   display: flex;
   width: 100vw;
   justify-content: center;
   align-items: center;
-  `;
+`;
 
 export const ContentColumn = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ export const ContentColumn = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  `;
+`;
 
 export const ContentRow = styled.div`
   display: flex;
@@ -56,7 +56,7 @@ export const ContentRow = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-  `;
+`;
 
 export const ContentBox = styled.div`
   display: flex;
@@ -64,7 +64,7 @@ export const ContentBox = styled.div`
   flex-wrap: wrap;
   width: 100%;
   padding: 1%;
-  `;
+`;
 
 export const ChipContainer = styled.div`
   display: flex;
@@ -74,13 +74,18 @@ export const ChipContainer = styled.div`
   margin: 3%;
   border-radius: 20px;
   background: ${COLORS.lightAccent};
-  `;
+`;
 
+export const ProjectCard = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const ProfileImageWrap = styled.div`
 display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 3%;
-  margin-bottom: 15px;
-  `;
+justify - content: center;
+align - items: flex - start;
+padding: 3 %;
+margin - bottom: 15px;
+`;
