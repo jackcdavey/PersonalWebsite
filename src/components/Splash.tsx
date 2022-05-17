@@ -13,7 +13,7 @@ export default function Splash() {
           <AnimatedTitle {..."Hey, I'm Jack"} />
         </SplashTitle>
 
-        <AnimatedTitle {..."testing this"} />
+        {/* <AnimatedTitle {..."testing this"} /> */}
       </div>
       <div className="infoWrap">
         <Tagline />

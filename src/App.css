@@ -89,3 +89,8 @@ div.arrow:hover::before {
   border-color: var(--mainBrand);
   transform: scale(.8);
 }
+
+
+.infoWrap{
+  padding: 3vw;
+}

@@ -7,7 +7,7 @@ import { COLORS } from "../styles/colors";
 export const AppContainer = styled.div``;
 
 export const SplashWrap = styled.section`
-  height: 82vh;
+  height: 90vh;
   background: ${COLORS.lightAccent};
   opacity: 0.5;
   padding-left: 10vw;
