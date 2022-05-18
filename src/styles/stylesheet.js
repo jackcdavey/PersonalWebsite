@@ -76,6 +76,12 @@ export const ChipContainer = styled.div`
   margin: 3%;
   border-radius: 20px;
   background: ${COLORS.lightShade};
+  transition: 0.2s;
+
+
+  :hover {
+  box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+  }
 `;
 
 export const ProjectCard = styled.div`
@@ -86,10 +92,10 @@ export const ProjectCard = styled.div`
 
 export const ProfileImageWrap = styled.div`
 display: flex;
-justify - content: center;
-align - items: flex - start;
-padding: 3 %;
-margin - bottom: 15px;
+justify-content: center;
+align-items: flex-start;
+padding: 3%;
+margin-bottom: 15px;
 `;
 
 export const FramerContainer = styled.div`
