@@ -86,6 +86,10 @@ div.arrow:hover::before {
 }
 
 
-.infoWrap{
+.infoWrap {
   padding: 3vw;
+}
+
+.info {
+  font-size: 2em;
 }

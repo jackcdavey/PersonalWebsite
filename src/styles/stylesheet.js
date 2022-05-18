@@ -15,7 +15,7 @@ export const SplashWrap = styled.section`
 `;
 
 export const SplashTitle = styled.h1`
-  font-size: 5em;
+  font-size: 7em;
   text-align: left;
   color: ${COLORS.mainBrand};
 `;
@@ -99,7 +99,8 @@ export const FramerContainer = styled.div`
   top: 0;
   left: 0;
   z-index: -1;
-  filter: blur(10px);
+  filter: blur(20px);
+  background: ${COLORS.mainBrand};
 `;
 
 export const FramerObject = styled.div`

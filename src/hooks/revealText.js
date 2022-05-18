@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useAnimation, motion } from "framer-motion";
 
 import { useInView } from "react-intersection-observer";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 const Title = styled.h2`
   font-size: 3rem;
@@ -45,6 +46,8 @@ export default function AnimatedTitle(props) {
   });
 
   useEffect(() => {
+  
+
     if (inView) {
       ctrls.start("visible");
     }
@@ -56,7 +59,6 @@ export default function AnimatedTitle(props) {
 
   const wordAnimation = {
     hidden: {},
-
     visible: {},
   };
 

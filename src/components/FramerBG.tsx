@@ -3,6 +3,12 @@ import "../App.css";
 import { useEffect, useState } from "react";
 import { FramerContainer } from "../styles/stylesheet";
 
+
+//At least put in some cool easter egg where the screen lights up
+//after a ball perfectly hits a corner
+
+
+
 const colorOptions = [
   "#FF0000",
   "#00FF00",
@@ -53,10 +59,10 @@ const bouncingElements = [
 
   for(let i = 0; i < bouncingElements.length; i++) {
     if (bouncingElements[i].xPos + bouncingElements[i].bWidth > window.innerWidth || bouncingElements[i].xPos < 0) {
-      bouncingElements[i].xPos = window.innerWidth / 2;
+      bouncingElements[i].xPos = 1;
     }
     if (bouncingElements[i].yPos+ bouncingElements[i].bWidth > window.innerHeight || bouncingElements[i].yPos < 0) {
-      bouncingElements[i].yPos = window.innerHeight / 2;
+      bouncingElements[i].yPos = 1;
     }
   }
 
