@@ -1,6 +1,7 @@
 import jackProfile from "../assets/images/me.jpg";
 import resume from "../assets/images/ResumeApril2022.png";
 import styled from "styled-components";
+import gitLogo from '../assets/images/github.png'
 
 import AnimatedTitle from "../hooks/revealText";
 
@@ -33,7 +34,21 @@ export default function Projects() {
         </SectionTitle>
       </SectionRow>
       <SectionRow>
-        <p> Yup</p>
+        <div className="project-card">
+          <a href={"https://github.com/jackcdavey/WageWizardApp"}>
+            <div className="project">
+              <h4>Wage Wizard</h4>
+            </div>
+          </a>
+        </div>
+        <div className="project-card">
+          <a href={"https://github.com/jackcdavey"}>
+            <div className="project" id="gitHubCard">
+              <img src={gitLogo} id="githubimg" className="img-fluid rounded center-block" alt="GitHub Logo"></img>
+              <h5 > GitHub </h5>
+            </div>
+          </a>
+        </div>
       </SectionRow>
     </ProjWrap>
   );
