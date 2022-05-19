@@ -20,6 +20,9 @@ import {
   SectionTitle,
   ProfileImageWrap,
   ProjectCard,
+  ProjectTitle,
+  ProjectImage,
+  ProjectLink,
 } from "../styles/stylesheet.js";
 import { COLORS } from "../styles/colors";
 
@@ -40,21 +43,26 @@ export default function Projects() {
         </SectionTitle>
       </SectionRow>
       <SectionRow>
+        <ProjectLink href={"https://github.com/jackcdavey/WageWizardApp"}>
         <ProjectCard>
-          <a href={"https://github.com/jackcdavey/WageWizardApp"}>
-            <div className="project">
-              <h4>Wage Wizard</h4>
-            </div>
-          </a>
-        </ProjectCard>
+          
+            <ProjectTitle>
+              Wage Wizard
+            </ProjectTitle>
+          
+          </ProjectCard>
+        </ProjectLink>
+        <ProjectLink href={"https://github.com/jackcdavey"}>
         <ProjectCard>
-          <a href={"https://github.com/jackcdavey"}>
-            <div className="project" id="gitHubCard">
-              <img src={gitLogo} id="githubimg" className="img-fluid rounded center-block" alt="GitHub Logo"></img>
-              <h5 > GitHub </h5>
-            </div>
-          </a>
-        </ProjectCard>
+          
+            <ProjectImage src={gitLogo} alt="GitHub Logo" />
+            <ProjectTitle>
+              
+              GitHub
+            </ProjectTitle>
+          
+          </ProjectCard>
+          </ProjectLink>
       </SectionRow>
     </ProjWrap>
   );

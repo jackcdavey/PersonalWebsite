@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedTitle from "../hooks/revealText";
+import {
+  TaglineTxt,
+} from "../styles/stylesheet";
 
 const words = ["Developer", "Designer", "Photographer"];
 
@@ -22,7 +25,7 @@ export default function Tagline() {
         exit={{ opacity: 0, y: -20 }}
         transition={{ ease: "easeInOut", duration: 0.5 }}
       >
-        <h2 className="info">{words[index % words.length]}</h2>
+        <TaglineTxt>{words[index % words.length]}</TaglineTxt>
       </motion.div>
     </AnimatePresence>
   );

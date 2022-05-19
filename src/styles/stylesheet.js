@@ -27,12 +27,21 @@ export const SectionWrap = styled.div`
   align-items: center;
   z-index: 10;
   min-height: 30vh;
+  margin-right: 15vw;
+`;
+
+export const TaglineTxt = styled.h2`
+  font-size: 2em;
+  font-family: minion-pro-condensed-caption, serif;
+  text-align: left;
+  color: ${COLORS.mainBrand};
 `;
 
 export const SectionTitle = styled.h1`
   text-align: left;
   width: 100%;
-  padding: 1%;
+  padding-left: 3%;
+  padding-top: 3%;
   font-family: jeanne-moderno-geometrique, sans-serif;
   color: ${COLORS.mainBrand};
 `;
@@ -88,11 +97,34 @@ export const ChipContainer = styled.div`
 
 export const ProfileImageWrap = styled.div`
 display: flex;
-justify-content: center;
-align-items: flex-start;
+flex-direction: column;
 padding: 3%;
-margin-bottom: 15px;
 `;
+
+export const ResumeDownload = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 3%;
+  margin: 5%;
+  margin-top: 5vh;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  background: ${COLORS.mainBrand};
+  transition: 0.2s;
+  text-align: center;
+  font-family: minion-pro-condensed-caption, serif;
+  color: ${COLORS.lightShade};
+  font-size: 1em;
+
+  :hover {
+  box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+  }
+`;
+
+
 
 export const FramerContainer = styled.div`
   height: 100vh;
@@ -116,19 +148,43 @@ export const ProjectCard = styled.div`
 background: ${COLORS.mainBrand};
   /* Eventually add custom colors for each project */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin-left: 1%;
-  margin-right: 1%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: 0.3s;
-  width: 20vw;
+  width: 30vw;
   height: 30vh;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-bottom: 10%;
+  margin-right: 3vw;
 
   :hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
   }
 `;
+
+export const ProjectTitle = styled.h2`
+  font-family: jeanne-moderno-geometrique, sans-serif;
+  font-size: 1.5em;
+  color: ${COLORS.lightShade};
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left:1vw;
+  padding-right:1vw;
+`;
+
+export const ProjectImage = styled.img`
+  max-width: 50%;
+  max-height: 50%;
+  padding: 10%;
+`;
+
+export const ProjectLink = styled.a`
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  `;
+
 

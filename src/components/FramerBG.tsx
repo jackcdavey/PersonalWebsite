@@ -57,6 +57,8 @@ const bouncingElements = [
   },
 ];
 
+
+  //If any balls spawn partially off screen, move them back on screen
   for(let i = 0; i < bouncingElements.length; i++) {
     if (bouncingElements[i].xPos + bouncingElements[i].bWidth > window.innerWidth || bouncingElements[i].xPos < 0) {
       bouncingElements[i].xPos = 1;
@@ -74,43 +76,42 @@ export default function FramerBG() {
       clearTimeout(intervalId);
     };
   }, []);
+  
 
+  //If any ball collides with an edge, reverse its direction
+  for(let i = 0; i < bouncingElements.length; i++) {
+    if (bouncingElements[i].xPos > window.innerWidth - bouncingElements[i].bWidth)
+    {
+      bouncingElements[i].xDir = bouncingElements[i].xDir * -1;
+      // bouncingElements[i].color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+    }
+    if (bouncingElements[i].xPos < 0)
+    {
+      bouncingElements[i].xDir = bouncingElements[i].xDir * -1;
+      // bouncingElements[i].color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+    }
+  if (bouncingElements[i].yPos >window.innerHeight - bouncingElements[i].bWidth)
+  {
+    bouncingElements[i].yDir = bouncingElements[i].yDir * -1;
+    // bouncingElements[i].color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+  }
+  if (bouncingElements[i].yPos < 0)
+  {
+    bouncingElements[i].yDir = bouncingElements[i].yDir * -1;
+    // bouncingElements[i].color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+  }
+    
+    
+    if(bouncingElements[i].xPos < 10 && bouncingElements[i].yPos < 10 || bouncingElements[i].xPos+bouncingElements[i].bWidth > window.innerWidth-10 && bouncingElements[i].yPos < 10 || bouncingElements[i].xPos < 10 && bouncingElements[i].yPos+bouncingElements[i].bWidth > window.innerHeight-10 || bouncingElements[i].xPos+bouncingElements[i].bWidth > window.innerWidth-10 && bouncingElements[i].yPos+bouncingElements[i].bWidth > window.innerHeight-10)
+    {
+      if (window.innerWidth > 800 && window.innerHeight > 800) {
+        bouncingElements[i].color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+        console.log("Perfect hit!");
+      }
+    }
 
-//
-//Yea no I'm going to hell
-//  
-  
-  
-  //Spagetti-ass correction for my already gd Angel Hair code
-
-  
-  
-  if (bouncingElements[0].xPos > window.innerWidth - bouncingElements[0].bWidth)
-    bouncingElements[0].xDir = bouncingElements[0].xDir * -1;
-    if (bouncingElements[0].xPos < 0)
-    bouncingElements[0].xDir = bouncingElements[0].xDir * -1;
-  if (bouncingElements[0].yPos >window.innerHeight - bouncingElements[0].bWidth)
-    bouncingElements[0].yDir = bouncingElements[0].yDir * -1;
-  if (bouncingElements[0].yPos < 0)
-    bouncingElements[0].yDir = bouncingElements[0].yDir * -1;
-  
-  if (bouncingElements[1].xPos > window.innerWidth - bouncingElements[1].bWidth)
-    bouncingElements[1].xDir = bouncingElements[1].xDir * -1;
-  if (bouncingElements[1].xPos < 0)
-    bouncingElements[1].xDir = bouncingElements[1].xDir * -1;
-  if (bouncingElements[1].yPos > window.innerHeight - bouncingElements[1].bWidth)
-    bouncingElements[1].yDir = bouncingElements[1].yDir * -1;
-  if (bouncingElements[1].yPos < 0)
-    bouncingElements[1].yDir = bouncingElements[1].yDir * -1;
-  
-  if (bouncingElements[2].xPos > window.innerWidth - bouncingElements[2].bWidth)
-    bouncingElements[2].xDir = bouncingElements[2].xDir * -1;
-  if (bouncingElements[2].xPos < 0)
-    bouncingElements[2].xDir = bouncingElements[2].xDir * -1;
-  if (bouncingElements[2].yPos > window.innerHeight - bouncingElements[2].bWidth)
-    bouncingElements[2].yDir = bouncingElements[2].yDir * -1;
-  if (bouncingElements[2].yPos < 0)
-    bouncingElements[2].yDir = bouncingElements[2].yDir * -1;
+    }
+    
 
   
   

@@ -13,13 +13,13 @@ import {
   ChipContainer,
   SectionTitle,
   ProfileImageWrap,
+  ResumeDownload,
+  ProjectLink,
 } from "../styles/stylesheet.js";
 
 export default function AboutMe() {
   const AbtWrap = styled(SectionWrap)`
     background-color: ${COLORS.lightAccent};
-    padding: 0;
-    margin: 0;
   `;
 
   return (
@@ -34,9 +34,15 @@ export default function AboutMe() {
           <img
             src={jackProfile}
             id="aboutMePic"
-            className="img-fluid rounded center-block"
+            
             alt="Jack Davey"
           ></img>
+
+          <ProjectLink href={resume} download={"resume.png"} >
+            <ResumeDownload>
+              Download my resume here!
+            </ResumeDownload>
+                </ProjectLink>
         </ProfileImageWrap>
 
         <div className="col-sm-9" id="introFacts">
@@ -56,9 +62,7 @@ export default function AboutMe() {
                 </p>
                 <br></br>
 
-                <a href={resume} download={"resume.png"}>
-                  <b> Download my resume here!</b>
-                </a>
+                
               </div>
             </div>
           </div>
