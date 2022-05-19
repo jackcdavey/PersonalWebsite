@@ -44,11 +44,7 @@ export default function AboutMe() {
             </ResumeDownload>
                 </ProjectLink>
         </ProfileImageWrap>
-
-        <div className="col-sm-9" id="introFacts">
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="row">
+        <div>
                 <h3>Intro</h3>
                 <p>
                   Currently pursuing a B.S. in Web Design and Engineering with a
@@ -61,12 +57,6 @@ export default function AboutMe() {
                   with my hammock and camera.{" "}
                 </p>
                 <br></br>
-
-                
-              </div>
-            </div>
-          </div>
-
           {/*Maybe implement some interactivity with these in the futre,
           like slow floating movement & hover action*/}
 

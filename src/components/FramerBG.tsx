@@ -32,7 +32,7 @@ const bouncingElements = [
     id: 0,
     xDir: speed,
     yDir: speed,
-    bWidth: 150,
+    bWidth: Math.max(window.innerWidth / 9, 300),
     xPos: Math.random() * window.innerWidth,
     yPos: Math.random() * window.innerHeight,
     color: colorOptions[Math.floor(Math.random() * colorOptions.length)],
@@ -43,7 +43,7 @@ const bouncingElements = [
     yPos: Math.random() * window.innerHeight,
     xDir: 0.75*speed,
     yDir: 0.75*speed,
-    bWidth: 200,
+    bWidth: Math.max(window.innerWidth / 6, 200),
     color: colorOptions[Math.floor(Math.random() * colorOptions.length)],
   },
   {
@@ -52,7 +52,7 @@ const bouncingElements = [
     yPos: Math.random() * window.innerHeight,
     xDir: 0.25*speed,
     yDir: 0.25*speed,
-    bWidth: 400,
+    bWidth: Math.max(window.innerWidth / 3, 100),
     color: colorOptions[Math.floor(Math.random() * colorOptions.length)],
   },
 ];
@@ -102,9 +102,18 @@ export default function FramerBG() {
   }
     
     
+    //Reposition balls if they manage to get off screen (i.e. the window is resized)
+    if (bouncingElements[i].xPos + bouncingElements[i].bWidth > window.innerWidth + 5 || bouncingElements[i].xPos < -5) 
+      bouncingElements[i].xPos = 1;
+    if (bouncingElements[i].yPos + bouncingElements[i].bWidth > window.innerHeight + 5 || bouncingElements[i].yPos < -5)
+      bouncingElements[i].yPos = 1;
+    
+    
+    
+    //Detect when a ball almost perfectly hits a corner
     if(bouncingElements[i].xPos < 10 && bouncingElements[i].yPos < 10 || bouncingElements[i].xPos+bouncingElements[i].bWidth > window.innerWidth-10 && bouncingElements[i].yPos < 10 || bouncingElements[i].xPos < 10 && bouncingElements[i].yPos+bouncingElements[i].bWidth > window.innerHeight-10 || bouncingElements[i].xPos+bouncingElements[i].bWidth > window.innerWidth-10 && bouncingElements[i].yPos+bouncingElements[i].bWidth > window.innerHeight-10)
     {
-      if (window.innerWidth > 800 && window.innerHeight > 800) {
+      if (window.innerWidth > 600 && window.innerHeight > 600) {
         bouncingElements[i].color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
         console.log("Perfect hit!");
       }

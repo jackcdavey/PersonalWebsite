@@ -39,12 +39,12 @@ canvas {
 }
 
 p {
-
+  font-size: 1em;
   font-family: minion-pro-condensed-subhead, serif;
 }
 
 h3 {
-
+  font-size: 1.5em;
   font-family: minion-pro-condensed-caption, serif;
 }
 

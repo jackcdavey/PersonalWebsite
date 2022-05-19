@@ -6,19 +6,8 @@ import { useAnimation, motion } from "framer-motion";
 
 import { useInView } from "react-intersection-observer";
 
-const Word = styled(motion.span)`
-  display: inline-block;
+import { Word, Character } from "../styles/stylesheet";
 
-  margin-right: 0.25em;
-
-  white-space: nowrap;
-`;
-
-const Character = styled(motion.span)`
-  display: inline-block;
-
-  margin-right: -0.05em;
-`;
 
 export default function AnimatedTitle(props) {
   let text = "";
@@ -34,12 +23,12 @@ export default function AnimatedTitle(props) {
 
   const { ref, inView } = useInView({
     threshold: 0.5,
-
     triggerOnce: true,
   });
 
   useEffect(() => {
   
+
 
     if (inView) {
       ctrls.start("visible");
@@ -69,10 +58,11 @@ export default function AnimatedTitle(props) {
 
       transition: {
         duration: 0.5,
-
         ease: [0.1, 0.5, 0.2, 0.7],
       },
+      
     },
+    
   };
 
   return (
@@ -88,9 +78,9 @@ export default function AnimatedTitle(props) {
             variants={wordAnimation}
             transition={{
               delayChildren: index * 0.25,
-
               staggerChildren: 0.05,
             }}
+            
           >
             {word.split("").map((character, index) => {
               return (
@@ -98,6 +88,11 @@ export default function AnimatedTitle(props) {
                   aria-hidden="true"
                   key={index}
                   variants={characterAnimation}
+                  whileHover={{
+                    scale: 1.5,
+                    rotate: Math.random() * 360,
+              transition: { duration: 0.2 },
+            }}
                 >
                   {character}
                 </Character>

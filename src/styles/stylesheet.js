@@ -1,9 +1,24 @@
 import styled from "styled-components";
 import { COLORS } from "../styles/colors";
+import { useAnimation, motion } from "framer-motion";
+
 
 import './fonts.css';
 
 export const AppContainer = styled.div``;
+
+
+
+export const Word = styled(motion.span)`
+  display: inline-block;
+  margin-right: 0.25em;
+  white-space: nowrap;
+`;
+
+export const Character = styled(motion.span)`
+  display: inline-block;
+  margin-right: -0.05em;
+`;
 
 export const SplashWrap = styled.section`
   height: 90vh;
