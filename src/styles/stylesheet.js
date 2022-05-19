@@ -79,9 +79,13 @@ export const SectionTitle = styled.h1`
 
 export const SectionRow = styled.div`
 	display: flex;
-	width: 100vw;
+	width: 95vw;
 	justify-content: center;
 	align-items: center;
+
+	@media (max-width: 500px) {
+		flex-direction: column;
+	}
 `
 
 export const ContentColumn = styled.div`
@@ -114,6 +118,7 @@ export const ChipContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 	padding: 5%;
 	margin: 2%;
 	border-radius: 25px;
@@ -129,6 +134,8 @@ export const ProfileImageWrap = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 3%;
+	justify-content: center;
+	align-items: center;
 `
 
 export const ResumeDownload = styled.div`
@@ -137,11 +144,10 @@ export const ResumeDownload = styled.div`
 	justify-content: center;
 	align-items: center;
 	width: 80%;
-	padding: 3%;
-	margin: 5%;
-	margin-top: 5vh;
-	margin-bottom: 15px;
-	border-radius: 20px;
+	padding: 5%;
+	margin-top: 1.5vh;
+	margin-bottom: 1.5vh;
+	border-radius: 25px;
 	background: ${COLORS.mainBrand};
 	transition: 0.2s;
 	text-align: center;
