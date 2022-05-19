@@ -1,11 +1,13 @@
-@import url("https://use.typekit.net/pzl7jlg.css");
+/* @import url("https://use.typekit.net/pzl7jlg.css"); */
 
 .App {
   text-align: center;
 }
 
 .titleWrap {
+  /* font-family: bely-display, serif; */
   font-family: jeanne-moderno-geometrique, sans-serif;
+  /* font-family: broadarcre-hairline, sans-serif; */
   font-weight: 700;
   font-style: normal;
 }
@@ -154,4 +156,8 @@ div.arrow:hover::before {
   display: inline-block;
   vertical-align: center;
   max-width: 50%;
+}
+
+SectionTitle {
+  font-family: jeanne-moderno-geometrique, sans-serif;
 }

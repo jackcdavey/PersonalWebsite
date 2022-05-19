@@ -5,6 +5,9 @@ import gitLogo from '../assets/images/github.png'
 
 import AnimatedTitle from "../hooks/revealText";
 
+// import tinycolor from 'tinycolor2';
+
+
 import React, { Component } from "react";
 
 import {
@@ -16,13 +19,16 @@ import {
   ChipContainer,
   SectionTitle,
   ProfileImageWrap,
+  ProjectCard,
 } from "../styles/stylesheet.js";
 import { COLORS } from "../styles/colors";
 
+var tinycolor = require("tinycolor2");
+
 export default function Projects() {
   const ProjWrap = styled(SectionWrap)`
-    background-color: ${COLORS.lightShade};
-    opacity: 0.5;
+    // background-color: ${COLORS.lightShade};
+    background-color: tinycolor("#D1D3C4ff");
   `;
 
   return (
@@ -34,21 +40,21 @@ export default function Projects() {
         </SectionTitle>
       </SectionRow>
       <SectionRow>
-        <div className="project-card">
+        <ProjectCard>
           <a href={"https://github.com/jackcdavey/WageWizardApp"}>
             <div className="project">
               <h4>Wage Wizard</h4>
             </div>
           </a>
-        </div>
-        <div className="project-card">
+        </ProjectCard>
+        <ProjectCard>
           <a href={"https://github.com/jackcdavey"}>
             <div className="project" id="gitHubCard">
               <img src={gitLogo} id="githubimg" className="img-fluid rounded center-block" alt="GitHub Logo"></img>
               <h5 > GitHub </h5>
             </div>
           </a>
-        </div>
+        </ProjectCard>
       </SectionRow>
     </ProjWrap>
   );

@@ -5,13 +5,6 @@ import styled from "styled-components";
 import { useAnimation, motion } from "framer-motion";
 
 import { useInView } from "react-intersection-observer";
-import { hover } from "@testing-library/user-event/dist/hover";
-
-const Title = styled.h2`
-  font-size: 3rem;
-
-  font-weight: 600;
-`;
 
 const Word = styled(motion.span)`
   display: inline-block;

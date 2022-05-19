@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import useWindowDimensions from "../hooks/useWindowDimensions";
 import { COLORS } from "../styles/colors";
 
-//let fonts = require("https://use.typekit.net/pzl7jlg.css");
+import './fonts.css';
 
 export const AppContainer = styled.div``;
 
@@ -34,6 +33,8 @@ export const SectionTitle = styled.h1`
   text-align: left;
   width: 100%;
   padding: 1%;
+  font-family: jeanne-moderno-geometrique, sans-serif;
+  color: ${COLORS.mainBrand};
 `;
 
 export const SectionRow = styled.div`
@@ -84,11 +85,6 @@ export const ChipContainer = styled.div`
   }
 `;
 
-export const ProjectCard = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 export const ProfileImageWrap = styled.div`
 display: flex;
@@ -106,7 +102,7 @@ export const FramerContainer = styled.div`
   left: 0;
   z-index: -1;
   filter: blur(20px);
-  background: ${COLORS.mainBrand};
+  background: ${COLORS.lightShade};
 `;
 
 export const FramerObject = styled.div`
@@ -115,3 +111,24 @@ export const FramerObject = styled.div`
   width: 150px;
   height: 150px;
 `;
+
+export const ProjectCard = styled.div`
+background: ${COLORS.mainBrand};
+  /* Eventually add custom colors for each project */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-left: 1%;
+  margin-right: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  width: 20vw;
+  height: 30vh;
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+  :hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
+  }
+`;
+
