@@ -22,6 +22,26 @@ export default function AboutMe() {
     background-color: ${COLORS.lightAccent};
   `;
 
+  const skills = ["Creative Cloud", 
+"Professional Writing",
+"UI / UX",
+    "SolidWorks",
+"Graphic Design",
+"Electronics",
+    "PC Assembly"]
+  
+  const technologies = ["React Native",
+"ReactJS",
+"JavaScript",
+"Java",
+"HTML",
+"CSS",
+"C",
+"PHP",
+"SQL",
+"Ruby"
+  ]
+
   return (
     <AbtWrap>
       <SectionRow>
@@ -74,27 +94,16 @@ export default function AboutMe() {
             <ContentRow>
               <ContentColumn>
                 <ContentBox>
-                  <ChipContainer>React Native</ChipContainer>
-                  <ChipContainer>ReactJS</ChipContainer>
-                  <ChipContainer>JavaScript</ChipContainer>
-                  <ChipContainer>Java</ChipContainer>
-                  <ChipContainer>HTML</ChipContainer>
-                  <ChipContainer>CSS</ChipContainer>
-                  <ChipContainer>C</ChipContainer>
-                  <ChipContainer>PHP</ChipContainer>
-                  <ChipContainer>SQL</ChipContainer>
-                  <ChipContainer>Ruby</ChipContainer>
+                  {technologies.map((tech) => (
+                    <ChipContainer>{tech}</ChipContainer>
+                  ))}
                 </ContentBox>
               </ContentColumn>
               <ContentColumn>
                 <ContentBox>
-                  <ChipContainer>Creative Cloud</ChipContainer>
-                  <ChipContainer>Professional Writing</ChipContainer>
-                  <ChipContainer>UI / UX</ChipContainer>
-                  <ChipContainer>SolidWorks</ChipContainer>
-                  <ChipContainer>Graphic Design</ChipContainer>
-                  <ChipContainer>Electronics</ChipContainer>
-                  <ChipContainer>PC Assembly</ChipContainer>
+                  {skills.map((skill) => (
+                    <ChipContainer>{skill}</ChipContainer>
+                  ))}
                 </ContentBox>
               </ContentColumn>
             </ContentRow>

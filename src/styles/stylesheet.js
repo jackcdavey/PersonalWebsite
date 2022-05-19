@@ -21,6 +21,9 @@ export const Character = styled(motion.span)`
 `;
 
 export const SplashWrap = styled.section`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   height: 90vh;
   background: ${COLORS.lightShade};
   opacity: 0.5;
@@ -28,10 +31,21 @@ export const SplashWrap = styled.section`
   padding-top: 10vw;
 `;
 
-export const SplashTitle = styled.h1`
+export const SplashTitleWrap = styled.h1`
   font-size: 7em;
+  font-family: jeanne-moderno-geometrique, sans-serif;
   text-align: left;
+  grid-column: 1 / 3;
+  grid-row: 1;
   color: ${COLORS.mainBrand};
+`;
+
+export const SplashTaglineWrap = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+    grid-column: 2 / 4;
+  grid-row: 2 / 3;
+    padding: 3vw;
 `;
 
 export const SectionWrap = styled.div`
@@ -46,7 +60,7 @@ export const SectionWrap = styled.div`
 `;
 
 export const TaglineTxt = styled.h2`
-  font-size: 2em;
+  font-size: 2.5em;
   font-family: minion-pro-condensed-caption, serif;
   text-align: left;
   color: ${COLORS.mainBrand};
@@ -91,15 +105,16 @@ export const ContentBox = styled.div`
   flex-wrap: wrap;
   width: 100%;
   padding: 1%;
+  justify-content: center;
 `;
 
 export const ChipContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3%;
-  margin: 3%;
-  border-radius: 20px;
+  padding: 5%;
+  margin: 2%;
+  border-radius: 25px;
   background: ${COLORS.lightShade};
   transition: 0.2s;
 

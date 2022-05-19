@@ -109,13 +109,27 @@ export default function FramerBG() {
       bouncingElements[i].yPos = 1;
     
     
+    let forgivenessLevel = 10;
     
     //Detect when a ball almost perfectly hits a corner
-    if(bouncingElements[i].xPos < 10 && bouncingElements[i].yPos < 10 || bouncingElements[i].xPos+bouncingElements[i].bWidth > window.innerWidth-10 && bouncingElements[i].yPos < 10 || bouncingElements[i].xPos < 10 && bouncingElements[i].yPos+bouncingElements[i].bWidth > window.innerHeight-10 || bouncingElements[i].xPos+bouncingElements[i].bWidth > window.innerWidth-10 && bouncingElements[i].yPos+bouncingElements[i].bWidth > window.innerHeight-10)
+    if(bouncingElements[i].xPos < forgivenessLevel && bouncingElements[i].yPos < forgivenessLevel || bouncingElements[i].xPos+bouncingElements[i].bWidth > window.innerWidth-forgivenessLevel && bouncingElements[i].yPos < forgivenessLevel || bouncingElements[i].xPos < forgivenessLevel && bouncingElements[i].yPos+bouncingElements[i].bWidth > window.innerHeight-forgivenessLevel || bouncingElements[i].xPos+bouncingElements[i].bWidth > window.innerWidth-forgivenessLevel && bouncingElements[i].yPos+bouncingElements[i].bWidth > window.innerHeight-forgivenessLevel)
     {
       if (window.innerWidth > 600 && window.innerHeight > 600) {
         bouncingElements[i].color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
         console.log("Perfect hit!");
+
+        
+        //Not quite the effect I was hoping for...
+        //
+        // let tempWidth = bouncingElements[i].bWidth;
+        // while (bouncingElements[i].bWidth > 0) {
+        //   bouncingElements[i].bWidth -= 0.0001;
+        // }
+        // while (bouncingElements[i].bWidth < tempWidth) {
+        //   bouncingElements[i].xPos = window.innerWidth / 2 - bouncingElements[i].bWidth / 2;
+        //   bouncingElements[i].yPos = window.innerHeight / 2 - bouncingElements[i].bWidth / 2;
+        //   bouncingElements[i].bWidth += 0.0001;
+        // }
       }
     }
 

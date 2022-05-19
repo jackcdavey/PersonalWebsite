@@ -4,13 +4,6 @@
   text-align: center;
 }
 
-.titleWrap {
-  /* font-family: bely-display, serif; */
-  font-family: jeanne-moderno-geometrique, sans-serif;
-  /* font-family: broadarcre-hairline, sans-serif; */
-  font-weight: 700;
-  font-style: normal;
-}
 
 * {
 
@@ -100,6 +93,7 @@ div.arrow:hover::before {
 
 .infoWrap {
   padding: 3vw;
+
 }
 
 
