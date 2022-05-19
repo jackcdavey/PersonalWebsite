@@ -22,7 +22,9 @@ function App() {
 			<Element name="splash">
 				<Splash />
 			</Element>
-			<AboutMe />
+			<Element name="aboutme">
+				<AboutMe />
+			</Element>
 			<Projects />
 			<Contact />
 		</AppContainer>
