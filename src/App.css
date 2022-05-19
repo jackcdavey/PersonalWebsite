@@ -34,6 +34,8 @@ canvas {
 p {
   font-size: 1em;
   font-family: minion-pro-condensed-subhead, serif;
+  text-decoration: none;
+  color: black;
 }
 
 h3 {

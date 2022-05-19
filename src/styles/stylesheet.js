@@ -4,7 +4,7 @@ import { useAnimation, motion } from "framer-motion"
 
 import "./fonts.css"
 
-const COLORS = window.matchMedia("(prefers-color-scheme: dark)").matches ? DARKCOLORS : LIGHTCOLORS
+const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
 
 export const AppContainer = styled.div``
 
@@ -46,8 +46,7 @@ export const SplashTaglineWrap = styled.div`
 	grid-row: 2 / 3;
 	padding: 3vw;
 `
-
-export const SectionWrap = styled.div`
+export const TransparentSectionWrap = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100vw;
@@ -56,6 +55,9 @@ export const SectionWrap = styled.div`
 	z-index: 10;
 	min-height: 30vh;
 	margin-right: 15vw;
+`
+
+export const SectionWrap = styled(TransparentSectionWrap)`
 	background-color: ${COLORS.lightAccent};
 `
 
@@ -180,10 +182,9 @@ export const ProjectCard = styled.div`
 	justify-content: center;
 	transition: 0.3s;
 	width: 30vw;
-	height: 30vh;
+	height: 25vh;
 	border-radius: 15px;
-	margin-bottom: 10%;
-	margin-right: 3vw;
+	margin: 5%;
 
 	:hover {
 		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
@@ -209,6 +210,29 @@ export const ProjectImage = styled.img`
 
 export const ProjectLink = styled.a`
 	align-items: center;
-	justify-content: center;
+	display: inline-flex;
 	text-decoration: none;
+`
+
+export const ProjectDescription = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: minion-pro-condensed-caption, serif;
+	font-size: 1em;
+	color: ${COLORS.darkShade};
+	padding-left: 5%;
+	padding-right: 5%;
+	text-align: center;
+`
+
+export const ProjectDescriptionBG = styled.div`
+	background-color: ${COLORS.lightShade};
+	color: red;
+	position: absolute;
+	z-index: -1;
+	filter: blur(20px);
+	border-radius: 25px;
+	width: 50%;
+	height: 100px;
 `
