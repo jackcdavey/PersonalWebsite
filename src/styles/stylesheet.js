@@ -65,7 +65,6 @@ export const TaglineTxt = styled.h2`
 	font-size: 2.5em;
 	font-family: minion-pro-condensed-caption, serif;
 	text-align: left;
-	color: ${COLORS.mainBrand};
 `
 
 export const SectionTitle = styled.h1`

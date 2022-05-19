@@ -9,31 +9,11 @@ import AnimatedTitle from "../hooks/revealText"
 
 import React, { Component } from "react"
 
-import {
-	SectionWrap,
-	SectionRow,
-	ContentColumn,
-	ContentRow,
-	ContentBox,
-	ChipContainer,
-	SectionTitle,
-	ProfileImageWrap,
-	ProjectCard,
-	ProjectTitle,
-	ProjectImage,
-	ProjectLink,
-	TransparentSectionWrap,
-	ProjectDescription,
-	ProjectDescriptionBG,
-} from "../styles/stylesheet.js"
+import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectDescriptionBG } from "../styles/stylesheet.js"
 
 var tinycolor = require("tinycolor2")
 
 export default function Projects() {
-	const ProjWrap = styled(SectionWrap)`
-		background-color: "#000000" !important;
-	`
-
 	const ProjRowLeft = styled(SectionRow)`
 		justify-content: flex-start;
 		align-items: center;
