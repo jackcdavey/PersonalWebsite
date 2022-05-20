@@ -20,6 +20,8 @@ import {
 	MessageInput,
 	EmailInput,
 	ContactSubmit,
+	InnerContactFormWrap,
+	ContactLabel,
 } from "../styles/stylesheet.js"
 
 export default function Contact() {
@@ -34,27 +36,22 @@ export default function Contact() {
 			<SectionRow>
 				<ContactForm action="https://formspree.io/f/xgedrjkp" method="POST">
 					<ContactFormWrap>
-						<div style={{ display: "flex", flexDirection: "row", textAlign: "center", paddingBottom: "3%" }}>
-							<label>
-								Name:
+						<InnerContactFormWrap>
+							<ContactLabel>
+								<h4>Name:</h4>
 								<EmailInput type="name" name="contactname" />
-							</label>
-							<label>
-								Email:
+							</ContactLabel>
+							<ContactLabel>
+								<h4>Email:</h4>
 								<EmailInput type="email" name="email" />
-							</label>
-						</div>
-						<label>
-							Message:
+							</ContactLabel>
+						</InnerContactFormWrap>
+						<ContactLabel>
+							<h4>Message:</h4>
 							<MessageInput name="message"></MessageInput>
-						</label>
+						</ContactLabel>
 					</ContactFormWrap>
 					<ContactSubmit type="submit">Send</ContactSubmit>
-
-					{/* <ContactSubmit type="submit" value={"Send"} /> */}
-					{/* <ContactSubmit type="submit" value="Send" /> */}
-
-					{/* <button type="submit">Send</button> */}
 				</ContactForm>
 			</SectionRow>
 		</SectionWrap>

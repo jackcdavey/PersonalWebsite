@@ -3,7 +3,7 @@ import jackProfile from "../assets/images/me.jpg"
 import resume from "../assets/images/ResumeApril2022.png"
 import AnimatedTitle from "../hooks/revealText"
 
-import { SectionWrap, SectionRow, ContentColumn, ContentRow, ContentBox, ChipContainer, SectionTitle, ProfileImageWrap, ResumeDownload, ProjectLink } from "../styles/stylesheet.js"
+import { SectionWrap, SectionRow, ContentColumn, ContentRow, ContentBox, ChipContainer, SectionTitle, ProfileImageWrap, ResumeDownload, ProjectLink, ProfileImage } from "../styles/stylesheet.js"
 
 export default function AboutMe() {
 	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics", "PC Assembly"]
@@ -19,7 +19,7 @@ export default function AboutMe() {
 			</SectionRow>
 			<SectionRow>
 				<ProfileImageWrap>
-					<img src={jackProfile} id="aboutMePic" alt="Jack Davey"></img>
+					<ProfileImage src={jackProfile} id="aboutMePic" alt="Jack Davey"></ProfileImage>
 
 					<ProjectLink href={resume} download={"resume.png"}>
 						<ResumeDownload>Download my resume here!</ResumeDownload>

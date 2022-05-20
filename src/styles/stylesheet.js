@@ -4,7 +4,10 @@ import { useAnimation, motion } from "framer-motion"
 
 import "./fonts.css"
 
-const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
+const COLORS = window.matchMedia("(prefers-color-scheme: light )").matches ? DARKCOLORS : LIGHTCOLORS
+
+const TitleFont = "jeanne-moderno-geometrique, sans-serif"
+const TextFont = "minion-pro-condensed-caption, serif"
 
 export const AppContainer = styled.div``
 
@@ -136,6 +139,11 @@ export const ProfileImageWrap = styled.div`
 	justify-content: center;
 	align-items: center;
 `
+export const ProfileImage = styled.img`
+	border-radius: 3% !important;
+	max-width: 20vw;
+	max-height: 30vh;
+`
 
 export const ResumeDownload = styled.div`
 	display: flex;
@@ -245,11 +253,16 @@ export const ProjectDescriptionBG = styled.div`
 export const ContactForm = styled.form`
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	padding: 1%;
 	padding-bottom: 5%;
 	font-family: minion-pro-condensed-caption, serif;
+	width: 90vw;
+
+	@media (max-width: 500px) {
+		flex-direction: column;
+	}
 `
 
 export const ContactFormWrap = styled.div`
@@ -257,14 +270,25 @@ export const ContactFormWrap = styled.div`
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	justify-content: center;
+	width: 80%;
+`
+
+export const InnerContactFormWrap = styled.div`
+	display: flex;
 	width: 100%;
-	border-radius: 25px;
+	flex-direction: row;
+	align-items: center;
+	text-align: center;
+	padding-bottom: 3%;
+
+	@media (max-width: 500px) {
+		flex-direction: column;
+	}
 `
 
 export const EmailInput = styled.input`
-	width: 20vw;
 	height: 5vh;
+	width: 60%;
 	border-radius: 25px;
 	border: none;
 	padding-left: 10%;
@@ -281,8 +305,8 @@ export const EmailInput = styled.input`
 `
 
 export const MessageInput = styled.textarea`
-	width: 50vw;
 	height: 10vh;
+	width: 80%;
 	border-radius: 25px;
 	border: none;
 	padding: 3%;
@@ -292,26 +316,35 @@ export const MessageInput = styled.textarea`
 	color: ${COLORS.darkShade};
 	background-color: ${COLORS.lightShade};
 	transition: 0.3s;
+	resize: none;
 
 	:focus {
 		outline: none;
 	}
 `
 
+export const ContactLabel = styled.label`
+	width: 100%;
+`
+
 export const ContactSubmit = styled.button`
-	width: 20vw;
+	min-width: 10%;
 	border-radius: 25px;
 	border: none;
-	padding: 0%;
+	padding: 0 2% 0 2%;
 	align-items: center;
 	justify-content: center;
 	font-family: minion-pro-condensed-caption, serif;
-	font-size: 3em;
+	font-size: 2.5em;
 	color: ${COLORS.lightAccent};
 	background-color: ${COLORS.mainBrand};
 	transition: 0.3s;
 
 	:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+	}
+
+	@media (max-width: 500px) {
+		margin-top: 3%;
 	}
 `
