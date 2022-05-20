@@ -3,7 +3,20 @@ import jackProfile from "../assets/images/me.jpg"
 import resume from "../assets/images/ResumeApril2022.png"
 import AnimatedTitle from "../hooks/revealText"
 
-import { SectionWrap, SectionRow, ContentColumn, ContentRow, ContentBox, ChipContainer, SectionTitle, ProfileImageWrap, ResumeDownload, ProjectLink, ProfileImage } from "../styles/stylesheet.js"
+import {
+	SectionWrap,
+	SectionRow,
+	ContentColumn,
+	ContentRow,
+	ContentBox,
+	ChipContainer,
+	ChipLabel,
+	SectionTitle,
+	ProfileImageWrap,
+	ResumeDownload,
+	ProjectLink,
+	ProfileImage,
+} from "../styles/stylesheet.js"
 
 export default function AboutMe() {
 	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics", "PC Assembly"]
@@ -51,14 +64,18 @@ export default function AboutMe() {
 							<ContentColumn>
 								<ContentBox>
 									{technologies.map((tech) => (
-										<ChipContainer key={tech}>{tech}</ChipContainer>
+										<ChipContainer key={tech}>
+											<ChipLabel>{tech}</ChipLabel>
+										</ChipContainer>
 									))}
 								</ContentBox>
 							</ContentColumn>
 							<ContentColumn>
 								<ContentBox>
 									{skills.map((skill) => (
-										<ChipContainer key={skill}>{skill}</ChipContainer>
+										<ChipContainer key={skill}>
+											<ChipLabel>{skill}</ChipLabel>
+										</ChipContainer>
 									))}
 								</ContentBox>
 							</ContentColumn>

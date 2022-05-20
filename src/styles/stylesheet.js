@@ -132,6 +132,12 @@ export const ChipContainer = styled.div`
 	}
 `
 
+export const ChipLabel = styled.h3`
+	font-size: 1em;
+	font-family: minion-pro-condensed-caption, serif;
+	color: ${COLORS.mainBrand};
+`
+
 export const ProfileImageWrap = styled.div`
 	display: flex;
 	flex-direction: column;

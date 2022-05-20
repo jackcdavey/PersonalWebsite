@@ -20,9 +20,8 @@ const variants = {
 			y: { stiffness: 1000, velocity: 100 },
 		},
 	},
-}
-
-const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"]
+}[("5d1731", "5a4045", "60625b", "617b68")]
+const colors = ["#5d1731", "#5a4045", "#60625b", "#617b68"]
 
 export const MenuItem = ({ i, sectionLabel, sectionTarget }) => {
 	const style = { color: `${colors[i]}` }

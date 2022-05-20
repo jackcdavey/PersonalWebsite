@@ -1,9 +1,17 @@
 @import url("https://use.typekit.net/pzl7jlg.css");
 
+html {
+  background-color: #F9FBFB;
+}
+
+@media (prefers-color-scheme: dark) {
+  html{
+    background-color: #5D1731;
+  }
+}
 
 
 * {
-
   margin: 0;
 }
 

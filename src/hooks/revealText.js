@@ -80,8 +80,8 @@ export default function AnimatedTitle(props) {
 									key={index}
 									variants={characterAnimation}
 									whileHover={{
-										scale: 1.5,
-										rotate: Math.random() * 181 + 90,
+										scale: 1.2,
+										rotate: Math.random() * 90 + 15,
 										transition: { duration: 0.2 },
 									}}
 								>

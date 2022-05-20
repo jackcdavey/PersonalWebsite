@@ -41,5 +41,5 @@ export const NavMenu = () => (
 )
 
 const itemIds = [0, 1, 2, 3]
-const sectionLabels = ["Splash", "About Me", "Projects", "Contact"]
+const sectionLabels = ["Top", "About Me", "Projects", "Contact"]
 const sectionTargets = ["splash", "aboutme", "projects", "contact"]
