@@ -46,10 +46,12 @@ export default function Contact() {
 								<EmailInput type="email" name="email" />
 							</ContactLabel>
 						</InnerContactFormWrap>
-						<ContactLabel>
-							<h4>Message:</h4>
-							<MessageInput name="message"></MessageInput>
-						</ContactLabel>
+						<InnerContactFormWrap>
+							<ContactLabel>
+								<h4 style={{ paddingTop: "3%" }}>Message:</h4>
+								<MessageInput name="message"></MessageInput>
+							</ContactLabel>
+						</InnerContactFormWrap>
 					</ContactFormWrap>
 					<ContactSubmit type="submit">Send</ContactSubmit>
 				</ContactForm>

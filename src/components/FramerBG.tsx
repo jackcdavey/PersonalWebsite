@@ -6,7 +6,7 @@ import { FramerContainer } from "../styles/stylesheet"
 //At least put in some cool easter egg where the screen lights up
 //after a ball perfectly hits a corner
 
-const colorOptions = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#000000"]
+const colorOptions = ["#DED9D9", "#545252", "#3b3434", "#A0A0A0"]
 
 //
 //Please God, forgive me for the sins I am about to commit

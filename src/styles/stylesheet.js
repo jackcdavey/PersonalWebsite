@@ -4,7 +4,7 @@ import { useAnimation, motion } from "framer-motion"
 
 import "./fonts.css"
 
-const COLORS = window.matchMedia("(prefers-color-scheme: light )").matches ? DARKCOLORS : LIGHTCOLORS
+const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
 
 const TitleFont = "jeanne-moderno-geometrique, sans-serif"
 const TextFont = "minion-pro-condensed-caption, serif"
@@ -278,11 +278,19 @@ export const InnerContactFormWrap = styled.div`
 	width: 100%;
 	flex-direction: row;
 	align-items: center;
-	text-align: center;
-	padding-bottom: 3%;
+
+	h4 {
+		text-align: left;
+		padding: 0% 0% 0% 20%;
+	}
 
 	@media (max-width: 500px) {
 		flex-direction: column;
+
+		h4 {
+			text-align: center;
+			padding: 0% 0% 0% 0%;
+		}
 	}
 `
 
@@ -310,7 +318,7 @@ export const MessageInput = styled.textarea`
 	border-radius: 25px;
 	border: none;
 	padding: 3%;
-	margin-top: 3%;
+	margin-top: 1%;
 	font-family: minion-pro-condensed-caption, serif;
 	font-size: 1em;
 	color: ${COLORS.darkShade};
