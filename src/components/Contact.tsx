@@ -6,7 +6,21 @@ import AnimatedTitle from "../hooks/revealText"
 
 import React, { Component } from "react"
 
-import { SectionWrap, SectionRow, ContentColumn, ContentRow, ContentBox, ChipContainer, SectionTitle, ProfileImageWrap } from "../styles/stylesheet.js"
+import {
+	SectionWrap,
+	SectionRow,
+	ContentColumn,
+	ContentRow,
+	ContentBox,
+	ChipContainer,
+	SectionTitle,
+	ProfileImageWrap,
+	ContactForm,
+	ContactFormWrap,
+	MessageInput,
+	EmailInput,
+	ContactSubmit,
+} from "../styles/stylesheet.js"
 
 export default function Contact() {
 	return (
@@ -18,7 +32,30 @@ export default function Contact() {
 				</SectionTitle>
 			</SectionRow>
 			<SectionRow>
-				<p> It'll go here i guess</p>
+				<ContactForm action="https://formspree.io/f/xgedrjkp" method="POST">
+					<ContactFormWrap>
+						<div style={{ display: "flex", flexDirection: "row", textAlign: "center", paddingBottom: "3%" }}>
+							<label>
+								Name:
+								<EmailInput type="name" name="contactname" />
+							</label>
+							<label>
+								Email:
+								<EmailInput type="email" name="email" />
+							</label>
+						</div>
+						<label>
+							Message:
+							<MessageInput name="message"></MessageInput>
+						</label>
+					</ContactFormWrap>
+					<ContactSubmit type="submit">Send</ContactSubmit>
+
+					{/* <ContactSubmit type="submit" value={"Send"} /> */}
+					{/* <ContactSubmit type="submit" value="Send" /> */}
+
+					{/* <button type="submit">Send</button> */}
+				</ContactForm>
 			</SectionRow>
 		</SectionWrap>
 	)

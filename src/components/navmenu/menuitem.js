@@ -25,7 +25,7 @@ const variants = {
 const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"]
 
 export const MenuItem = ({ i, sectionLabel, sectionTarget }) => {
-	const style = { color: `${colors[i]}`, zIndex: 1 }
+	const style = { color: `${colors[i]}` }
 	return (
 		<motion.li variants={variants} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.5 }}>
 			<Link activeClass="active" to={sectionTarget} spy={true} smooth={true} duration={700} style={{ zIndex: 10, display: "flex", alignItems: "center" }}>

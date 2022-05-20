@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 const Path = (props) => <motion.path fill="transparent" strokeWidth="3" stroke="hsl(0, 0%, 18%)" strokeLinecap="round" {...props} />
 
 export const MenuToggle = ({ toggle }) => (
-	<button style={{ zIndex: 1, position: "fixed" }} onClick={toggle}>
+	<button id="menutoggle" style={{ zIndex: 1, position: "fixed" }} onClick={toggle}>
 		<svg width="23" height="23" viewBox="0 0 23 23">
 			<Path
 				variants={{

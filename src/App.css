@@ -189,7 +189,7 @@ nav {
   opacity: 0.8;
 }
 
-button {
+#menutoggle {
   outline: none;
   border: none;
   -webkit-user-select: none;
@@ -209,7 +209,8 @@ ul,
 li {
   margin: 0;
   padding: 0;
-  z-index: 10;
+  z-index: 1;
+  
 }
 
 ul {
@@ -225,6 +226,7 @@ li {
   display: flex;
   align-items: center;
   cursor: pointer;
+  
 }
 
 .icon-placeholder {

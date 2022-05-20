@@ -122,7 +122,7 @@ export const ChipContainer = styled.div`
 	margin: 2%;
 	border-radius: 25px;
 	background: ${COLORS.lightShade};
-	transition: 0.2s;
+	transition: 0.4s;
 
 	:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
@@ -240,4 +240,78 @@ export const ProjectDescriptionBG = styled.div`
 	border-radius: 25px;
 	width: 50%;
 	height: 100px;
+`
+
+export const ContactForm = styled.form`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 1%;
+	padding-bottom: 5%;
+	font-family: minion-pro-condensed-caption, serif;
+`
+
+export const ContactFormWrap = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	width: 100%;
+	border-radius: 25px;
+`
+
+export const EmailInput = styled.input`
+	width: 20vw;
+	height: 5vh;
+	border-radius: 25px;
+	border: none;
+	padding-left: 10%;
+	margin-top: 3%;
+	font-family: minion-pro-condensed-caption, serif;
+	font-size: 1em;
+	color: ${COLORS.darkShade};
+	background-color: ${COLORS.lightShade};
+	transition: 0.3s;
+
+	:focus {
+		outline: none;
+	}
+`
+
+export const MessageInput = styled.textarea`
+	width: 50vw;
+	height: 10vh;
+	border-radius: 25px;
+	border: none;
+	padding: 3%;
+	margin-top: 3%;
+	font-family: minion-pro-condensed-caption, serif;
+	font-size: 1em;
+	color: ${COLORS.darkShade};
+	background-color: ${COLORS.lightShade};
+	transition: 0.3s;
+
+	:focus {
+		outline: none;
+	}
+`
+
+export const ContactSubmit = styled.button`
+	width: 20vw;
+	border-radius: 25px;
+	border: none;
+	padding: 0%;
+	align-items: center;
+	justify-content: center;
+	font-family: minion-pro-condensed-caption, serif;
+	font-size: 3em;
+	color: ${COLORS.lightAccent};
+	background-color: ${COLORS.mainBrand};
+	transition: 0.3s;
+
+	:hover {
+		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+	}
 `
