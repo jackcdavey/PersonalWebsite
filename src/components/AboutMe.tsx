@@ -1,4 +1,3 @@
-import styled from "styled-components"
 import jackProfile from "../assets/images/me.jpg"
 import resume from "../assets/images/ResumeApril2022.png"
 import AnimatedTitle from "../hooks/revealText"

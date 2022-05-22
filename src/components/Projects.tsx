@@ -1,14 +1,6 @@
-import jackProfile from "../assets/images/me.jpg"
-import resume from "../assets/images/ResumeApril2022.png"
 import styled from "styled-components"
 import gitLogo from "../assets/images/github.png"
-
 import AnimatedTitle from "../hooks/revealText"
-
-// import tinycolor from 'tinycolor2';
-
-import React, { Component } from "react"
-
 import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectDescriptionBG } from "../styles/stylesheet.js"
 
 var tinycolor = require("tinycolor2")

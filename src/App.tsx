@@ -1,10 +1,9 @@
-import React, { useRef, useEffect } from "react"
+import { useRef } from "react"
 import "./App.css"
 import Splash from "./components/Splash"
 import AboutMe from "./components/AboutMe"
 import Projects from "./components/Projects"
 import FramerBG from "./components/FramerBG"
-import Canvas, { resizeCanvasToDisplaySize } from "./components/Canvas.js"
 import { AppContainer } from "./styles/stylesheet.js"
 import { motion, useCycle } from "framer-motion"
 import { MenuToggle } from "././components/navmenu/menutoggle.js"
@@ -12,7 +11,7 @@ import { NavMenu } from "./components/navmenu/navmenu"
 import Contact from "./components/Contact"
 
 import Scroll from "react-scroll"
-import { Element, Link } from "react-scroll"
+import { Element } from "react-scroll"
 //var scroll = Scroll.animateScroll;
 var scroller = Scroll.scroller
 

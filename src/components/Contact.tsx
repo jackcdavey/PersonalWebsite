@@ -1,28 +1,5 @@
-import jackProfile from "../assets/images/me.jpg"
-import resume from "../assets/images/ResumeApril2022.png"
-import styled from "styled-components"
-
 import AnimatedTitle from "../hooks/revealText"
-
-import React, { Component } from "react"
-
-import {
-	SectionWrap,
-	SectionRow,
-	ContentColumn,
-	ContentRow,
-	ContentBox,
-	ChipContainer,
-	SectionTitle,
-	ProfileImageWrap,
-	ContactForm,
-	ContactFormWrap,
-	MessageInput,
-	EmailInput,
-	ContactSubmit,
-	InnerContactFormWrap,
-	ContactLabel,
-} from "../styles/stylesheet.js"
+import { SectionWrap, SectionRow, SectionTitle, ContactForm, ContactFormWrap, MessageInput, EmailInput, ContactSubmit, InnerContactFormWrap, ContactLabel } from "../styles/stylesheet.js"
 
 export default function Contact() {
 	return (

@@ -1,10 +1,6 @@
 import Tagline from "./Tagline"
 import AnimatedTitle from "../hooks/revealText"
-import React from "react"
-
 import { SplashTitleWrap, SplashTaglineWrap, SplashWrap } from "../styles/stylesheet"
-
-import Scroll from "react-scroll"
 import { Link } from "react-scroll"
 
 export default function Splash() {

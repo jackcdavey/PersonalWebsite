@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
-import { useAnimation, motion } from "framer-motion"
+import { motion } from "framer-motion"
 
 import "./fonts.css"
 

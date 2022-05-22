@@ -1,13 +1,7 @@
 import { useEffect } from "react"
-
-import styled from "styled-components"
-
-import { useAnimation, motion } from "framer-motion"
-
+import { useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-
 import { Word, Character } from "../styles/stylesheet"
-
 export default function AnimatedTitle(props) {
 	let text = ""
 
@@ -16,7 +10,6 @@ export default function AnimatedTitle(props) {
 		text += props[i]
 		i++
 	}
-	//console.log("Length:" + i);
 
 	const ctrls = useAnimation()
 

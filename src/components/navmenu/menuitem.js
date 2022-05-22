@@ -1,7 +1,5 @@
-import * as React from "react"
 import { motion } from "framer-motion"
-import Scroll from "react-scroll"
-import { Element, Link } from "react-scroll"
+import { Link } from "react-scroll"
 import { TaglineTxt } from "../../styles/stylesheet"
 
 const variants = {
@@ -20,8 +18,9 @@ const variants = {
 			y: { stiffness: 1000, velocity: 100 },
 		},
 	},
-}[("5d1731", "5a4045", "60625b", "617b68")]
-const colors = ["#5d1731", "#5a4045", "#60625b", "#617b68"]
+}
+
+const colors = window.matchMedia("(prefers-color-scheme:  )").matches ? ["#5d1731", "#5a4045", "#60625b", "#617b68"] : ["#5d1731", "#5a4045", "#60625b", "#617b68"]
 
 export const MenuItem = ({ i, sectionLabel, sectionTarget }) => {
 	const style = { color: `${colors[i]}` }

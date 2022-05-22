@@ -1,4 +1,3 @@
-import React, { useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { MenuItem } from "./menuitem.js"
 
@@ -13,24 +12,24 @@ const variants = {
 	},
 }
 
-function useOutsideAlerter(ref) {
-	useEffect(() => {
-		/**
-		 * Alert if clicked on outside of element
-		 */
-		function handleClickOutside(event) {
-			if (ref.current && !ref.current.contains(event.target)) {
-				alert("You clicked outside of me!")
-			}
-		}
-		// Bind the event listener
-		document.addEventListener("mousedown", handleClickOutside)
-		return () => {
-			// Unbind the event listener on clean up
-			document.removeEventListener("mousedown", handleClickOutside)
-		}
-	}, [ref])
-}
+// function useOutsideAlerter(ref) {
+// 	useEffect(() => {
+// 		/**
+// 		 * Alert if clicked on outside of element
+// 		 */
+// 		function handleClickOutside(event) {
+// 			if (ref.current && !ref.current.contains(event.target)) {
+// 				alert("You clicked outside of me!")
+// 			}
+// 		}
+// 		// Bind the event listener
+// 		document.addEventListener("mousedown", handleClickOutside)
+// 		return () => {
+// 			// Unbind the event listener on clean up
+// 			document.removeEventListener("mousedown", handleClickOutside)
+// 		}
+// 	}, [ref])
+// }
 
 export const NavMenu = () => (
 	<motion.ul variants={variants} style={{ position: "fixed" }}>
