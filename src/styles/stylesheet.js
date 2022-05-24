@@ -147,8 +147,12 @@ export const ProfileImageWrap = styled.div`
 `
 export const ProfileImage = styled.img`
 	border-radius: 3% !important;
-	max-width: 20vw;
-	max-height: 30vh;
+	width: 20vw;
+	
+	
+	@media (max-width: 500px) {
+		width: 40vw;
+	}	
 `
 
 export const ResumeDownload = styled.div`

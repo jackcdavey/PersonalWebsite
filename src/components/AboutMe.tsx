@@ -34,7 +34,7 @@ export default function AboutMe() {
 					<ProfileImage src={jackProfile} id="aboutMePic" alt="Jack Davey"></ProfileImage>
 
 					<ProjectLink href={resume} download={"resume.png"}>
-						<ResumeDownload>Download my resume here!</ResumeDownload>
+						<ResumeDownload>View my resume here!</ResumeDownload>
 					</ProjectLink>
 				</ProfileImageWrap>
 				<div>
