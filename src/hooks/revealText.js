@@ -4,6 +4,9 @@ import { useInView } from "react-intersection-observer"
 import { Word, Character } from "../styles/stylesheet"
 export default function AnimatedTitle(props) {
 	let text = ""
+	if (props.title)
+		props = props.title;
+
 
 	let i = 0
 	while (props[i]) {

@@ -5,7 +5,7 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
-  html{
+  html {
     background-color: #5D1731;
   }
 }
@@ -115,7 +115,7 @@ nav {
   left: 0;
   bottom: 0;
   width: 300px;
-  background: #fff;
+  background: #F9FBFB;
   opacity: 0.8;
 }
 
@@ -140,7 +140,7 @@ li {
   margin: 0;
   padding: 0;
   z-index: 1;
-  
+
 }
 
 ul {
@@ -156,7 +156,7 @@ li {
   display: flex;
   align-items: center;
   cursor: pointer;
-  
+
 }
 
 .icon-placeholder {

@@ -7,7 +7,7 @@ export default function Splash() {
 	return (
 		<SplashWrap>
 			<SplashTitleWrap>
-				<AnimatedTitle {..."Hey, I'm Jack"} />
+				<AnimatedTitle {...{ "title": "Hey, I'm Jack" }} />
 			</SplashTitleWrap>
 
 			<SplashTaglineWrap>

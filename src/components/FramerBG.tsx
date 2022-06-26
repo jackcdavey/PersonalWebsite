@@ -100,7 +100,7 @@ export default function FramerBG() {
 		) {
 			// if (window.innerWidth > 600 && window.innerHeight > 600) {
 			//bouncingElements[i].color = colorOptions[Math.floor(Math.random() * colorOptions.length)]
-			console.log("Perfect hit!")
+			// console.log("Perfect hit!")
 			bouncingElements[i].change = true
 
 			//Not quite the effect I was hoping for...

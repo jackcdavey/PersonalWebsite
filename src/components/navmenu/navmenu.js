@@ -12,29 +12,10 @@ const variants = {
 	},
 }
 
-// function useOutsideAlerter(ref) {
-// 	useEffect(() => {
-// 		/**
-// 		 * Alert if clicked on outside of element
-// 		 */
-// 		function handleClickOutside(event) {
-// 			if (ref.current && !ref.current.contains(event.target)) {
-// 				alert("You clicked outside of me!")
-// 			}
-// 		}
-// 		// Bind the event listener
-// 		document.addEventListener("mousedown", handleClickOutside)
-// 		return () => {
-// 			// Unbind the event listener on clean up
-// 			document.removeEventListener("mousedown", handleClickOutside)
-// 		}
-// 	}, [ref])
-// }
-
-export const NavMenu = () => (
+export const NavMenu = ( props ) => (
 	<motion.ul variants={variants} style={{ position: "fixed" }}>
 		{itemIds.map((i) => (
-			<MenuItem i={i} sectionLabel={sectionLabels[i]} sectionTarget={sectionTargets[i]} key={i} />
+			<MenuItem i={i} sectionLabel={sectionLabels[i]} sectionTarget={sectionTargets[i]} forwardedRef={props} key={i} />
 		))}
 	</motion.ul>
 )

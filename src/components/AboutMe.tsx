@@ -21,12 +21,11 @@ export default function AboutMe() {
 	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics", "PC Assembly"]
 
 	const technologies = ["React Native", "ReactJS", "JavaScript", "Java", "HTML", "CSS", "C", "PHP", "SQL", "Ruby"]
-
 	return (
 		<SectionWrap>
 			<SectionRow>
-				<SectionTitle>
-					<AnimatedTitle {..."About Me"} />
+				<SectionTitle>	
+					<AnimatedTitle {...{ "title": "About Me" }} />
 				</SectionTitle>
 			</SectionRow>
 			<SectionRow>

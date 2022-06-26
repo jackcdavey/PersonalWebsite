@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 import "./App.css"
 import Splash from "./components/Splash"
 import AboutMe from "./components/AboutMe"
@@ -12,8 +12,7 @@ import Contact from "./components/Contact"
 
 import Scroll from "react-scroll"
 import { Element } from "react-scroll"
-//var scroll = Scroll.animateScroll;
-var scroller = Scroll.scroller
+
 
 const sidebar = {
 	open: (height = 1000) => ({
@@ -27,28 +26,36 @@ const sidebar = {
 	closed: {
 		clipPath: "circle(30px at 40px 40px)",
 		transition: {
-			delay: 0.5,
 			type: "spring",
-			stiffness: 400,
-			damping: 40,
+			stiffness: 50,
+			damping: 13,
 		},
 	},
 }
 
 function App() {
+
+
+
 	const [isOpen, toggleOpen] = useCycle(false, true)
+	const [menuState, setMenuState] = useState(Boolean);
+	
 	const containerRef = useRef(null)
+	const linkRef = useRef(null)
+	useOutsideAlerter(containerRef)
+	useOutsideAlerter(linkRef)
 	const height = window.innerHeight
+	console.log(isOpen)
 	return (
 		<AppContainer>
 			<FramerBG />
 
 			{/* <Canvas draw={draw} /> ` */}
 
-			<motion.nav initial={false} animate={isOpen ? "open" : "closed"} custom={height} ref={containerRef}>
+			<motion.nav  initial={false} animate={isOpen ? "open" : "closed"} custom={height} ref={containerRef} onClick={() => setMenuState(true)}>
 				<motion.div className="background" variants={sidebar} style={{ zIndex: 1 }} />
-				<NavMenu />
-				<MenuToggle toggle={() => toggleOpen()} />
+				<NavMenu forwardedWrapper={linkRef} />
+				<MenuToggle  toggle={() => toggleOpen()} />				
 			</motion.nav>
 			<Element name="splash">
 				<Splash />
@@ -64,6 +71,23 @@ function App() {
 			</Element>
 		</AppContainer>
 	)
+
+
+	function useOutsideAlerter(ref: any) {
+  useEffect(() => {
+    // Function for click event
+	  function handleOutsideClick(event: any) {
+		// alert(event.currentTarget)
+		  if (ref.current && !ref.current.contains(event.target) && isOpen) 
+			  toggleOpen()
+    }
+    // Adding click event listener
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [ref, isOpen]);
 }
+
+}
+
 
 export default App
