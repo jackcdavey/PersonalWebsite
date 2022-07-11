@@ -6,7 +6,6 @@ import Projects from "./components/Projects"
 import FramerBG from "./components/FramerBG"
 import { AppContainer } from "./styles/stylesheet.js"
 import { motion, useCycle } from "framer-motion"
-import { MenuToggle } from "././components/navmenu/menutoggle.js"
 import { NavMenu } from "./components/navmenu/navmenu"
 import Contact from "./components/Contact"
 
@@ -37,9 +36,9 @@ function App() {
 
 
 
-	const [isOpen, toggleOpen] = useCycle(false, true)
+	const [isOpen, toggleOpen] = useCycle('closed', 'open')
 	const [menuState, setMenuState] = useState(Boolean);
-	
+
 	const containerRef = useRef(null)
 	const linkRef = useRef(null)
 	useOutsideAlerter(containerRef)
@@ -52,10 +51,9 @@ function App() {
 
 			{/* <Canvas draw={draw} /> ` */}
 
-			<motion.nav  initial={false} animate={isOpen ? "open" : "closed"} custom={height} ref={containerRef} onClick={() => setMenuState(true)}>
+			<motion.nav initial={false} animate={isOpen} custom={height} ref={containerRef} >
 				<motion.div className="background" variants={sidebar} style={{ zIndex: 1 }} />
-				<NavMenu forwardedWrapper={linkRef} />
-				<MenuToggle  toggle={() => toggleOpen()} />				
+				<NavMenu forwardedWrapper={linkRef} toggle={() => toggleOpen()} />
 			</motion.nav>
 			<Element name="splash">
 				<Splash />
@@ -74,18 +72,18 @@ function App() {
 
 
 	function useOutsideAlerter(ref: any) {
-  useEffect(() => {
-    // Function for click event
-	  function handleOutsideClick(event: any) {
-		// alert(event.currentTarget)
-		  if (ref.current && !ref.current.contains(event.target) && isOpen) 
-			  toggleOpen()
-    }
-    // Adding click event listener
-    document.addEventListener("click", handleOutsideClick);
-    return () => document.removeEventListener("click", handleOutsideClick);
-  }, [ref, isOpen]);
-}
+		useEffect(() => {
+			// Function for click event
+			function handleOutsideClick(event: any) {
+				// alert(event.currentTarget)
+				if (ref.current && !ref.current.contains(event.target) && isOpen)
+					toggleOpen()
+			}
+			// Adding click event listener
+			document.addEventListener("click", handleOutsideClick);
+			return () => document.removeEventListener("click", handleOutsideClick);
+		}, [ref, isOpen]);
+	}
 
 }
 
