@@ -40,6 +40,10 @@ export const SplashTitleWrap = styled.h1`
 	grid-column: 1 / 3;
 	grid-row: 1;
 	color: ${COLORS.mainBrand};
+
+	@media (max-width: 510px) {
+		font-size: 5em;
+		padding-bottom: 10vh;
 `
 
 export const SplashTaglineWrap = styled.div`

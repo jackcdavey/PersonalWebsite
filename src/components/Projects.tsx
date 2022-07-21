@@ -57,14 +57,14 @@ export default function Projects() {
 				</ProjectLink>
 			</ProjRowRight>
 			<ProjRowLeft>
-				<ProjectLink href={"https://github.com"}>
+				<ProjectLink href={"https://theemergencyexit.net/"}>
 					<ProjectCard>
-						<ProjectTitle>The Emergency Exit – Band Website</ProjectTitle>
+						<ProjectTitle>The Emergency Exit Band Website</ProjectTitle>
 					</ProjectCard>
 
 					<ProjectDescription>
 						<ProjectDescriptionBG />
-						<span style={{ width: "70%" }}>This is where I'll write a long description about my dad and his band and the website that I totally have built for them.</span>
+						<span style={{ width: "70%" }}>This is where I'll write a long description about my dad and his band and the website that I'm building for them.</span>
 					</ProjectDescription>
 				</ProjectLink>
 			</ProjRowLeft>
