@@ -85,7 +85,7 @@ export const SectionRow = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	@media (max-width: 500px) {
+	@media (max-width: 510px) {
 		flex-direction: column;
 	}
 `
@@ -150,7 +150,7 @@ export const ProfileImage = styled.img`
 	width: 20vw;
 	
 	
-	@media (max-width: 500px) {
+	@media (max-width: 510px) {
 		width: 40vw;
 	}	
 `
@@ -212,6 +212,10 @@ export const ProjectCard = styled.div`
 	:hover {
 		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
 	}
+
+	@media (max-width: 510px) {
+		width: 40vw;
+	}
 `
 
 export const ProjectTitle = styled.h2`
@@ -257,7 +261,11 @@ export const ProjectDescriptionBG = styled.div`
 	filter: blur(20px);
 	border-radius: 25px;
 	width: 50%;
-	height: 100px;
+	height: 10vh;
+
+	@media (max-width: 510px) {
+		height: 30vh;
+	}
 `
 
 export const ContactForm = styled.form`
@@ -270,7 +278,7 @@ export const ContactForm = styled.form`
 	font-family: minion-pro-condensed-caption, serif;
 	width: 90vw;
 
-	@media (max-width: 500px) {
+	@media (max-width: 510px) {
 		flex-direction: column;
 	}
 `
@@ -294,7 +302,7 @@ export const InnerContactFormWrap = styled.div`
 		padding: 0% 0% 0% 20%;
 	}
 
-	@media (max-width: 500px) {
+	@media (max-width: 510px) {
 		flex-direction: column;
 
 		h4 {
@@ -362,7 +370,7 @@ export const ContactSubmit = styled.button`
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
 	}
 
-	@media (max-width: 500px) {
+	@media (max-width: 510px) {
 		margin-top: 3%;
 	}
 `

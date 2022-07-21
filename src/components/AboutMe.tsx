@@ -1,5 +1,5 @@
 import jackProfile from "../assets/images/me.jpg"
-import resume from "../assets/images/ResumeApril2022.png"
+import resume from "../assets/images/Resume.png"
 import AnimatedTitle from "../hooks/revealText"
 
 import {
@@ -20,11 +20,11 @@ import {
 export default function AboutMe() {
 	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics", "PC Assembly"]
 
-	const technologies = ["React Native", "ReactJS", "JavaScript", "Java", "HTML", "CSS", "C", "PHP", "SQL", "Ruby"]
+	const technologies = ["React Native", "ReactJS", "JavaScript", "Java", "HTML", "CSS", "C", "PHP", "SQL", "Ruby", "Framer", "Figma"]
 	return (
 		<SectionWrap>
 			<SectionRow>
-				<SectionTitle>	
+				<SectionTitle>
 					<AnimatedTitle {...{ "title": "About Me" }} />
 				</SectionTitle>
 			</SectionRow>
@@ -33,15 +33,14 @@ export default function AboutMe() {
 					<ProfileImage src={jackProfile} id="aboutMePic" alt="Jack Davey"></ProfileImage>
 
 					<ProjectLink href={resume} download={"resume.png"}>
-						<ResumeDownload>View my resume here!</ResumeDownload>
+						<ResumeDownload>Download my resume here!</ResumeDownload>
 					</ProjectLink>
 				</ProfileImageWrap>
 				<div>
 					<h3>Intro</h3>
 					<p>
-						Currently pursuing a B.S. in Web Design and Engineering with a minor in Innovation, Design Thinking, and the Entrepreneurial Mindset at Santa Clara University. Having spent my entire life
-						in California, I grew up with an immense appreciation for the beauty and simplicity of nature. I love to tinker, design, and create, but when I’m not working away at my desk, you’ll likely
-						find me at the driving range or exploring the mountains with my hammock and camera.{" "}
+						Led by a lifelong passion for technology and aesthetics, I graduated from Santa Clara University with a B.S. in Web Desing and Engineering in 2022, and am continuing my studies there in pursuit of an M.S. in Engineering Management with a minor in Science, Technology, and Society. Having spent my entire life in California, I grew up with an immense appreciation for the beauty and simplicity of nature. I love to tinker, design, and create, but when I’m not working away at my desk, you’ll likely
+						find me hooking the majority of my shots at the driving range, or out exploring the mountains with my hammock and camera.{" "}
 					</p>
 					<br></br>
 					{/*Maybe implement some interactivity with these in the futre,

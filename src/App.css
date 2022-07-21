@@ -34,10 +34,15 @@ canvas {
 }
 
 p {
-  font-size: 1em;
   font-family: minion-pro-condensed-subhead, serif;
   text-decoration: none;
   color: black;
+}
+
+span,
+p,
+a {
+  font-size: 1.2em;
 }
 
 h3 {
