@@ -1,26 +1,12 @@
 import styled from "styled-components"
 import gitLogo from "../assets/images/github.png"
 import AnimatedTitle from "../hooks/revealText"
-import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectDescriptionBG } from "../styles/stylesheet.js"
+import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectDescriptionBG, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
 var tinycolor = require("tinycolor2")
 
 export default function Projects() {
-	const ProjRowLeft = styled(SectionRow)`
-		justify-content: flex-start;
-		align-items: center;
-		flex-direction: row;
-		flex-wrap: wrap;
-		width: 100%;
-	`
 
-	const ProjRowRight = styled(SectionRow)`
-		justify-content: flex-end;
-		align-items: center;
-		flex-direction: row;
-		flex-wrap: wrap;
-		width: 100%;
-	`
 
 	//Rearrange so that each project is 100 vw wide, and alternate between left and right alignment
 	//Also add descriptions and photos

@@ -199,6 +199,11 @@ export const FramerObject = styled.div`
 	height: 150px;
 `
 
+
+
+
+////// PROJECT SECTION STYLES //////
+
 export const ProjectCard = styled.div`
 	background: ${COLORS.mainBrand};
 	/* Eventually add custom colors for each project */
@@ -271,6 +276,24 @@ export const ProjectDescriptionBG = styled.div`
 		height: 30vh;
 	}
 `
+
+export const ProjRowLeft = styled(SectionRow)`
+		justify-content: flex-start;
+		align-items: center;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+	`
+
+	export const ProjRowRight = styled(SectionRow)`
+		justify-content: flex-end;
+		align-items: center;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+	`
+
+////// END PROJECT SECTION STYLES //////
 
 export const ContactForm = styled.form`
 	display: flex;
