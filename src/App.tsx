@@ -40,7 +40,7 @@ function App() {
 	const [menuState, setMenuState] = useState(Boolean);
 
 	const height = window.innerHeight
-	console.log(isOpen)
+	// console.log(isOpen)
 	return (
 		<AppContainer>
 			<FramerBG />
