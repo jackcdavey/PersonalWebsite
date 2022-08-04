@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST={"index.tsx -> ./landingSections/FramerBG":{"id":"index.tsx -> ./landingSections/FramerBG","files":["static/chunks/pages_landingSections_FramerBG_tsx.js"]}}
