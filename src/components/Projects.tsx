@@ -1,4 +1,3 @@
-import styled from "styled-components"
 import gitLogo from "../assets/images/github.png"
 import AnimatedTitle from "../hooks/revealText"
 import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectDescriptionBG, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"

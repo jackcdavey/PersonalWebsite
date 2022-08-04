@@ -1,45 +1,45 @@
-import { useRef, useEffect, useState } from "react"
+// import { useRef, useEffect, useState } from "react"
 import "./App.css"
 import Splash from "./components/Splash"
 import AboutMe from "./components/AboutMe"
 import Projects from "./components/Projects"
 import FramerBG from "./components/FramerBG"
 import { AppContainer } from "./styles/stylesheet.js"
-import { motion, useCycle } from "framer-motion"
+// import { motion, useCycle } from "framer-motion"
 import Contact from "./components/Contact"
 
-import { NavMenu } from "./components/navmenu/navmenu"
+// import { NavMenu } from "./components/navmenu/navmenu"
 
 import { Element } from "react-scroll"
 
 
-const sidebar = {
-	open: (height = 1000) => ({
-		clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-		transition: {
-			type: "spring",
-			stiffness: 20,
-			restDelta: 2,
-		},
-	}),
-	closed: {
-		clipPath: "circle(30px at 40px 40px)",
-		transition: {
-			type: "spring",
-			stiffness: 50,
-			damping: 13,
-		},
-	},
-}
+// const sidebar = {
+// 	open: (height = 1000) => ({
+// 		clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+// 		transition: {
+// 			type: "spring",
+// 			stiffness: 20,
+// 			restDelta: 2,
+// 		},
+// 	}),
+// 	closed: {
+// 		clipPath: "circle(30px at 40px 40px)",
+// 		transition: {
+// 			type: "spring",
+// 			stiffness: 50,
+// 			damping: 13,
+// 		},
+// 	},
+// }
 
 function App() {
 
 
 
-	const [isOpen, toggleOpen] = useCycle('closed', 'open')
-	const [menuState, setMenuState] = useState(Boolean);
+	// const [isOpen, toggleOpen] = useCycle('closed', 'open')
+	// const [menuState, setMenuState] = useState(Boolean);
 
-	const height = window.innerHeight
+	// const height = window.innerHeight
 	// console.log(isOpen)
 	return (
 		<AppContainer>
