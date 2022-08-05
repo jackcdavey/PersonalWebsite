@@ -22,6 +22,7 @@ export default function Splash() {
 				style={{
 					//For some reason the link does not align properly, so I'm using a lil inline style hack
 					boxSizing: "border-box",
+					cursor: "pointer",
 					position: "absolute",
 					left: "48.5%",
 					top: "90%",

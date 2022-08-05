@@ -10,6 +10,8 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Contact from "./landingSections/Contact";
 
+import { Element, Link } from "react-scroll";
+
 const DynamicBG = dynamic(() => import('./landingSections/FramerBG'), {
   ssr: false,
   //Disable ssr so animation boundaries can be set by client window size
@@ -22,7 +24,9 @@ const StyledComponents = () => {
     <AppContainer>
       <DynamicBG />
       <Splash />
-      <AboutMe />
+      <Element name="aboutme">
+        <AboutMe />
+      </Element>
       <Projects />
       <Contact />
     </AppContainer>
