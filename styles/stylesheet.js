@@ -2,11 +2,20 @@ import styled from "styled-components"
 import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
 import { motion } from "framer-motion"
 
+import dynamic from 'next/dynamic'
+
+
 // import "./fonts.css"
 
 // const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
 //gonna have to deal with ssr later
-const COLORS = LIGHTCOLORS
+
+const COLORS = dynamic(() => import("../styles/colors"), {
+	ssr: false,
+})
+
+
+
 const TitleFont = "jeanne-moderno-geometrique, sans-serif"
 const TextFont = "minion-pro-condensed-caption, serif"
 
