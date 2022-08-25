@@ -10,9 +10,11 @@ import dynamic from 'next/dynamic'
 // const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
 //gonna have to deal with ssr later
 
-const COLORS = dynamic(() => import("../styles/colors"), {
-	ssr: false,
-})
+// const COLORS = dynamic(() => import("../styles/colors"), {
+// 	ssr: false,
+// })
+
+const COLORS = LIGHTCOLORS;
 
 
 

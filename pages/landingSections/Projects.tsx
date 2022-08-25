@@ -49,7 +49,7 @@ export default function Projects() {
 
 					<ProjectDescription>
 						<ProjectDescriptionBG />
-						<span style={{ width: "70%" }}>This is where I'll write a long description about my dad and his band and the website that I'm building for them.</span>
+						<span style={{ width: "70%" }}>This is where I&apos; ll write a long description about my dad and his band and the website that I&apos;m building for them.</span>
 					</ProjectDescription>
 				</ProjectLink>
 			</ProjRowLeft>

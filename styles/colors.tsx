@@ -12,6 +12,7 @@
 // darkAccent: "#DFE0DC",
 // mainBrand: "#381D2A",
 
+
 export const LIGHTCOLORS = {
 	lightShade: "#F9FBFB",
 	lightAccent: "#CDDDE4",
@@ -27,3 +28,11 @@ export const DARKCOLORS = {
 	darkAccent: "#94A098",
 	darkShade: "#94A098",
 }
+
+
+// const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS;
+
+// export default COLORS;
+
+
+
