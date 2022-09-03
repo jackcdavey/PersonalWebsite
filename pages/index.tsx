@@ -14,6 +14,8 @@ import { Element, Link } from "react-scroll";
 
 import { ColorToggle } from "../components/colorToggle";
 
+import Disqus from "disqus-react";
+
 // const DynamicBG = dynamic(() => import('./landingSections/FramerBG'), {
 //   ssr: false,
 // })
@@ -22,6 +24,12 @@ import { ColorToggle } from "../components/colorToggle";
 
 
 const StyledComponents = () => {
+  const disqusShortname = "jackdavey"
+  const disqusConfig = {
+    url: "https://www.jackdavey.org",
+    identifier: "article-id",
+    title: "Title of Your Article"
+  }
 
   return (
 
@@ -34,6 +42,10 @@ const StyledComponents = () => {
       </Element>
       <Projects />
       <Contact />
+      <Disqus.DiscussionEmbed
+        shortname={disqusShortname}
+        config={disqusConfig}
+      />
     </AppContainer>
 
 
