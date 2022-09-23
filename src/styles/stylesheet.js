@@ -6,8 +6,8 @@ import "./fonts.css"
 
 const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
 
-const TitleFont = "jeanne-moderno-geometrique, sans-serif"
-const TextFont = "minion-pro-condensed-caption, serif"
+// const TitleFont = "jeanne-moderno-geometrique, sans-serif"
+// const TextFont = "minion-pro-condensed-caption, serif"
 
 export const AppContainer = styled.div``
 

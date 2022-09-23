@@ -2,7 +2,7 @@ import gitLogo from "../assets/images/github.png"
 import AnimatedTitle from "../hooks/revealText"
 import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectDescriptionBG, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
-var tinycolor = require("tinycolor2")
+// var tinycolor = require("tinycolor2")
 
 export default function Projects() {
 
