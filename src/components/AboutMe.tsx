@@ -20,7 +20,7 @@ import {
 export default function AboutMe() {
 	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics", "PC Assembly"]
 
-	const technologies = ["React Native", "ReactJS", "JavaScript", "Java", "HTML", "CSS", "C", "PHP", "SQL", "Ruby", "Framer", "Figma"]
+	const technologies = ["React Native", "ReactJS", "NextJS", "JavaScript", "TypeScript", "C", "PHP", "SQL", "Ruby", "Framer", "Figma"]
 	return (
 		<SectionWrap>
 			<SectionRow>
