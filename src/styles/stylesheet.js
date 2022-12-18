@@ -248,6 +248,7 @@ export const ProjectLink = styled.a`
 	align-items: center;
 	display: inline-flex;
 	text-decoration: none;
+	target: _blank;
 `
 
 export const ProjectDescription = styled.div`

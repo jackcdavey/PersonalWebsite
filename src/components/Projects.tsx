@@ -18,8 +18,19 @@ export default function Projects() {
 					<AnimatedTitle {...{ "title": "Projects" }} />{" "}
 				</SectionTitle>
 			</SectionRow>
+			<ProjRowRight>
+				<ProjectLink href={"https://www.asianblackalliance.org"} target='_blank' >
+					<ProjectDescription>
+						<ProjectDescriptionBG />
+						<span style={{ width: "70%" }}>A website to share and store the findings of the Asian Black Alliance project at Santa Clara University.</span>
+					</ProjectDescription>
+					<ProjectCard>
+						<ProjectTitle>Asian & Black Alliance Website</ProjectTitle>
+					</ProjectCard>
+				</ProjectLink>
+			</ProjRowRight>
 			<ProjRowLeft>
-				<ProjectLink href={"https://github.com/jackcdavey/WageWizardApp"}>
+				<ProjectLink href={"https://github.com/jackcdavey/WageWizardApp"} target='_blank' >
 					<ProjectCard>
 						<ProjectTitle>Wage Wizard</ProjectTitle>
 					</ProjectCard>
@@ -31,7 +42,7 @@ export default function Projects() {
 				</ProjectLink>
 			</ProjRowLeft>
 			<ProjRowRight>
-				<ProjectLink href={"https://github.com/jackcdavey/HubHouseMgmtSys"}>
+				<ProjectLink href={"https://github.com/jackcdavey/HubHouseMgmtSys"} target='_blank' >
 					<ProjectDescription>
 						<ProjectDescriptionBG />
 						<span style={{ width: "70%" }}>An all in one utility built to make splitting costs and recording monthly payments easier for my housemates and I.</span>
@@ -42,7 +53,7 @@ export default function Projects() {
 				</ProjectLink>
 			</ProjRowRight>
 			<ProjRowLeft>
-				<ProjectLink href={"https://theemergencyexit.net/"}>
+				<ProjectLink href={"https://theemergencyexit.net/"} target='_blank' >
 					<ProjectCard>
 						<ProjectTitle>The Emergency Exit Band Website</ProjectTitle>
 					</ProjectCard>
@@ -54,7 +65,7 @@ export default function Projects() {
 				</ProjectLink>
 			</ProjRowLeft>
 			<ProjRowRight>
-				<ProjectLink href={"https://github.com/jackcdavey"}>
+				<ProjectLink href={"https://github.com/jackcdavey"} target='_blank' >
 					<ProjectDescription>
 						<ProjectDescriptionBG />
 						<span style={{ width: "70%" }}>Check out all my other work and projects over on GitHub!</span>
