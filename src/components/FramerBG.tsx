@@ -6,6 +6,8 @@ import { FramerContainer } from "../styles/stylesheet"
 //At least put in some cool easter egg where the screen lights up
 //after a ball perfectly hits a corner
 
+
+
 const colorOptions = ["#DED9D9", "#545252", "#3b3434", "#A0A0A0"]
 
 //
@@ -14,7 +16,62 @@ const colorOptions = ["#DED9D9", "#545252", "#3b3434", "#A0A0A0"]
 
 let speed = 0.5
 
-const bouncingElements = [
+interface BallProps {
+	id: number
+	xPos: number
+	yPos: number
+	xDir: number
+	yDir: number
+	bWidth: number
+	color: string
+	change?: boolean
+}
+
+
+// Function that creates a ball given an x and y position, x and y direction, width, and color
+const Ball = ({ xPos, yPos, xDir, yDir, bWidth, color, change }: BallProps) => {
+	return (
+		<motion.div
+			style={{
+				position: "absolute",
+				top: yPos,
+				left: xPos,
+				width: bWidth,
+				height: bWidth,
+				backgroundColor: color,
+				borderRadius: "50%",
+			}}
+			animate={{
+				x: xPos + xDir,
+				y: yPos + yDir,
+			}}
+			transition={{
+				duration: 0,
+			}}
+		/>
+	)
+}
+
+const bouncingElements = [] as BallProps[];
+
+// Create 3 balls
+for (let i = 0; i < 5; i++) {
+	bouncingElements.push({
+		id: i,
+		xPos: Math.random() * window.innerWidth,
+		yPos: Math.random() * window.innerHeight,
+		xDir: speed,
+		yDir: speed,
+		bWidth: Math.max(window.innerWidth / (9 - i * 3), 300 - i * 100),
+		color: colorOptions[Math.floor(Math.random() * colorOptions.length)],
+		change: false,
+	})
+}
+
+
+
+
+const bouncingElementsOld = [
 	{
 		id: 0,
 		xDir: speed,

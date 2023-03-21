@@ -248,7 +248,7 @@ export const ProjectLink = styled.a`
 	align-items: center;
 	display: inline-flex;
 	text-decoration: none;
-	target: _blank;
+	
 `
 
 export const ProjectDescription = styled.div`
@@ -261,17 +261,22 @@ export const ProjectDescription = styled.div`
 	padding-left: 5%;
 	padding-right: 5%;
 	text-align: center;
+	height: 100%;
+	// background-color: ${COLORS.lightShade};
+	// overflow: hidden;
+	
 `
 
 export const ProjectDescriptionBG = styled.div`
-	background-color: ${COLORS.lightShade};
+// COLORS.lightShade
+	background-color: black;
 	color: red;
 	position: absolute;
 	z-index: -1;
 	filter: blur(20px);
 	border-radius: 25px;
 	width: 50%;
-	height: 10vh;
+	max-height: 10vh;
 
 	@media (max-width: 510px) {
 		height: 30vh;

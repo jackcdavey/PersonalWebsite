@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.0.1",
     "framer-motion": "^6.3.3",
     "react": "^18.0.0",
+    "react-adobe-fonts": "^0.1.0",
     "react-dom": "^18.0.0",
     "react-intersection-observer": "^9.1.0",
     "react-scripts": "5.0.1",
