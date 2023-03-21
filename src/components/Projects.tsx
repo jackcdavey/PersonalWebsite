@@ -38,7 +38,7 @@ export default function Projects() {
 			<SectionRow>
 				<SectionTitle>
 					{" "}
-					<AnimatedTitle {..."Projects"} />{" "}
+					<AnimatedTitle {...{ text: "Projects" }} />{" "}
 				</SectionTitle>
 			</SectionRow>
 			<ProjRowLeft>

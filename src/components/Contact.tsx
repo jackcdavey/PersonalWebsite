@@ -30,7 +30,7 @@ export default function Contact() {
 			<SectionRow>
 				<SectionTitle>
 					{" "}
-					<AnimatedTitle {..."Contact Me!"} />{" "}
+					<AnimatedTitle {...{ text: "Contact Me!" }} />{" "}
 				</SectionTitle>
 			</SectionRow>
 			<SectionRow>

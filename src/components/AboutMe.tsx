@@ -27,7 +27,11 @@ export default function AboutMe() {
 		<SectionWrap>
 			<SectionRow>
 				<SectionTitle>
-					<AnimatedTitle {..."About Me"} />
+					<AnimatedTitle
+						{...{
+							text: "About Me",
+						}}
+					/>
 				</SectionTitle>
 			</SectionRow>
 			<SectionRow>

@@ -8,12 +8,16 @@ import { useInView } from "react-intersection-observer"
 
 import { Word, Character } from "../styles/stylesheet"
 
-export default function AnimatedTitle(props) {
+interface Props {
+	text: string
+}
+
+export default function AnimatedTitle(props: Props) {
 	let text = ""
 
 	let i = 0
-	while (props[i]) {
-		text += props[i]
+	while (text[i]) {
+		text += text[i]
 		i++
 	}
 	//console.log("Length:" + i);
