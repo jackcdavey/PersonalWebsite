@@ -214,7 +214,8 @@ export const ProjectCard = styled.div`
 	justify-content: center;
 	transition: 0.3s;
 	min-width: 30vw;
-	height: 25vh;
+	height: 15rem;
+	
 	border-radius: 15px;
 	margin: 5%;
 
@@ -275,7 +276,7 @@ export const ProjectDescriptionBG = styled.div`
 	filter: blur(20px);
 	border-radius: 25px;
 	width: 50%;
-	height: 50px;
+	height: 50;
 	@media (max-width: 510px) {
 		height: 30vh;
 	}
