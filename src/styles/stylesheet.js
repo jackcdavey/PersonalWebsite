@@ -213,7 +213,7 @@ export const ProjectCard = styled.div`
 	align-items: center;
 	justify-content: center;
 	transition: 0.3s;
-	width: 30vw;
+	min-width: 30vw;
 	height: 25vh;
 	border-radius: 15px;
 	margin: 5%;
@@ -270,14 +270,12 @@ export const ProjectDescription = styled.div`
 export const ProjectDescriptionBG = styled.div`
 // COLORS.lightShade
 	background-color: black;
-	color: red;
 	position: absolute;
 	z-index: -1;
 	filter: blur(20px);
 	border-radius: 25px;
 	width: 50%;
-	max-height: 10vh;
-
+	height: 50px;
 	@media (max-width: 510px) {
 		height: 30vh;
 	}
