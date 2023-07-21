@@ -213,9 +213,8 @@ export const ProjectCard = styled.div`
 	align-items: center;
 	justify-content: center;
 	transition: 0.3s;
-	min-width: 30vw;
+	width: 20rem;
 	height: 15rem;
-	
 	border-radius: 15px;
 	margin: 5%;
 
@@ -223,8 +222,9 @@ export const ProjectCard = styled.div`
 		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
 	}
 
-	@media (max-width: 510px) {
-		width: 40vw;
+	@media (max-width: 710px) {
+		margin-top: 5rem;
+		width: 70vw;
 	}
 `
 
@@ -247,7 +247,7 @@ export const ProjectImage = styled.img`
 
 export const ProjectLink = styled.a`
 	align-items: center;
-	display: inline-flex;
+	display: flex;
 	text-decoration: none;
 	
 `
@@ -259,10 +259,10 @@ export const ProjectDescription = styled.div`
 	font-family: minion-pro-condensed-caption, serif;
 	font-size: 1em;
 	color: ${COLORS.darkShade};
-	padding-left: 5%;
-	padding-right: 5%;
+	// padding-left: 5%;
+	// padding-right: 5%;
 	text-align: center;
-	height: 100%;
+	// width: 100%;
 	// background-color: ${COLORS.lightShade};
 	// overflow: hidden;
 	
@@ -285,17 +285,26 @@ export const ProjectDescriptionBG = styled.div`
 export const ProjRowLeft = styled(SectionRow)`
 		justify-content: flex-start;
 		align-items: center;
-		flex-direction: row;
-		flex-wrap: wrap;
+		flex-direction: row !important;
 		width: 100%;
+
+		@media (max-width: 800px) {
+			justify-content: center !important;
+			flex-wrap: wrap;
+		}
 	`
 
 	export const ProjRowRight = styled(SectionRow)`
 		justify-content: flex-end;
 		align-items: center;
-		flex-direction: row;
-		flex-wrap: wrap;
+		flex-direction: row !important;
 		width: 100%;
+
+		@media (max-width: 800px) {
+			flex-wrap: wrap;
+			flex-direction: column-reverse !important;
+			justify-content: center !important;
+		}
 	`
 
 ////// END PROJECT SECTION STYLES //////

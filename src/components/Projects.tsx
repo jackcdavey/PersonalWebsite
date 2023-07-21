@@ -1,6 +1,6 @@
 import gitLogo from "../assets/images/github.png"
 import AnimatedTitle from "../hooks/revealText"
-import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectDescriptionBG, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
+import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
 // var tinycolor = require("tinycolor2")
 
@@ -55,13 +55,15 @@ export default function Projects() {
 				if (index % 2 === 0) {
 					return (
 						<ProjRowRight>
+							<ProjectDescription>
+								{/* <ProjectDescriptionBG /> */}
+								<span style={{ width: "70%" }}>
+									{project.description}
+								</span>
+							</ProjectDescription>
+
 							<ProjectLink href={project.link} target='_blank' >
-								<ProjectDescription>
-									{/* <ProjectDescriptionBG /> */}
-									<span style={{ width: "70%" }}>
-										{project.description}
-									</span>
-								</ProjectDescription>
+
 								<ProjectCard>
 									{project.image &&
 										<ProjectImage src={project.image} />
@@ -84,14 +86,14 @@ export default function Projects() {
 										{project.title}
 									</ProjectTitle>
 								</ProjectCard>
-
-								<ProjectDescription>
-									{/* <ProjectDescriptionBG /> */}
-									<span style={{ width: "70%" }}>
-										{project.description}
-									</span>
-								</ProjectDescription>
 							</ProjectLink>
+
+							<ProjectDescription>
+								{/* <ProjectDescriptionBG /> */}
+								<span style={{ width: "70%" }}>
+									{project.description}
+								</span>
+							</ProjectDescription>
 						</ProjRowLeft>
 					)
 				}
