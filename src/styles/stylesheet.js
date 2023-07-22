@@ -317,9 +317,9 @@ export const ContactForm = styled.form`
 	padding: 1%;
 	padding-bottom: 5%;
 	font-family: minion-pro-condensed-caption, serif;
-	width: 90vw;
+	width: 100%;
 
-	@media (max-width: 510px) {
+	@media (max-width: 710px) {
 		flex-direction: column;
 	}
 `
@@ -330,6 +330,9 @@ export const ContactFormWrap = styled.div`
 	align-items: center;
 	text-align: center;
 	width: 80%;
+
+	@media (max-width: 710px) {
+		width: 100%;
 `
 
 export const InnerContactFormWrap = styled.div`
@@ -356,7 +359,7 @@ export const InnerContactFormWrap = styled.div`
 export const EmailInput = styled.input`
 	height: 5vh;
 	width: 60%;
-	border-radius: 25px;
+	border-radius: 1rem;
 	border: none;
 	padding-left: 10%;
 	margin-top: 3%;
@@ -369,12 +372,16 @@ export const EmailInput = styled.input`
 	:focus {
 		outline: none;
 	}
+
+	@media (max-width: 710px) {
+		width: 85%;
+	}
 `
 
 export const MessageInput = styled.textarea`
 	height: 10vh;
 	width: 80%;
-	border-radius: 25px;
+	border-radius: 1rem;
 	border: none;
 	padding: 3%;
 	margin-top: 1%;
@@ -387,6 +394,10 @@ export const MessageInput = styled.textarea`
 
 	:focus {
 		outline: none;
+	}
+
+	@media (max-width: 710px) {
+		width: 90%;
 	}
 `
 

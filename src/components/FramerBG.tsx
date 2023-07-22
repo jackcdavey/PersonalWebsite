@@ -2,13 +2,14 @@ import { motion } from "framer-motion"
 import "../App.css"
 import { useEffect, useState } from "react"
 import { FramerContainer } from "../styles/stylesheet"
+import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
+const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
 
 //At least put in some cool easter egg where the screen lights up
 //after a ball perfectly hits a corner
 
 
-
-const colorOptions = ["#DED9D9", "#545252", "#3b3434", "#A0A0A0"]
+const colorOptions = [COLORS.mainBrand, '#AAA', COLORS.lightAccent, COLORS.lightShade]
 
 //
 //Please God, forgive me for the sins I am about to commit
@@ -56,6 +57,8 @@ const bouncingElements = [] as BallProps[];
 
 // Create 3 balls
 for (let i = 0; i < 5; i++) {
+	const unusedColors = colorOptions.filter((color) => color !== bouncingElements[i - 1]?.color)
+	const color = unusedColors[Math.floor(Math.random() * unusedColors.length)]
 	bouncingElements.push({
 		id: i,
 		xPos: Math.random() * window.innerWidth,
@@ -63,7 +66,7 @@ for (let i = 0; i < 5; i++) {
 		xDir: speed,
 		yDir: speed,
 		bWidth: Math.max(window.innerWidth / (9 - i * 3), 300 - i * 100),
-		color: colorOptions[Math.floor(Math.random() * colorOptions.length)],
+		color: color,
 		change: false,
 	})
 }
