@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
 import { motion } from "framer-motion"
 
+
 import "./fonts.css"
 
 const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
@@ -61,7 +62,8 @@ export const TransparentSectionWrap = styled.div`
 	align-items: center;
 	z-index: 10;
 	min-height: 30vh;
-	margin-right: 15vw;
+	margin-bottom: 3rem;
+
 `
 
 export const SectionWrap = styled(TransparentSectionWrap)`
@@ -138,7 +140,8 @@ export const ChipContainer = styled.div`
 
 export const ChipLabel = styled.h3`
 	font-size: 1em;
-	font-family: minion-pro-condensed-caption, serif;
+	font-family: Raileway, sans-serif;
+	font-weight: 400;
 	color: ${COLORS.mainBrand};
 `
 
@@ -172,7 +175,8 @@ export const ResumeDownload = styled.div`
 	background: ${COLORS.mainBrand};
 	transition: 0.2s;
 	text-align: center;
-	font-family: minion-pro-condensed-caption, serif;
+	font-family: Raileway, sans-serif;
+	font-weight: 400;
 	color: ${COLORS.lightShade};
 	font-size: 1em;
 
@@ -256,13 +260,13 @@ export const ProjectDescription = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: minion-pro-condensed-caption, serif;
+	font-family: Raleway, sans-serif;
 	font-size: 1em;
 	color: ${COLORS.darkShade};
 	// padding-left: 5%;
 	// padding-right: 5%;
 	text-align: center;
-	// width: 100%;
+	width: 100%;
 	// background-color: ${COLORS.lightShade};
 	// overflow: hidden;
 	

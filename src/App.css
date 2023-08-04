@@ -1,5 +1,6 @@
 @import url("https://use.typekit.net/pzl7jlg.css");
 
+
 html {
   background-color: #F9FBFB;
 }
@@ -34,7 +35,8 @@ canvas {
 }
 
 p {
-  font-family: minion-pro-condensed-subhead, serif;
+  font-family: 'Raleway', sans-serif;
+
   text-decoration: none;
   color: black;
 }

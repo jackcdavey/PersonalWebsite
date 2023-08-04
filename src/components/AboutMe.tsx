@@ -18,9 +18,9 @@ import {
 } from "../styles/stylesheet.js"
 
 export default function AboutMe() {
-	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics", "PC Assembly"]
+	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics", "PC Assembly", "Figma"]
 
-	const technologies = ["React Native", "ReactJS", "NextJS", "JavaScript", "TypeScript", "C", "PHP", "SQL", "Ruby", "Framer", "Figma"]
+	const technologies = ["React", "NextJS", "SiwftUI", "JavaScript", "TypeScript", "Swift", "C", "PHP", "SQL", "Ruby", "Framer"]
 	return (
 		<SectionWrap>
 			<SectionRow>
