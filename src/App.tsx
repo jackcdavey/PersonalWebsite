@@ -13,24 +13,6 @@ import Contact from "./components/Contact"
 import { Element } from "react-scroll"
 
 
-// const sidebar = {
-// 	open: (height = 1000) => ({
-// 		clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-// 		transition: {
-// 			type: "spring",
-// 			stiffness: 20,
-// 			restDelta: 2,
-// 		},
-// 	}),
-// 	closed: {
-// 		clipPath: "circle(30px at 40px 40px)",
-// 		transition: {
-// 			type: "spring",
-// 			stiffness: 50,
-// 			damping: 13,
-// 		},
-// 	},
-// }
 
 function App() {
 
