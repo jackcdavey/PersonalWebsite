@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { TaglineTxt } from "../styles/stylesheet"
 
-const words = ["Developer", "Designer", "Tinkerer", "Photographer", ]
+const words = ["Developer", "Designer", "Tinkerer", "Astrophotographer", "Ordained Minister"]
 
 export default function Tagline() {
 	const [index, setIndex] = React.useState(0)
