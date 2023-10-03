@@ -27,7 +27,7 @@ export const SplashWrap = styled.section`
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
-	height: 90vh;
+	height: 100vh;
 	background: ${COLORS.lightShade};
 	opacity: 0.5;
 	padding-left: 10vw;
@@ -42,7 +42,7 @@ export const SplashTitleWrap = styled.h1`
 	grid-row: 1;
 	color: ${COLORS.mainBrand};
 
-	@media (max-width: 510px) {
+	@media (max-width: 710px) {
 		font-size: 5em;
 		padding-bottom: 10vh;
 `
@@ -53,6 +53,8 @@ export const SplashTaglineWrap = styled.div`
 	grid-column: 2 / 4;
 	grid-row: 2 / 3;
 	padding: 3vw;
+
+
 `
 export const TransparentSectionWrap = styled.div`
 	display: flex;
@@ -72,8 +74,14 @@ export const SectionWrap = styled(TransparentSectionWrap)`
 
 export const TaglineTxt = styled.h2`
 	font-size: 2.5em;
-	font-family: minion-pro-condensed-caption, serif;
-	text-align: left;
+	font-family: Raleway, sans-serif;
+	font-weight: 400;
+	text-align: center;
+	text-overflow: ellipsis;
+
+	@media (max-width: 710px) {
+		font-size: 2em;
+	}
 `
 
 export const SectionTitle = styled.h1`
@@ -292,7 +300,7 @@ export const ProjRowLeft = styled(SectionRow)`
 		flex-direction: row !important;
 		width: 100%;
 
-		@media (max-width: 800px) {
+		@media (max-width: 710px) {
 			justify-content: center !important;
 			flex-wrap: wrap;
 		}
@@ -304,7 +312,7 @@ export const ProjRowLeft = styled(SectionRow)`
 		flex-direction: row !important;
 		width: 100%;
 
-		@media (max-width: 800px) {
+		@media (max-width: 710px) {
 			flex-wrap: wrap;
 			flex-direction: column-reverse !important;
 			justify-content: center !important;
@@ -318,9 +326,10 @@ export const ContactForm = styled.form`
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-	padding: 1%;
+	// padding: 1%;
 	padding-bottom: 5%;
-	font-family: minion-pro-condensed-caption, serif;
+	font-family: Raleway, sans-serif;
+	color: ${COLORS.darkShade};
 	width: 100%;
 
 	@media (max-width: 710px) {
@@ -350,7 +359,7 @@ export const InnerContactFormWrap = styled.div`
 		padding: 0% 0% 0% 20%;
 	}
 
-	@media (max-width: 510px) {
+	@media (max-width: 710px) {
 		flex-direction: column;
 
 		h4 {
@@ -426,7 +435,7 @@ export const ContactSubmit = styled.button`
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
 	}
 
-	@media (max-width: 510px) {
+	@media (max-width: 710px) {
 		margin-top: 3%;
 	}
 `

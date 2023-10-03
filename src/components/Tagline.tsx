@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { TaglineTxt } from "../styles/stylesheet"
 
-const words = ["Developer", "Designer", "Tinkerer", "Astrophotographer", "Ordained Minister"]
+const words = ["Developer", "Designer", "Tinkerer", "Photographer", "Ordained Minister", "Plant Dad", "Pinewood Derby Champ (2007-09)", "Sudoku Enthusiast"]
 
 export default function Tagline() {
 	const [index, setIndex] = React.useState(0)
@@ -15,9 +15,16 @@ export default function Tagline() {
 
 	return (
 		<AnimatePresence exitBeforeEnter>
-			<motion.div key={index} animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 20 }} exit={{ opacity: 0, y: -20 }} transition={{ ease: "easeInOut", duration: 0.5 }}>
-				<TaglineTxt>{words[index % words.length]}</TaglineTxt>
+			<motion.div
+				key={index}
+				animate={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: 20 }}
+				exit={{ opacity: 0, y: -20 }}
+				transition={{ ease: "easeInOut", duration: 0.5 }}
+
+			>
+				<TaglineTxt >{words[index % words.length]}</TaglineTxt>
 			</motion.div>
-		</AnimatePresence>
+		</AnimatePresence >
 	)
 }

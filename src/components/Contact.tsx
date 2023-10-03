@@ -3,7 +3,10 @@ import { SectionWrap, SectionRow, SectionTitle, ContactForm, ContactFormWrap, Me
 
 export default function Contact() {
 	return (
-		<SectionWrap>
+		<SectionWrap
+			//Contact section is displayed at the end of the page
+			style={{ marginBottom: 0 }}
+		>
 			<SectionRow>
 				<SectionTitle>
 					{" "}
@@ -25,7 +28,7 @@ export default function Contact() {
 						</InnerContactFormWrap>
 						<InnerContactFormWrap>
 							<ContactLabel>
-								<h4 style={{ paddingTop: "3%" }}>Message:</h4>
+								<h4 style={{ paddingTop: "3%", paddingLeft: '10%' }}>Message:</h4>
 								<MessageInput name="message"></MessageInput>
 							</ContactLabel>
 						</InnerContactFormWrap>

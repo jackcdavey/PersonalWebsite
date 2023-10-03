@@ -38,7 +38,7 @@ function App() {
 			<Element name="projects">
 				<Projects />
 			</Element>
-			<Element name="contact">
+			<Element name="contact" >
 				<Contact />
 			</Element>
 		</AppContainer>

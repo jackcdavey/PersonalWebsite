@@ -1,5 +1,9 @@
 @import url("https://use.typekit.net/pzl7jlg.css");
 
+@font-face {
+  font-family: "sometype";
+  src: local('sometype'), url(./fonts/sometype/SometypeMono-Regular.otf) format('opentype');
+}
 
 html {
   background-color: #F9FBFB;
@@ -49,7 +53,8 @@ a {
 
 h3 {
   font-size: 1.5em;
-  font-family: minion-pro-condensed-caption, serif;
+  /* font-family: minion-pro-condensed-caption, serif; */
+  font-family: 'Raleway', sans-serif;
 }
 
 
