@@ -18,9 +18,9 @@ import {
 } from "../styles/stylesheet.js"
 
 export default function AboutMe() {
-	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics", "PC Assembly", "Figma"]
+	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics Repair", "Figma", "Git"]
 
-	const technologies = ["React", "NextJS", "SiwftUI", "JavaScript", "TypeScript", "Swift", "C", "PHP", "SQL", "Ruby", "Framer"]
+	const technologies = ["React", "NextJS", "TypeScript", "JavaScript", "Swift", "C", "PHP", "SQL", "Ruby", "Python", "SiwftUI", "Tailwind"]
 	return (
 		<SectionWrap>
 			<SectionRow>
@@ -30,7 +30,16 @@ export default function AboutMe() {
 			</SectionRow>
 			<SectionRow>
 				<ProfileImageWrap>
-					<ProfileImage src={jackProfile} id="aboutMePic" alt="Jack Davey"></ProfileImage>
+					<ProfileImage
+						src={jackProfile}
+						id="aboutMePic"
+						alt="Jack Davey"
+						style={{
+							maxWidth: "15rem",
+						}}
+					/>
+
+
 
 					<ProjectLink href={resume} download={"resume.png"}>
 						<ResumeDownload>Download my resume here!</ResumeDownload>

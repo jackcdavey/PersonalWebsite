@@ -59,12 +59,14 @@ export const SplashTaglineWrap = styled.div`
 export const TransparentSectionWrap = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 100vw;
+	
 	justify-content: center;
 	align-items: center;
 	z-index: 10;
 	min-height: 30vh;
 	margin-bottom: 3rem;
+	
+	// color: ${COLORS.darkShade};
 
 `
 
@@ -95,7 +97,8 @@ export const SectionTitle = styled.h1`
 
 export const SectionRow = styled.div`
 	display: flex;
-	width: 95vw;
+	width: 95%;
+	max-width: 70rem;
 	justify-content: center;
 	align-items: center;
 
