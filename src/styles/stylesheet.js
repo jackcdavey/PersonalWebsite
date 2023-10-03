@@ -95,7 +95,7 @@ export const SectionTitle = styled.h1`
 	color: ${COLORS.mainBrand};
 `
 
-export const SectionRow = styled.div`
+export const SectionRow = styled(motion.div)`
 	display: flex;
 	width: 95%;
 	max-width: 70rem;
@@ -219,7 +219,7 @@ export const FramerObject = styled.div`
 
 ////// PROJECT SECTION STYLES //////
 
-export const ProjectCard = styled.div`
+export const ProjectCard = styled(motion.div)`
 	background: ${COLORS.mainBrand};
 	/* Eventually add custom colors for each project */
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -267,7 +267,7 @@ export const ProjectLink = styled.a`
 	
 `
 
-export const ProjectDescription = styled.div`
+export const ProjectDescription = styled(motion.div)`
 	display: flex;
 	align-items: center;
 	justify-content: center;

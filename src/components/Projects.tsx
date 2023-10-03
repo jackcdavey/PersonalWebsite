@@ -54,7 +54,13 @@ export default function Projects() {
 			{projects.map((project, index) => {
 				if (index % 2 === 0) {
 					return (
-						<ProjRowRight>
+						<ProjRowRight
+							initial={{ y: 400 }}
+							whileInView={{ y: 0 }}
+							transition={{ duration: 0.1, type: "spring", stiffness: 300, damping: 20 }}
+
+							viewport={{ once: true }}
+						>
 							<ProjectDescription>
 								{/* <ProjectDescriptionBG /> */}
 								<span style={{ width: "70%" }}>
@@ -79,7 +85,13 @@ export default function Projects() {
 				}
 				else {
 					return (
-						<ProjRowLeft>
+						<ProjRowLeft
+
+							initial={{ y: 400 }}
+							whileInView={{ y: 0 }}
+							transition={{ duration: 0.1, type: "spring", stiffness: 300, damping: 20 }} viewport={{ once: true }}
+
+						>
 							<ProjectLink href={project.link} target='_blank' >
 								<ProjectCard>
 									<ProjectTitle>
