@@ -28,6 +28,7 @@ export const SplashWrap = styled.section`
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
 	height: 100vh;
+	min-height: 30rem;
 	background: ${COLORS.lightShade};
 	opacity: 0.5;
 	padding-left: 10vw;
