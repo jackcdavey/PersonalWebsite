@@ -1,6 +1,7 @@
 import jackProfile from "../assets/images/me.jpg"
 import resume from "../assets/images/Resume.png"
 import AnimatedTitle from "../hooks/revealText"
+import { motion, AnimatePresence } from "framer-motion"
 
 import {
 	SectionWrap,
@@ -16,6 +17,21 @@ import {
 	ProjectLink,
 	ProfileImage,
 } from "../styles/stylesheet.js"
+
+const containerVariants = {
+	initial: { opacity: 0 },
+	animate: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+		},
+	},
+};
+
+const chipVariants = {
+	initial: { opacity: 0, y: 20 },
+	animate: { opacity: 1, y: 0 },
+};
 
 export default function AboutMe() {
 	const skills = ["Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics Repair", "Figma", "Git"]
@@ -68,18 +84,32 @@ export default function AboutMe() {
 						</ContentRow>
 						<ContentRow>
 							<ContentColumn>
-								<ContentBox>
+								<ContentBox
+									variants={containerVariants}
+									initial="initial"
+									whileInView="animate"
+								>
 									{technologies.map((tech) => (
-										<ChipContainer key={tech}>
+										<ChipContainer
+											key={tech}
+											variants={chipVariants}
+										>
 											<ChipLabel>{tech}</ChipLabel>
 										</ChipContainer>
 									))}
 								</ContentBox>
 							</ContentColumn>
 							<ContentColumn>
-								<ContentBox>
+								<ContentBox
+									variants={containerVariants}
+									initial="initial"
+									whileInView="animate"
+								>
 									{skills.map((skill) => (
-										<ChipContainer key={skill}>
+										<ChipContainer
+											key={skill}
+											variants={chipVariants}
+										>
 											<ChipLabel>{skill}</ChipLabel>
 										</ChipContainer>
 									))}

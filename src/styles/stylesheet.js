@@ -124,7 +124,7 @@ export const ContentRow = styled.div`
 	align-items: center;
 `
 
-export const ContentBox = styled.div`
+export const ContentBox = styled(motion.div)`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -133,7 +133,7 @@ export const ContentBox = styled.div`
 	justify-content: center;
 `
 
-export const ChipContainer = styled.div`
+export const ChipContainer = styled(motion.div)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
