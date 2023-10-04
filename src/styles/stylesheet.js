@@ -219,7 +219,7 @@ export const FramerObject = styled.div`
 
 ////// PROJECT SECTION STYLES //////
 
-export const ProjectCard = styled(motion.div)`
+export const ProjectCard = styled.div`
 	background: ${COLORS.mainBrand};
 	/* Eventually add custom colors for each project */
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -258,6 +258,7 @@ export const ProjectImage = styled.img`
 	max-width: 50%;
 	max-height: 50%;
 	padding: 10%;
+	fill: ${COLORS.lightShade};
 `
 
 export const ProjectLink = styled.a`
@@ -267,7 +268,7 @@ export const ProjectLink = styled.a`
 	
 `
 
-export const ProjectDescription = styled(motion.div)`
+export const ProjectDescription = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -283,18 +284,18 @@ export const ProjectDescription = styled(motion.div)`
 	
 `
 
-export const ProjectDescriptionBG = styled.div`
-// COLORS.lightShade
-	background-color: black;
-	position: absolute;
-	z-index: -1;
-	filter: blur(20px);
-	border-radius: 25px;
-	width: 50%;
-	height: 50;
-	@media (max-width: 510px) {
-		height: 30vh;
-	}
+
+export const ProjectCategoryChip = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 0.5rem 1rem;
+	border-radius: 1.5rem;
+	margin: 2rem;
+	font-family: Raileway, sans-serif;
+	font-size: 0.9em;
+	color: ${COLORS.mainBrand};
 `
 
 export const ProjRowLeft = styled(SectionRow)`
