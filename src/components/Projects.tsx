@@ -53,7 +53,7 @@ const Website = () => {
 		<div>
 			<ProjectCategoryChip
 				style={{
-					backgroundColor: 'red'
+					backgroundColor: '#d04a4a'
 				}}
 			>
 				Website
@@ -67,7 +67,8 @@ const MobileApp = () => {
 		<div>
 			<ProjectCategoryChip
 				style={{
-					backgroundColor: 'green'
+					backgroundColor: '#d04a8f',
+					fontWeight: 'bold'
 				}}
 			>
 				Mobile App
@@ -81,7 +82,7 @@ const WebApp = () => {
 		<div>
 			<ProjectCategoryChip
 				style={{
-					backgroundColor: 'blue'
+					backgroundColor: '#4f4ad0'
 				}}
 			>
 				Web App
