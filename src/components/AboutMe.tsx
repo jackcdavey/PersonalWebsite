@@ -2,6 +2,7 @@ import jackProfile from "../assets/images/me.jpg"
 import resume from "../assets/images/Resume.png"
 import AnimatedTitle from "../hooks/revealText"
 import { motion, AnimatePresence } from "framer-motion"
+import DownloadLogo from "../assets/images/download_symbol.svg"
 
 import {
 	SectionWrap,
@@ -58,7 +59,19 @@ export default function AboutMe() {
 
 
 					<ProjectLink href={resume} download={"resume.png"}>
-						<ResumeDownload>Download my resume here!</ResumeDownload>
+						<ResumeDownload>
+							Resume
+							<img
+								src={DownloadLogo}
+								alt="download"
+								style={{
+									marginLeft: "1rem",
+								}}
+							/>
+
+
+
+						</ResumeDownload>
 					</ProjectLink>
 				</ProfileImageWrap>
 				<div>

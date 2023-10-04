@@ -102,7 +102,7 @@ export const SectionRow = styled(motion.div)`
 	justify-content: center;
 	align-items: center;
 
-	@media (max-width: 510px) {
+	@media (max-width: 710px) {
 		flex-direction: column;
 	}
 `
@@ -178,8 +178,8 @@ export const ResumeDownload = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 80%;
-	padding: 5%;
+	width: 100%;
+	padding: 10%;
 	margin-top: 1.5vh;
 	margin-bottom: 1.5vh;
 	border-radius: 25px;
@@ -187,7 +187,7 @@ export const ResumeDownload = styled.div`
 	transition: 0.2s;
 	text-align: center;
 	font-family: Raileway, sans-serif;
-	font-weight: 400;
+	font-weight: bold;
 	color: ${COLORS.lightShade};
 	font-size: 1em;
 
@@ -264,6 +264,7 @@ export const ProjectImage = styled.img`
 export const ProjectLink = styled.a`
 	align-items: center;
 	display: flex;
+	flex-direction: column;
 	text-decoration: none;
 	
 `
@@ -303,10 +304,12 @@ export const ProjRowLeft = styled(SectionRow)`
 		align-items: center;
 		flex-direction: row !important;
 		width: 100%;
+		margin-left: 2rem;
 
 		@media (max-width: 710px) {
 			justify-content: center !important;
 			flex-wrap: wrap;
+			margin-left: 0rem;
 		}
 	`
 
@@ -315,11 +318,13 @@ export const ProjRowLeft = styled(SectionRow)`
 		align-items: center;
 		flex-direction: row !important;
 		width: 100%;
+		margin-right: 2rem;
 
 		@media (max-width: 710px) {
 			flex-wrap: wrap;
 			flex-direction: column-reverse !important;
 			justify-content: center !important;
+			margin-right: 0rem;
 		}
 	`
 
