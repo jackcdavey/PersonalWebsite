@@ -435,11 +435,12 @@ export const ContactSubmit = styled.button`
 	padding: 0 2% 0 2%;
 	align-items: center;
 	justify-content: center;
-	font-family: minion-pro-condensed-caption, serif;
+	font-family: Raleway, sans-serif;
 	font-size: 2.5em;
 	color: ${COLORS.lightAccent};
 	background-color: ${COLORS.mainBrand};
 	transition: 0.3s;
+	cursor: pointer;
 
 	:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
