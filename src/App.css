@@ -69,8 +69,6 @@ div.arrow {
   box-sizing: border-box;
   position: relative;
   transform: rotate(135deg);
-
-
 }
 
 div.arrow::before {

@@ -81,6 +81,7 @@ export const TaglineTxt = styled.h2`
 	font-weight: 400;
 	text-align: center;
 	text-overflow: ellipsis;
+	color: ${COLORS.darkShade};
 
 	@media (max-width: 710px) {
 		font-size: 2em;
