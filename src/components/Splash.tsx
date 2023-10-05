@@ -24,7 +24,7 @@ export default function Splash() {
 					boxSizing: "border-box",
 					position: "absolute",
 					left: "0.3rem", //Matches width of arrow segments
-					top: "90%",
+					top: "85%",
 					width: "100%",
 					height: "4rem",
 					display: "flex",

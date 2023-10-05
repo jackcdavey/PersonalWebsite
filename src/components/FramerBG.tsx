@@ -5,10 +5,6 @@ import { FramerContainer } from "../styles/stylesheet"
 import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
 const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? LIGHTCOLORS : DARKCOLORS
 
-//At least put in some cool easter egg where the screen lights up
-//after a ball perfectly hits a corner
-
-
 // const colorOptions = [COLORS.mainBrand, '#AAA', COLORS.lightAccent, COLORS.lightShade]
 const colorOptions = ["#d04a4a", "#d04a8f", "#4f4ad0"]
 

@@ -100,6 +100,7 @@ export default function AboutMe() {
 								<ContentBox
 									variants={containerVariants}
 									initial="initial"
+									viewport={{ once: true }}
 									whileInView="animate"
 								>
 									{technologies.map((tech) => (
@@ -116,6 +117,7 @@ export default function AboutMe() {
 								<ContentBox
 									variants={containerVariants}
 									initial="initial"
+									viewport={{ once: true }}
 									whileInView="animate"
 								>
 									{skills.map((skill) => (
