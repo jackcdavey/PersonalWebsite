@@ -1,7 +1,7 @@
 import { type } from "os"
 import gitLogo from "../assets/images/github-mark.svg"
 import AnimatedTitle from "../hooks/revealText"
-import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectImage, ProjectGraphic, ProjectGraphicPath, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
+import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, ProjectGraphicPath, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
 // var tinycolor = require("tinycolor2")
 
