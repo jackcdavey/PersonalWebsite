@@ -67,9 +67,7 @@ div.arrow {
   width: 4rem;
   height: 4rem;
   box-sizing: border-box;
-  position: absolute;
-  left: 48.5%;
-  top: 90%;
+  position: relative;
   transform: rotate(135deg);
 
 

@@ -165,7 +165,7 @@ export const ProfileImageWrap = styled.div`
 	align-items: center;
 `
 export const ProfileImage = styled.img`
-	border-radius: 3% !important;
+	border-radius: 1.5rem !important;
 	width: 20vw;
 	
 	

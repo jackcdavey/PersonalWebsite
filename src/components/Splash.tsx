@@ -23,8 +23,13 @@ export default function Splash() {
 					//For some reason the link does not align properly, so I'm using a lil inline style hack
 					boxSizing: "border-box",
 					position: "absolute",
-					left: "48.5%",
+					left: "0.3rem", //Matches width of arrow segments
 					top: "90%",
+					width: "100%",
+					height: "4rem",
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
 				}}
 			>
 				<div className="arrow"></div>
