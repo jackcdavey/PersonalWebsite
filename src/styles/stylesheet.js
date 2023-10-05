@@ -197,6 +197,8 @@ export const ResumeDownload = styled.div`
 	}
 `
 
+
+
 export const FramerContainer = styled.div`
 	height: 100vh;
 	width: 100vw;
@@ -264,7 +266,7 @@ export const ProjectGraphic = styled.svg`
 	margin-left: 65%;
 	`
 
-export const ProjectGraphicPath = styled.path`
+export const GraphicPath = styled.path`
 	fill: ${COLORS.lightShade};
 	`
 

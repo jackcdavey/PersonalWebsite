@@ -1,5 +1,5 @@
 import AnimatedTitle from "../hooks/revealText"
-import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, ProjectGraphicPath, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
+import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, GraphicPath, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
 // var tinycolor = require("tinycolor2")
 
@@ -129,7 +129,7 @@ export default function Projects() {
 								<ProjectCard>
 									{project.graphic &&
 										<ProjectGraphic>
-											<ProjectGraphicPath d={project.svgPath} />
+											<GraphicPath d={project.svgPath} />
 										</ProjectGraphic>
 									}
 									<ProjectTitle>
