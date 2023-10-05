@@ -3,13 +3,14 @@ import "../App.css"
 import { useEffect, useState } from "react"
 import { FramerContainer } from "../styles/stylesheet"
 import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
-const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
+const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? LIGHTCOLORS : DARKCOLORS
 
 //At least put in some cool easter egg where the screen lights up
 //after a ball perfectly hits a corner
 
 
-const colorOptions = [COLORS.mainBrand, '#AAA', COLORS.lightAccent, COLORS.lightShade]
+// const colorOptions = [COLORS.mainBrand, '#AAA', COLORS.lightAccent, COLORS.lightShade]
+const colorOptions = ["#d04a4a", "#d04a8f", "#4f4ad0"]
 
 //
 //Please God, forgive me for the sins I am about to commit
@@ -28,30 +29,6 @@ interface BallProps {
 	change?: boolean
 }
 
-
-// Function that creates a ball given an x and y position, x and y direction, width, and color
-const Ball = ({ xPos, yPos, xDir, yDir, bWidth, color, change }: BallProps) => {
-	return (
-		<motion.div
-			style={{
-				position: "absolute",
-				top: yPos,
-				left: xPos,
-				width: bWidth,
-				height: bWidth,
-				backgroundColor: color,
-				borderRadius: "50%",
-			}}
-			animate={{
-				x: xPos + xDir,
-				y: yPos + yDir,
-			}}
-			transition={{
-				duration: 0,
-			}}
-		/>
-	)
-}
 
 const bouncingElements = [] as BallProps[];
 
@@ -74,38 +51,6 @@ for (let i = 0; i < 5; i++) {
 
 
 
-const bouncingElementsOld = [
-	{
-		id: 0,
-		xDir: speed,
-		yDir: speed,
-		bWidth: Math.max(window.innerWidth / 9, 300),
-		xPos: Math.random() * window.innerWidth,
-		yPos: Math.random() * window.innerHeight,
-		color: colorOptions[Math.floor(Math.random() * colorOptions.length)],
-		change: false,
-	},
-	{
-		id: 1,
-		xPos: Math.random() * window.innerWidth,
-		yPos: Math.random() * window.innerHeight,
-		xDir: 0.75 * speed,
-		yDir: 0.75 * speed,
-		bWidth: Math.max(window.innerWidth / 6, 200),
-		color: colorOptions[Math.floor(Math.random() * colorOptions.length)],
-		change: false,
-	},
-	{
-		id: 2,
-		xPos: Math.random() * window.innerWidth,
-		yPos: Math.random() * window.innerHeight,
-		xDir: 0.25 * speed,
-		yDir: 0.25 * speed,
-		bWidth: Math.max(window.innerWidth / 3, 100),
-		color: colorOptions[Math.floor(Math.random() * colorOptions.length)],
-		change: false,
-	},
-]
 
 //If any balls spawn partially off screen, move them back on screen
 for (let i = 0; i < bouncingElements.length; i++) {

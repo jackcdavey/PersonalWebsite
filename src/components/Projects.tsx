@@ -1,5 +1,3 @@
-import { type } from "os"
-import gitLogo from "../assets/images/github-mark.svg"
 import AnimatedTitle from "../hooks/revealText"
 import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, ProjectGraphicPath, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
@@ -56,7 +54,9 @@ const Website = () => {
 		<div>
 			<ProjectCategoryChip
 				style={{
-					backgroundColor: '#d04a4a'
+					backgroundColor: '#d04a4a',
+					fontWeight: 'bold'
+
 				}}
 			>
 				Website
@@ -85,7 +85,8 @@ const WebApp = () => {
 		<div>
 			<ProjectCategoryChip
 				style={{
-					backgroundColor: '#4f4ad0'
+					backgroundColor: '#4f4ad0',
+					fontWeight: 'bold'
 				}}
 			>
 				Web App
