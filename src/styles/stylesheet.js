@@ -240,7 +240,8 @@ export const ProjectCard = styled.div`
 
 	@media (max-width: 710px) {
 		margin-top: 5rem;
-		width: 70vw;
+		width: 80vw;
+		max-width: 20rem;
 	}
 `
 
@@ -255,17 +256,13 @@ export const ProjectTitle = styled.h2`
 	padding-right: 1vw;
 `
 
-export const ProjectImage = styled.img`
-	max-width: 50%;
-	max-height: 50%;
-	padding: 10%;
-`
 
 export const ProjectGraphic = styled.svg`
-	max-width: 31%;
-	max-height: 50%;
-	// padding: 10%;
-`
+	max-width: 100%;
+	max-height: 100%;
+	// A hacky compromise to get the SVG to center, only looks off on extremely narrow screens
+	margin-left: 65%;
+	`
 
 export const ProjectGraphicPath = styled.path`
 	fill: ${COLORS.lightShade};

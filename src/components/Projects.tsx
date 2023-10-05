@@ -104,7 +104,7 @@ export default function Projects() {
 			<SectionRow>
 				<SectionTitle>
 					{" "}
-					<AnimatedTitle {...{ "title": "Projects" }} />{" "}
+					<AnimatedTitle {...{ "title": "Work & Projects" }} />{" "}
 				</SectionTitle>
 			</SectionRow>
 
