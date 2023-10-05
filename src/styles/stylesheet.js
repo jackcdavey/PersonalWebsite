@@ -259,8 +259,17 @@ export const ProjectImage = styled.img`
 	max-width: 50%;
 	max-height: 50%;
 	padding: 10%;
-	fill: ${COLORS.lightShade};
 `
+
+export const ProjectGraphic = styled.svg`
+	max-width: 31%;
+	max-height: 50%;
+	// padding: 10%;
+`
+
+export const ProjectGraphicPath = styled.path`
+	fill: ${COLORS.lightShade};
+	`
 
 export const ProjectLink = styled.a`
 	align-items: center;
@@ -328,6 +337,8 @@ export const ProjRowLeft = styled(SectionRow)`
 			margin-right: 0rem;
 		}
 	`
+
+
 
 ////// END PROJECT SECTION STYLES //////
 
