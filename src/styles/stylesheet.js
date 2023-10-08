@@ -10,7 +10,10 @@ const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARK
 // const TitleFont = "jeanne-moderno-geometrique, sans-serif"
 // const TextFont = "minion-pro-condensed-caption, serif"
 
-export const AppContainer = styled.div``
+export const AppContainer = styled.div`
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+`
 
 export const Word = styled(motion.span)`
 	display: inline-block;
@@ -57,6 +60,11 @@ export const SplashTaglineWrap = styled.div`
 
 
 `
+
+export const ScrollArrowSegment = styled.div`
+		border-color: ${COLORS.red} !important;
+`
+
 export const TransparentSectionWrap = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -230,12 +238,13 @@ export const ProjectCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-evenly;
 	transition: 0.3s;
 	width: 20rem;
 	height: 15rem;
 	border-radius: 15px;
 	margin: 5%;
+	
 
 	:hover {
 		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);

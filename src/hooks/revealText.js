@@ -80,6 +80,7 @@ export default function AnimatedTitle(props) {
 										rotate: Math.random() * 90 + 15,
 										transition: { duration: 0.2 },
 									}}
+									
 								>
 									{character}
 								</Character>

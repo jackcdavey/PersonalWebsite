@@ -55,8 +55,8 @@ const Website = () => {
 			<ProjectCategoryChip
 				style={{
 					backgroundColor: '#d04a4a',
-					fontWeight: 'bold'
-
+					fontWeight: 'bold',
+					justifySelf: 'flex-end'
 				}}
 			>
 				Website
@@ -112,10 +112,10 @@ export default function Projects() {
 				if (index % 2 === 0) {
 					return (
 						<ProjRowRight
+							key={index}
 							initial={{ y: 400 }}
 							whileInView={{ y: 0 }}
 							transition={{ duration: 0.1, type: "spring", stiffness: 300, damping: 20 }}
-
 							viewport={{ once: true }}
 						>
 							<ProjectDescription>
@@ -135,7 +135,7 @@ export default function Projects() {
 									<ProjectTitle>
 										{project.title}
 									</ProjectTitle>
-
+									{/* <div style={{ backgroundColor: 'red', justifySelf: 'flex-end' }}> */}
 									{/* Insert corresponding chip */}
 									{project.type === "Website" &&
 										<Website />
@@ -146,6 +146,7 @@ export default function Projects() {
 									{project.type === "Web App" &&
 										<WebApp />
 									}
+									{/* </div> */}
 
 								</ProjectCard>
 							</ProjectLink>
@@ -155,6 +156,7 @@ export default function Projects() {
 				else {
 					return (
 						<ProjRowLeft
+							key={index}
 							initial={{ y: 400 }}
 							whileInView={{ y: 0 }}
 							transition={{ duration: 0.1, type: "spring", stiffness: 300, damping: 20 }} viewport={{ once: true }}

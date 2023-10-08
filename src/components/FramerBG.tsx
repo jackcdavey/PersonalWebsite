@@ -29,7 +29,7 @@ interface BallProps {
 const bouncingElements = [] as BallProps[];
 
 // Create 3 balls
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 3; i++) {
 	const unusedColors = colorOptions.filter((color) => color !== bouncingElements[i - 1]?.color)
 	const color = unusedColors[Math.floor(Math.random() * unusedColors.length)]
 	bouncingElements.push({
@@ -166,6 +166,8 @@ export default function FramerBG() {
 					// background: colorOptions[Math.floor(Math.random() * colorOptions.length)],
 				}}
 			/>
+
+
 		</FramerContainer>
 	)
 }

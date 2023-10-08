@@ -1,4 +1,4 @@
-// import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState } from "react"
 import "./App.css"
 import Splash from "./components/Splash"
 import AboutMe from "./components/AboutMe"
@@ -15,14 +15,6 @@ import { Element } from "react-scroll"
 
 
 function App() {
-
-
-
-	// const [isOpen, toggleOpen] = useCycle('closed', 'open')
-	// const [menuState, setMenuState] = useState(Boolean);
-
-	// const height = window.innerHeight
-	// console.log(isOpen)
 	return (
 		<AppContainer>
 			<FramerBG />
@@ -43,21 +35,6 @@ function App() {
 			</Element>
 		</AppContainer>
 	)
-
-
-	// function useOutsideAlerter(ref: any) {
-	// 	useEffect(() => {
-	// 		// Function for click event
-	// 		function handleOutsideClick(event: any) {
-	// 			// alert(event.currentTarget)
-	// 			if (ref.current && !ref.current.contains(event.target) && isOpen)
-	// 				toggleOpen()
-	// 		}
-	// 		// Adding click event listener
-	// 		document.addEventListener("click", handleOutsideClick);
-	// 		return () => document.removeEventListener("click", handleOutsideClick);
-	// 	}, [ref, isOpen]);
-	// }
 
 }
 

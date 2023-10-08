@@ -1,8 +1,6 @@
 import jackProfile from "../assets/images/me.jpg"
 import resume from "../assets/images/Resume.png"
 import AnimatedTitle from "../hooks/revealText"
-import { motion, AnimatePresence } from "framer-motion"
-import DownloadLogo from "../assets/images/download_symbol.svg"
 
 import {
 	SectionWrap,

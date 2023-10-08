@@ -1,6 +1,6 @@
 import Tagline from "./Tagline"
 import AnimatedTitle from "../hooks/revealText"
-import { SplashTitleWrap, SplashTaglineWrap, SplashWrap } from "../styles/stylesheet"
+import { SplashTitleWrap, SplashTaglineWrap, SplashWrap, ScrollArrowSegment } from "../styles/stylesheet"
 import { Link } from "react-scroll"
 
 export default function Splash() {
@@ -20,7 +20,6 @@ export default function Splash() {
 				smooth={true}
 				duration={700}
 				style={{
-					//For some reason the link does not align properly, so I'm using a lil inline style hack
 					boxSizing: "border-box",
 					position: "absolute",
 					left: "0.3rem", //Matches width of arrow segments
@@ -32,7 +31,7 @@ export default function Splash() {
 					alignItems: "center",
 				}}
 			>
-				<div className="arrow"></div>
+				<ScrollArrowSegment className="arrow"></ScrollArrowSegment>
 			</Link>
 		</SplashWrap>
 	)
