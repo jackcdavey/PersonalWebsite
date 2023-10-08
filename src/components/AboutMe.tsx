@@ -76,10 +76,6 @@ export default function AboutMe() {
 						find me hooking the majority of my shots at the driving range, or out exploring the mountains with my hammock and camera.{" "}
 					</p>
 					<br></br>
-					{/*Maybe implement some interactivity with these in the futre,
-          like slow floating movement & hover action*/}
-
-					{/* Also switch these from a copy/paste mess to an array ffs */}
 
 					<ContentBox>
 						<ContentRow>

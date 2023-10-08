@@ -123,6 +123,7 @@ export const ContentColumn = styled.div`
 	height: 100%;
 	align-items: center;
 	justify-content: center;
+	margin: 0 2% 0 2%;
 	width: 100%;
 `
 
@@ -148,9 +149,10 @@ export const ChipContainer = styled(motion.div)`
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	padding: 5%;
 	margin: 2%;
-	border-radius: 25px;
+	padding: 1rem 1.5rem;
+	border-radius: 2rem;
+	
 	background: ${COLORS.lightShade};
 	transition: 0.4s;
 
