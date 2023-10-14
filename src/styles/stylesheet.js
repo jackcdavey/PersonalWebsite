@@ -289,23 +289,36 @@ export const ProjectLink = styled.a`
 	text-decoration: none;
 	
 `
-
 export const ProjectDescription = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: Raleway, sans-serif;
-	font-size: 1em;
-	color: ${COLORS.darkShade};
-	// padding-left: 5%;
-	// padding-right: 5%;
-	text-align: center;
-	width: 100%;
-	// background-color: ${COLORS.lightShade};
-	// overflow: hidden;
-	
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Raleway, sans-serif;
+  font-size: 1em;
+  color: ${COLORS.darkShade};
+  text-align: center;
+  width: 100%;
+  position: relative; // Added for pseudo-element positioning
 
+  span {
+    position: relative; // Added for pseudo-element positioning
+    z-index: 1; // Make sure the text appears above the background
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: ${COLORS.lightShade};
+      mix-blend-mode: soft-light; // Blend mode
+      opacity: 0.5; // Adjust opacity to your liking
+      z-index: -1; // Place it behind the text
+      border-radius: 10px; // Optional rounded corners
+    }
+  }
+`;
 
 export const ProjectCategoryChip = styled.div`
 	display: flex;
