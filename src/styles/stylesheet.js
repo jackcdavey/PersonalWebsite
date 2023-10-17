@@ -180,7 +180,7 @@ export const ProfileImage = styled.img`
 	width: 20vw;
 	
 	
-	@media (max-width: 510px) {
+	@media (max-width: 710px) {
 		width: 40vw;
 	}	
 `
