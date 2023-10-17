@@ -159,6 +159,11 @@ export const ChipContainer = styled(motion.div)`
 	:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
 	}
+
+	@media (max-width: 710px) {
+		margin: 1%;
+		padding: 0.7rem 1.2rem;
+	}
 `
 
 export const ChipLabel = styled.h3`
