@@ -422,13 +422,13 @@ export const InnerContactFormWrap = styled.div`
 `
 
 export const EmailInput = styled.input`
-	height: 5vh;
+	height: 3rem;
 	width: 60%;
 	border-radius: 1rem;
 	border: none;
 	padding-left: 10%;
 	margin-top: 3%;
-	font-family: minion-pro-condensed-caption, serif;
+	font-family: Raleway, sans-serif;
 	font-size: 1em;
 	color: ${COLORS.darkShade};
 	background-color: ${COLORS.lightShade};
@@ -444,18 +444,18 @@ export const EmailInput = styled.input`
 `
 
 export const MessageInput = styled.textarea`
-	height: 10vh;
+	height: 5rem;
 	width: 80%;
 	border-radius: 1rem;
 	border: none;
 	padding: 3%;
 	margin-top: 1%;
-	font-family: minion-pro-condensed-caption, serif;
+	font-family: Raleway, sans-serif;
 	font-size: 1em;
 	color: ${COLORS.darkShade};
 	background-color: ${COLORS.lightShade};
 	transition: 0.3s;
-	resize: none;
+	resize: vertical;
 
 	:focus {
 		outline: none;
