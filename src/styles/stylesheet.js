@@ -199,7 +199,7 @@ export const ResumeDownload = styled.div`
 	padding: 10%;
 	margin-top: 1.5vh;
 	margin-bottom: 1.5vh;
-	border-radius: 25px;
+	border-radius: 3rem;
 	background: ${COLORS.mainBrand};
 	transition: 0.2s;
 	text-align: center;
@@ -308,8 +308,9 @@ export const ProjectDescription = styled.div`
   span {
     position: relative; // Added for pseudo-element positioning
     z-index: 1; // Make sure the text appears above the background
+	padding: 5%;
 
-    &::before {
+    ::before {
       content: "";
       position: absolute;
       top: 0;
@@ -317,10 +318,11 @@ export const ProjectDescription = styled.div`
       right: 0;
       bottom: 0;
       background-color: ${COLORS.lightShade};
-      mix-blend-mode: soft-light; // Blend mode
-      opacity: 0.5; // Adjust opacity to your liking
-      z-index: -1; // Place it behind the text
-      border-radius: 10px; // Optional rounded corners
+      mix-blend-mode: soft-light; 
+      opacity: 0.4; 
+      z-index: -1; 
+      border-radius: 1rem;
+	  
     }
   }
 `;
@@ -466,13 +468,20 @@ export const MessageInput = styled.textarea`
 
 export const ContactLabel = styled.label`
 	width: 100%;
+
+	@media (max-width: 710px) {
+	h4 {
+		padding-left: 0 !important;
+		padding-top: 5% !important;
+	}
+}
 `
 
 export const ContactSubmit = styled.button`
-	min-width: 10%;
+	
 	border-radius: 25px;
 	border: none;
-	padding: 0 2% 0 2%;
+	padding: 1rem 1.5rem;
 	align-items: center;
 	justify-content: center;
 	font-family: Raleway, sans-serif;
@@ -481,6 +490,7 @@ export const ContactSubmit = styled.button`
 	background-color: ${COLORS.mainBrand};
 	transition: 0.3s;
 	cursor: pointer;
+	
 
 	:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
