@@ -72,9 +72,7 @@ export default function AboutMe() {
 				<div>
 					<h3>Intro</h3>
 					<p>
-						Led by a lifelong passion for technology and aesthetics, I graduated from Santa Clara University with a B.S. in Web Desing and Engineering in 2022, and am continuing my studies there in pursuit of an M.S. in Engineering Management with a minor in Science, Technology, and Society. Having spent my entire life in California, I grew up with an immense appreciation for the beauty and simplicity of nature. I love to tinker, design, and create, but when I’m not working away at my desk, you’ll likely
-						find me hooking the majority of my shots at the driving range, or out exploring the mountains with my hammock and camera.{" "}
-					</p>
+						Led by a lifelong passion for technology and aesthetics, I graduated from Santa Clara University with a B.S. in Web Design and Engineering in 2022, followed by earning my M.S. in Engineering Management and Leadership in 2023. Having spent my entire life in California, I grew up with an immense appreciation for the beauty and simplicity of nature. I love to tinker, design, and create, but when I’m not working away at my desk, you’ll likely find me hooking the majority of my shots at the driving range, or out exploring the mountains with my hammock and camera.					</p>
 					<br></br>
 
 					<ContentBox>
