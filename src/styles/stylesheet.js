@@ -156,9 +156,10 @@ export const ChipContainer = styled(motion.div)`
 	background: ${COLORS.lightShade};
 	transition: 0.4s;
 
-	:hover {
-		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
-	}
+	//Too confusing, implies a link
+	// :hover {
+	// 	box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+	// }
 
 	@media (max-width: 710px) {
 		margin: 1%;
@@ -205,11 +206,12 @@ export const ResumeDownload = styled.div`
 	text-align: center;
 	font-family: Raileway, sans-serif;
 	font-weight: bold;
-	color: ${COLORS.lightShade};
+	color: ${COLORS.lightAccent};
 	font-size: 1em;
 
 	:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+		color: ${COLORS.lightShade};
 	}
 `
 
@@ -251,10 +253,11 @@ export const ProjectCard = styled.div`
 	height: 15rem;
 	border-radius: 15px;
 	margin: 5%;
-	
+	color: ${COLORS.lightShade};
 
 	:hover {
 		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
+		color: ${COLORS.lightAccent};
 	}
 
 	@media (max-width: 710px) {
@@ -267,7 +270,7 @@ export const ProjectCard = styled.div`
 export const ProjectTitle = styled.h2`
 	font-family: jeanne-moderno-geometrique, sans-serif;
 	font-size: 1.5em;
-	color: ${COLORS.lightShade};
+	
 	text-align: center;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -284,7 +287,9 @@ export const ProjectGraphic = styled.svg`
 	`
 
 export const GraphicPath = styled.path`
-	fill: ${COLORS.lightShade};
+	fill: currentColor;
+
+	
 	`
 
 export const ProjectLink = styled.a`
@@ -494,6 +499,7 @@ export const ContactSubmit = styled.button`
 
 	:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+		color: ${COLORS.lightShade};
 	}
 
 	@media (max-width: 710px) {
