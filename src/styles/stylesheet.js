@@ -32,10 +32,13 @@ export const SplashWrap = styled.section`
 	grid-template-rows: repeat(3, 1fr);
 	height: 100vh;
 	min-height: 30rem;
+	width: 100vw;
 	background: ${COLORS.lightShade};
 	opacity: 0.5;
 	padding-left: 10vw;
 	padding-top: 10vw;
+	
+	
 `
 
 export const SplashTitleWrap = styled.h1`
@@ -226,13 +229,6 @@ export const FramerContainer = styled.div`
 	z-index: -1;
 	filter: blur(20px);
 	background: ${COLORS.lightShade};
-`
-
-export const FramerObject = styled.div`
-	background: black;
-	border-radius: 75px;
-	width: 150px;
-	height: 150px;
 `
 
 

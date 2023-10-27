@@ -22,16 +22,17 @@ export default function Splash() {
 				style={{
 					boxSizing: "border-box",
 					position: "absolute",
-					left: "0.3rem", //Matches width of arrow segments
+					left: "0rem", //Matches width of arrow segments
 					top: "85%",
 					width: "100%",
 					height: "4rem",
 					display: "flex",
 					justifyContent: "center",
 					alignItems: "center",
+
 				}}
 			>
-				<ScrollArrowSegment className="arrow"></ScrollArrowSegment>
+				<ScrollArrowSegment className="arrow" />
 			</Link>
 		</SplashWrap>
 	)
