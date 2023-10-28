@@ -37,7 +37,7 @@ export const SplashWrap = styled.section`
 	opacity: 0.5;
 	padding-left: 10vw;
 	padding-top: 10vw;
-	
+	overflow: hidden;
 	
 `
 
@@ -50,8 +50,9 @@ export const SplashTitleWrap = styled.h1`
 	color: ${COLORS.mainBrand};
 
 	@media (max-width: 710px) {
-		font-size: 5em;
+		font-size: 4.5em;
 		padding-bottom: 10vh;
+	}
 `
 
 export const SplashTaglineWrap = styled.div`
@@ -65,6 +66,10 @@ export const SplashTaglineWrap = styled.div`
 
 	@media (max-width: 710px) {
 		padding-right: 15%;
+	}
+
+	@media (max-width: 500px) {
+		padding-right: 20%;
 	}
 
 
@@ -92,6 +97,7 @@ export const TransparentSectionWrap = styled.div`
 
 export const SectionWrap = styled(TransparentSectionWrap)`
 	background-color: ${COLORS.lightAccent};
+	color: ${COLORS.darkShade};
 `
 
 export const TaglineTxt = styled.h2`
@@ -225,7 +231,6 @@ export const ResumeDownload = styled.div`
 		color: ${COLORS.lightShade};
 	}
 `
-
 
 
 export const FramerContainer = styled.div`
