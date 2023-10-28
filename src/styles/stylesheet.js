@@ -62,11 +62,19 @@ export const SplashTaglineWrap = styled.div`
 	padding: 3vw;
 
 
+
+	@media (max-width: 710px) {
+		padding-right: 15%;
+	}
+
+
 `
 
 export const ScrollArrowSegment = styled.div`
 		border-color: ${COLORS.red} !important;
 `
+
+
 
 export const TransparentSectionWrap = styled.div`
 	display: flex;

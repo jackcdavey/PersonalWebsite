@@ -3,6 +3,9 @@ import AnimatedTitle from "../hooks/revealText"
 import { SplashTitleWrap, SplashTaglineWrap, SplashWrap, ScrollArrowSegment } from "../styles/stylesheet"
 import { Link } from "react-scroll"
 
+const isSafari: boolean = /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
+
+
 export default function Splash() {
 	return (
 		<SplashWrap>
@@ -17,20 +20,9 @@ export default function Splash() {
 				activeClass="active"
 				to="aboutme"
 				spy={true}
-				smooth={true}
+				smooth={!isSafari}
 				duration={700}
-				style={{
-					boxSizing: "border-box",
-					position: "absolute",
-					left: "0rem", //Matches width of arrow segments
-					top: "85%",
-					width: "100%",
-					height: "4rem",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-
-				}}
+				className="scroll-link"
 			>
 				<ScrollArrowSegment className="arrow" />
 			</Link>

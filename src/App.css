@@ -112,6 +112,18 @@ div.arrow:hover::before {
   transform: scale(.8);
 }
 
+.scroll-link {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 85%;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 SectionTitle {
