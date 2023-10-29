@@ -1,7 +1,7 @@
 import AnimatedTitle from "../hooks/revealText"
 import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, GraphicPath, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
-// var tinycolor = require("tinycolor2")
+const isSafari: boolean = /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
 
 interface ProjectProps {
 	title: string
@@ -112,9 +112,17 @@ export default function Projects() {
 					return (
 						<ProjRowRight
 							key={index}
-							initial={{ y: 400 }}
-							whileInView={{ y: 0 }}
-							transition={{ duration: 0.1, type: "spring", stiffness: 300, damping: 20 }}
+							initial={{
+								y: 400
+							}}
+							whileInView={{
+								y: 0
+							}}
+							transition={{
+								type: isSafari ? "tween" : "spring",
+								stiffness: 300,
+								damping: 20
+							}}
 							viewport={{ once: true }}
 						>
 							<ProjectDescription>
@@ -152,9 +160,18 @@ export default function Projects() {
 					return (
 						<ProjRowLeft
 							key={index}
-							initial={{ y: 400 }}
-							whileInView={{ y: 0 }}
-							transition={{ duration: 0.1, type: "spring", stiffness: 300, damping: 20 }} viewport={{ once: true }}
+							initial={{
+								y: 400
+							}}
+							whileInView={{
+								y: 0
+							}}
+							transition={{
+								type: isSafari ? "tween" : "spring",
+								stiffness: 300,
+								damping: 20
+							}}
+							viewport={{ once: true }}
 						>
 							<ProjectLink href={project.link} target='_blank' >
 								<ProjectCard>

@@ -24,9 +24,8 @@ html {
 html,
 body {
   /* border: 5px solid red; */
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch; */
   max-width: 100%;
-  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 

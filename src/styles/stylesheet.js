@@ -37,7 +37,7 @@ export const SplashWrap = styled.section`
 	opacity: 0.5;
 	padding-left: 10vw;
 	padding-top: 10vw;
-	overflow: hidden;
+	// overflow: hidden;
 	
 `
 

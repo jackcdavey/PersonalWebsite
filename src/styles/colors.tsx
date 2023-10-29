@@ -23,7 +23,7 @@ export const LIGHTCOLORS = {
 export const DARKCOLORS = {
 	// lightShade: "#5D1731",
 	lightShade: "#2B0A16",
-	lightAccent: "#617B68",
+	lightAccent: "#2b3c2f",
 	mainBrand: "#EDFFC3",
 	darkAccent: "#94A098",
 	darkShade: "#94A098",
