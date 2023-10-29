@@ -3,6 +3,8 @@ import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, Gr
 
 const isSafari: boolean = /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
 
+// const isSafari: boolean = false;
+
 interface ProjectProps {
 	title: string
 	description: string
@@ -113,7 +115,7 @@ export default function Projects() {
 						<ProjRowRight
 							key={index}
 							initial={{
-								y: 400
+								y: 300
 							}}
 							whileInView={{
 								y: 0
@@ -161,7 +163,7 @@ export default function Projects() {
 						<ProjRowLeft
 							key={index}
 							initial={{
-								y: 400
+								y: 300
 							}}
 							whileInView={{
 								y: 0
