@@ -1,6 +1,8 @@
-import jackProfile from "../assets/images/me.jpg"
+// import jackProfile from "../assets/images/me.jpg"
 import resume from "../assets/images/Resume.png"
 import AnimatedTitle from "../hooks/revealText"
+import { useLayoutEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import {
 	SectionWrap,
@@ -37,6 +39,11 @@ export default function AboutMe() {
 	const skills = ["Web Design", "Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics Repair", "Figma", "Git / VCS"]
 
 	const technologies = ["React", "NextJS", "TypeScript", "JavaScript", "Swift", "C", "PHP", "SQL", "Ruby", "Python", "SiwftUI", "Tailwind", "GraphQL"]
+
+	const isLargeScreen = useMediaQuery({ query: '(min-width: 901px)' });
+	const isMediumScreen = useMediaQuery({ query: '(min-width: 711px) and (max-width: 900px)' });
+	const isSmallScreen = useMediaQuery({ query: '(max-width: 710px)' });
+
 	return (
 		<SectionWrap>
 			<SectionRow>
@@ -46,15 +53,10 @@ export default function AboutMe() {
 			</SectionRow>
 			<SectionRow>
 				<ProfileImageWrap>
-					<ProfileImage
-						src={jackProfile}
-						id="aboutMePic"
-						alt="Jack Davey"
-						style={{
-							maxWidth: "15rem",
-						}}
-					/>
 
+					{isLargeScreen && <ProfileImage src="/assets/images/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
+					{isMediumScreen && <ProfileImage src="/assets/images/me-medium.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
+					{isSmallScreen && <ProfileImage src="/assets/images/me-small.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
 
 
 					<ProjectLink href={resume} download={"resume.png"}>

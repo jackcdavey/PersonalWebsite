@@ -100,6 +100,7 @@ export const SectionWrap = styled(TransparentSectionWrap)`
 	color: ${COLORS.darkShade};
 `
 
+
 export const TaglineTxt = styled.h2`
 	font-size: 2.5em;
 	font-family: Raleway, sans-serif;
@@ -107,6 +108,7 @@ export const TaglineTxt = styled.h2`
 	text-align: center;
 	text-overflow: ellipsis;
 	color: ${COLORS.darkShade};
+	direction: rtl;
 
 	@media (max-width: 710px) {
 		font-size: 2em;

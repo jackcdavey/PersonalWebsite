@@ -21,7 +21,6 @@ export default function Tagline() {
 				initial={{ opacity: 0, y: 20 }}
 				exit={{ opacity: 0, y: -20 }}
 				transition={{ ease: "easeInOut", duration: 0.5 }}
-
 			>
 				<TaglineTxt >{words[index % words.length]}</TaglineTxt>
 			</motion.div>
