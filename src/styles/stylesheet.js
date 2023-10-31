@@ -48,9 +48,13 @@ export const SplashTitleWrap = styled.h1`
 	grid-column: 1 / 3;
 	grid-row: 1;
 	color: ${COLORS.mainBrand};
-	font-display: swap;
 
 	@media (max-width: 710px) {
+		font-size: 4.5em;
+		padding-bottom: 10vh;
+	}
+
+	@media (max-height: 710px) {
 		font-size: 4.5em;
 		padding-bottom: 10vh;
 	}
@@ -77,7 +81,8 @@ export const SplashTaglineWrap = styled.div`
 `
 
 export const ScrollArrowSegment = styled.div`
-		border-color: ${COLORS.red} !important;
+		// border-color: ${COLORS.red} !important;
+		
 `
 
 
@@ -110,8 +115,13 @@ export const TaglineTxt = styled.h2`
 	text-overflow: ellipsis;
 	color: ${COLORS.darkShade};
 	direction: rtl;
-	font-display: swap;
+	max-width: 30vw;
+
 	@media (max-width: 710px) {
+		font-size: 2em;
+	}
+
+	@media (max-height: 710px) {
 		font-size: 2em;
 	}
 `
@@ -122,7 +132,6 @@ export const SectionTitle = styled.h1`
 	padding-left: 3%;
 	padding-top: 3%;
 	font-family: jeanne-moderno-geometrique, sans-serif;
-	font-display: swap;
 	color: ${COLORS.mainBrand};
 `
 
@@ -192,7 +201,6 @@ export const ChipLabel = styled.h3`
 	font-size: 1em;
 	font-family: Raileway, sans-serif;
 	font-weight: 400;
-	font-display: swap;
 	color: ${COLORS.mainBrand};
 `
 
@@ -228,7 +236,6 @@ export const ResumeDownload = styled.div`
 	text-align: center;
 	font-family: Raileway, sans-serif;
 	font-weight: bold;
-	font-display: swap;
 	color: ${COLORS.lightAccent};
 	font-size: 1em;
 
@@ -285,7 +292,7 @@ export const ProjectCard = styled.div`
 export const ProjectTitle = styled.h2`
 	font-family: jeanne-moderno-geometrique, sans-serif;
 	font-size: 1.5em;
-	font-display: swap;
+	
 	text-align: center;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -320,7 +327,6 @@ export const ProjectDescription = styled.div`
   justify-content: center;
   font-family: Raleway, sans-serif;
   font-size: 1em;
-  font-display: swap;
   color: ${COLORS.darkShade};
   text-align: center;
   width: 100%;
@@ -358,7 +364,6 @@ export const ProjectCategoryChip = styled.div`
 	margin: 2rem;
 	font-family: Raileway, sans-serif;
 	font-size: 0.9em;
-	font-display: swap;
 	color: ${COLORS.mainBrand};
 `
 
@@ -405,7 +410,7 @@ export const ContactForm = styled.form`
 	font-family: Raleway, sans-serif;
 	color: ${COLORS.darkShade};
 	width: 100%;
-	font-display: swap;
+
 	@media (max-width: 710px) {
 		flex-direction: column;
 	}
@@ -452,7 +457,6 @@ export const EmailInput = styled.input`
 	margin-top: 3%;
 	font-family: Raleway, sans-serif;
 	font-size: 1em;
-	font-display: swap;
 	color: ${COLORS.darkShade};
 	background-color: ${COLORS.lightShade};
 	transition: 0.3s;
@@ -475,7 +479,6 @@ export const MessageInput = styled.textarea`
 	margin-top: 1%;
 	font-family: Raleway, sans-serif;
 	font-size: 1em;
-	font-display: swap;
 	color: ${COLORS.darkShade};
 	background-color: ${COLORS.lightShade};
 	transition: 0.3s;
@@ -510,7 +513,6 @@ export const ContactSubmit = styled.button`
 	justify-content: center;
 	font-family: Raleway, sans-serif;
 	font-size: 2.5em;
-	font-display: swap;
 	color: ${COLORS.lightAccent};
 	background-color: ${COLORS.mainBrand};
 	transition: 0.3s;

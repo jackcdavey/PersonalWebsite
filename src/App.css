@@ -121,6 +121,7 @@ div.arrow:hover::before {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 
