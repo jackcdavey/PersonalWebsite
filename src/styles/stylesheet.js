@@ -262,7 +262,7 @@ export const FramerContainer = styled.div`
 
 ////// PROJECT SECTION STYLES //////
 
-export const ProjectCard = styled.div`
+export const ProjectCard = styled(motion.div)`
 	background: ${COLORS.mainBrand};
 	/* Eventually add custom colors for each project */
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -289,7 +289,7 @@ export const ProjectCard = styled.div`
 	}
 `
 
-export const ProjectTitle = styled.h2`
+export const ProjectTitle = styled(motion.h2)`
 	font-family: jeanne-moderno-geometrique, sans-serif;
 	font-size: 1.5em;
 	
@@ -321,7 +321,7 @@ export const ProjectLink = styled.a`
 	text-decoration: none;
 	
 `
-export const ProjectDescription = styled.div`
+export const ProjectDescription = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;

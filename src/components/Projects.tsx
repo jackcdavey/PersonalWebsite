@@ -1,11 +1,18 @@
 import AnimatedTitle from "../hooks/revealText"
 import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, GraphicPath, ProjectLink, TransparentSectionWrap, ProjectDescription, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useWindowSize } from '@react-hook/window-size';
+import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
+
+
+const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
 
 const isSafari: boolean = /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
 
 // const isSafari: boolean = false;
 
-interface ProjectProps {
+export interface ProjectProps {
 	title: string
 	description: string
 	graphic?: boolean
@@ -13,6 +20,53 @@ interface ProjectProps {
 	link?: string
 	type?: string
 }
+
+interface ExpandedProjectCardProps {
+	project: ProjectProps;
+	onClose: () => void;
+}
+
+const ExpandedProjectCard: React.FC<ExpandedProjectCardProps> = ({ project, onClose }) => {
+	const [width, height] = useWindowSize();
+
+	return (
+		<motion.div
+			layout
+			layoutId={`project-card-${project.title}`}
+			transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5 }}
+			style={{
+				position: 'fixed',
+				top: 0,
+				left: 0,
+				width: '100vw',
+				height: '100vh',
+				backgroundColor: COLORS.mainBrand, // Use the backgroundColor from COLORS
+				zIndex: 1000,
+				overflowY: 'scroll',
+			}}
+		>
+			<motion.button
+				onClick={onClose}
+				style={{
+					position: 'absolute',
+					top: '1rem',
+					right: '1rem',
+					zIndex: 1001,
+					// other styles for the button
+				}}
+			>
+				Close
+			</motion.button>
+
+			{/* Title, Description, and other contents */}
+			<motion.h1 layoutId={`title-${project.title}`}>{project.title}</motion.h1>
+			<motion.p layoutId={`description-${project.title}`}>{project.description}</motion.p>
+			{/* ...rest of your content */}
+		</motion.div>
+	);
+
+};
+
 
 const projects: ProjectProps[] = [
 	{
@@ -100,6 +154,19 @@ const WebApp = () => {
 
 export default function Projects() {
 
+	const [expandedProject, setExpandedProject] = useState<ProjectProps | null>(null);
+
+	const openExpandedView = (project: ProjectProps) => {
+		console.log('Project clicked:', project.title); // This should log when a project is clicked
+		setExpandedProject(project);
+	};
+
+	const closeExpandedView = () => {
+		console.log("Closing expanded view")
+		setTimeout(() => setExpandedProject(null), 500); // Delay of 500ms
+	};
+
+
 	return (
 		<TransparentSectionWrap>
 			<SectionRow>
@@ -127,23 +194,25 @@ export default function Projects() {
 							}}
 							viewport={{ once: true }}
 						>
-							<ProjectDescription>
+							<ProjectDescription layoutId={`description-${project.title}`}>
 								<span style={{ width: "70%" }}>
 									{project.description}
 								</span>
 							</ProjectDescription>
 
-							<ProjectLink href={project.link} target='_blank' >
 
-								<ProjectCard>
+							<ProjectLink as="div" onClick={() => openExpandedView(project)}>
+								<ProjectCard
+									layout
+									layoutId={`project-card-${project.title}`}
+								>
 									{project.graphic &&
 										<ProjectGraphic>
 											<GraphicPath d={project.svgPath} />
 										</ProjectGraphic>
 									}
-									<ProjectTitle>
-										{project.title}
-									</ProjectTitle>
+									<ProjectTitle layoutId={`title-${project.title}`}>{project.title}</ProjectTitle>
+
 									{project.type === "Website" &&
 										<Website />
 									}
@@ -175,11 +244,13 @@ export default function Projects() {
 							}}
 							viewport={{ once: true }}
 						>
-							<ProjectLink href={project.link} target='_blank' >
-								<ProjectCard>
-									<ProjectTitle>
-										{project.title}
-									</ProjectTitle>
+							<ProjectLink as="div" onClick={() => openExpandedView(project)}>
+								<ProjectCard layout layoutId={`project-card-${project.title}`}
+
+
+								>
+									<ProjectTitle layoutId={`title-${project.title}`}>{project.title}</ProjectTitle>
+
 
 									{/* Insert corresponding chip */}
 									{project.type === "Website" &&
@@ -195,7 +266,7 @@ export default function Projects() {
 								</ProjectCard>
 							</ProjectLink>
 
-							<ProjectDescription>
+							<ProjectDescription layoutId={`description-${project.title}`}>
 								<span style={{ width: "70%" }}>
 									{project.description}
 								</span>
@@ -204,6 +275,17 @@ export default function Projects() {
 					)
 				}
 			})}
+
+			<AnimatePresence key={expandedProject ? expandedProject.title : 'none'}>
+				{expandedProject && (
+					<ExpandedProjectCard
+						project={expandedProject}
+						onClose={closeExpandedView}
+
+					/>
+				)}
+			</AnimatePresence>
+
 
 		</TransparentSectionWrap>
 	)
