@@ -142,11 +142,7 @@ export default function Projects() {
 							<ProjectLink href={project.link} target='_blank' >
 
 								<ProjectCard>
-									{project.graphic &&
-										<ProjectGraphic>
-											<GraphicPath d={project.svgPath} />
-										</ProjectGraphic>
-									}
+
 									<ProjectTitle>
 										{project.title}
 									</ProjectTitle>
@@ -158,6 +154,11 @@ export default function Projects() {
 									}
 									{project.type === "Web App" &&
 										<WebApp />
+									}
+									{project.graphic &&
+										<ProjectGraphic>
+											<GraphicPath d={project.svgPath} />
+										</ProjectGraphic>
 									}
 								</ProjectCard>
 							</ProjectLink>
@@ -183,11 +184,10 @@ export default function Projects() {
 						>
 							<ProjectLink href={project.link} target='_blank' >
 								<ProjectCard>
+
 									<ProjectTitle>
 										{project.title}
 									</ProjectTitle>
-
-									{/* Insert corresponding chip */}
 									{project.type === "Website" &&
 										<Website />
 									}
@@ -197,7 +197,11 @@ export default function Projects() {
 									{project.type === "Web App" &&
 										<WebApp />
 									}
-
+									{project.graphic &&
+										<ProjectGraphic>
+											<GraphicPath d={project.svgPath} />
+										</ProjectGraphic>
+									}
 								</ProjectCard>
 							</ProjectLink>
 

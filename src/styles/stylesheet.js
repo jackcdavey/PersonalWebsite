@@ -303,7 +303,7 @@ export const ProjectTitle = styled.h2`
 
 export const ProjectGraphic = styled.svg`
 	max-width: 100%;
-	max-height: 100%;
+	max-height: 40%;
 	// A hacky compromise to get the SVG to center, only looks off on extremely narrow screens
 	margin-left: 65%;
 	`
