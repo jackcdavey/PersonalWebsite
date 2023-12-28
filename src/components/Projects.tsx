@@ -16,6 +16,12 @@ interface ProjectProps {
 
 const projects: ProjectProps[] = [
 	{
+		title: "City Bites",
+		description: "A small demo site for browsing & liking top restaurants in a given city, built with React, TypeScript, and the Yelp Fusion API.",
+		link: "https://city-bites.vercel.app/",
+		type: "Website"
+	},
+	{
 		title: "Asian & Black Alliance Website",
 		description: "A website to share and store the findings of the Asian Black Alliance project at Santa Clara University.",
 		link: "https://www.asianblackalliance.org",
