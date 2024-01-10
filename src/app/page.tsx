@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styles from './page.module.css'
+import styles from './styles/page.module.css'
 import AboutMe from './sections/aboutMe'
 import Splash from './sections/splash'
 import Projects from './sections/projects'
