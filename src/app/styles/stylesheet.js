@@ -85,8 +85,6 @@ export const ScrollArrowSegment = styled.div`
 		
 `
 
-
-
 export const TransparentSectionWrap = styled.div`
 	display: flex;
 	flex-direction: column;

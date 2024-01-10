@@ -59,7 +59,9 @@ export default function AboutMe() {
                     {/* {isLargeScreen && <ProfileImage src="/assets/images/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
                     {isMediumScreen && <ProfileImage src="/assets/images/me-medium.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
                     {isSmallScreen && <ProfileImage src="/assets/images/me-small.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />} */}
+                    {/* <ProfileImage src="../assets/images/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} /> */}
 
+                    <img src="../assets/images/me.png" alt="Jack Davey" style={{ maxWidth: "15rem" }} />
 
                     <ProjectLink href="../assets/images/Resume.png" target="_blank" rel="noopener noreferrer" download="JackDaveyResume.png">
                         <ResumeDownload>
