@@ -94,7 +94,7 @@ export const TransparentSectionWrap = styled.div`
 	z-index: 10;
 	min-height: 30vh;
 	margin-bottom: 3rem;
-	
+	overflow: hidden;
 	// color: ${COLORS.darkShade};
 
 `
@@ -181,7 +181,6 @@ export const ChipContainer = styled(motion.div)`
 	margin: 2%;
 	padding: 1rem 1.5rem;
 	border-radius: 2rem;
-	
 	background: ${COLORS.lightShade};
 	transition: 0.4s;
 

@@ -6,6 +6,7 @@ import AnimatedTitle from "../hooks/revealText"
 import Image from "next/image";
 import { useLayoutEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { motion, Variants } from "framer-motion"
 
 import {
     SectionWrap,
@@ -23,19 +24,20 @@ import {
     GraphicPath,
 } from "../styles/stylesheet.js"
 
-const containerVariants = {
+const containerVariants: Variants = {
     initial: { opacity: 0 },
     animate: {
         opacity: 1,
         transition: {
+            // delayChildren: 1,
             staggerChildren: 0.1,
         },
     },
 };
 
-const chipVariants = {
-    initial: { opacity: 0, y: 10 },
-    animate: { opacity: 1, y: 0 },
+const chipVariants: Variants = {
+    initial: { y: 300 },
+    animate: { y: 0 },
 };
 
 export default function AboutMe() {
@@ -60,11 +62,6 @@ export default function AboutMe() {
                     {isLargeScreen && <ProfileImage src="/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
                     {isMediumScreen && <ProfileImage src="/me-medium.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
                     {isSmallScreen && <ProfileImage src="/me-small.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
-
-
-
-
-                    {/* <ProfileImage src="/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} /> */}
 
                     <ProjectLink href="../assets/images/Resume.png" target="_blank" rel="noopener noreferrer" download="JackDaveyResume.png">
                         <ResumeDownload>
