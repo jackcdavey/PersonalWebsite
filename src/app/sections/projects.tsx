@@ -5,9 +5,6 @@ import dynamic from 'next/dynamic'
 
 import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, ProjectDescription, GraphicPath, ProjectLink, TransparentSectionWrap, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
-import styles from "../styles/projects.module.css"
-
-// const ProjectDescription = dynamic(() => import("../styles/stylesheet.js").then((mod) => mod.ProjectDescription), { ssr: false })
 
 const isSafari: boolean = /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
 
@@ -178,7 +175,7 @@ export default function Projects() {
                         <ProjRowLeft
                             key={index}
                             initial={{
-                                y: 300
+                                y: 200
                             }}
                             whileInView={{
                                 y: 0
