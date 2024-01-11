@@ -25,9 +25,7 @@ import {
 } from "../styles/stylesheet.js"
 
 const containerVariants: Variants = {
-    initial: { opacity: 0 },
     animate: {
-        opacity: 1,
         transition: {
             // delayChildren: 1,
             staggerChildren: 0.1,

@@ -211,3 +211,38 @@ li {
   z-index: 1;
 
 }
+
+.project-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Raleway, sans-serif;
+  font-size: 1em;
+  /*     
+      color: $ {
+        COLORS.darkShade
+      } */
+
+
+  text-align: center;
+  width: 100%;
+  position: relative;
+
+
+}
+
+.project-description span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Adjust the following line to use a specific color as CSS doesn't support variables in the same way as styled-components */
+  background-color: #f0f0f0;
+  /* Example color */
+  mix-blend-mode: soft-light;
+  opacity: 0.4;
+  z-index: -1;
+  border-radius: 1rem;
+}

@@ -1,3 +1,5 @@
+'use client'
+
 import styled from "styled-components"
 import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
 import { motion } from "framer-motion"
@@ -335,7 +337,7 @@ export const ProjectDescription = styled.div`
     z-index: 1; // Make sure the text appears above the background
 	padding: 5%;
 
-    ::before {
+    &::before {
       content: "";
       position: absolute;
       top: 0;
@@ -347,7 +349,6 @@ export const ProjectDescription = styled.div`
       opacity: 0.4; 
       z-index: -1; 
       border-radius: 1rem;
-	  
     }
   }
 `;
