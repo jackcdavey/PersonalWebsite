@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.2.1",
     "framer-motion": "^10.17.12",
     "next": "14.0.4",
     "react": "^18",
