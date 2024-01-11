@@ -9,6 +9,7 @@ import styles from './styles/page.module.css'
 // import Projects from './sections/projects'
 // import Contact from './sections/contact'
 // import FramerBG from './components/framerBG'
+import MenuSwitcher from './components/switcher'
 
 const FramerBG = dynamic(() => import('./components/framerBG'), { ssr: false })
 const AboutMe = dynamic(() => import('./sections/aboutMe'), { ssr: false })
@@ -21,6 +22,7 @@ const Contact = dynamic(() => import('./sections/contact'), { ssr: false })
 export default function Home() {
   return (
     <main className={styles.main}>
+      <MenuSwitcher />
       <FramerBG />
       <Element name="splash">
         <Splash />
