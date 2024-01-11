@@ -144,9 +144,9 @@ export default function Projects() {
                                 </span>
                             </ProjectDescription>
 
-                            <ProjectLink href={project.link} target='_blank' >
+                            <ProjectLink href={project.link} target='_blank'  >
 
-                                <ProjectCard>
+                                <ProjectCard >
 
                                     <ProjectTitle>
                                         {project.title}

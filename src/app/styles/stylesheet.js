@@ -239,7 +239,7 @@ export const ResumeDownload = styled.div`
 	color: ${COLORS.lightAccent};
 	font-size: 1em;
 
-	:hover {
+	&:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
 		color: ${COLORS.lightShade};
 	}
@@ -275,10 +275,11 @@ export const ProjectCard = styled.div`
 	height: 15rem;
 	border-radius: 15px;
 	margin: 5%;
+    z-index: 1;
 	color: ${COLORS.lightShade};
 
-	:hover {
-		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
+	&:hover {
+		box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 1);
 		color: ${COLORS.lightAccent};
 	}
 
@@ -372,6 +373,8 @@ export const ProjRowLeft = styled(SectionRow)`
 		flex-direction: row !important;
 		width: 100%;
 		margin-left: 2rem;
+
+        
 
 		@media (max-width: 710px) {
 			justify-content: center !important;
@@ -518,7 +521,7 @@ export const ContactSubmit = styled.button`
 	cursor: pointer;
 	
 
-	:hover {
+	&:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
 		color: ${COLORS.lightShade};
 	}
