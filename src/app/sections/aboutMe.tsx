@@ -61,7 +61,7 @@ export default function AboutMe() {
                     {isMediumScreen && <ProfileImage src="/me-medium.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
                     {isSmallScreen && <ProfileImage src="/me-small.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
 
-                    <ProjectLink href="../assets/images/Resume.png" target="_blank" rel="noopener noreferrer" download="JackDaveyResume.png">
+                    <ProjectLink href="./Resume.png" target="_blank" rel="noopener noreferrer" download="JackDaveyResume.png">
                         <ResumeDownload>
                             Resume
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
