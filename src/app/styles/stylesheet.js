@@ -102,7 +102,7 @@ export const TransparentSectionWrap = styled.div`
 export const SectionWrap = styled(TransparentSectionWrap)`
 	background-color: ${COLORS.lightAccent};
 	color: ${COLORS.darkShade};
-    width: 100%;
+    width: 100vw;
 `
 
 

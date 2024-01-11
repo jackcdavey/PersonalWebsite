@@ -3,8 +3,9 @@
 // import jackProfile from "../assets/images/me.jpg"
 import resume from "../assets/images/Resume.png"
 import AnimatedTitle from "../hooks/revealText"
+import Image from "next/image";
 import { useLayoutEffect, useState } from 'react';
-// import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from 'react-responsive';
 
 import {
     SectionWrap,
@@ -42,9 +43,9 @@ export default function AboutMe() {
 
     const technologies = ["React", "NextJS", "TypeScript", "JavaScript", "Swift", "C", "PHP", "SQL", "Ruby", "Python", "SiwftUI", "Tailwind", "GraphQL"]
 
-    // const isLargeScreen = useMediaQuery({ query: '(min-width: 901px)' });
-    // const isMediumScreen = useMediaQuery({ query: '(min-width: 711px) and (max-width: 900px)' });
-    // const isSmallScreen = useMediaQuery({ query: '(max-width: 710px)' });
+    const isLargeScreen = useMediaQuery({ query: '(min-width: 901px)' });
+    const isMediumScreen = useMediaQuery({ query: '(min-width: 711px) and (max-width: 900px)' });
+    const isSmallScreen = useMediaQuery({ query: '(max-width: 710px)' });
 
     return (
         <SectionWrap>
@@ -56,12 +57,14 @@ export default function AboutMe() {
             <SectionRow>
                 <ProfileImageWrap>
 
-                    {/* {isLargeScreen && <ProfileImage src="/assets/images/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
-                    {isMediumScreen && <ProfileImage src="/assets/images/me-medium.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
-                    {isSmallScreen && <ProfileImage src="/assets/images/me-small.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />} */}
-                    {/* <ProfileImage src="../assets/images/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} /> */}
+                    {isLargeScreen && <ProfileImage src="/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
+                    {isMediumScreen && <ProfileImage src="/me-medium.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
+                    {isSmallScreen && <ProfileImage src="/me-small.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} />}
 
-                    <img src="../assets/images/me.png" alt="Jack Davey" style={{ maxWidth: "15rem" }} />
+
+
+
+                    {/* <ProfileImage src="/me-large.webp" alt="Jack Davey" style={{ maxWidth: "15rem" }} /> */}
 
                     <ProjectLink href="../assets/images/Resume.png" target="_blank" rel="noopener noreferrer" download="JackDaveyResume.png">
                         <ResumeDownload>
