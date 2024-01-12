@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
+    "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
     "framer-motion": "^10.17.12",
     "next": "14.0.4",
