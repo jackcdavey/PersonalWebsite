@@ -43,11 +43,11 @@ const MenuSwitcher: React.FC = () => {
                 isExpanded && (
                     <div className={styles.menuLinks}>
                         <a href="https://jackcdavey.github.io/" title='First version of my portfolio'>
-                            V0.1
+                            <p> V0.1</p>
 
                         </a>
                         <a href="https://terminal-demo-two.vercel.app/" title='A CLI-based website'>
-                            CLI
+                            <p>CLI</p>
 
                         </a>
                     </div>
