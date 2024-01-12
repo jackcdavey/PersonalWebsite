@@ -8,6 +8,8 @@ import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, Pr
 
 const isSafari: boolean = /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
 
+const projectOffset = 200;
+
 // const isSafari: boolean = false;
 
 interface ProjectProps {
@@ -20,10 +22,11 @@ interface ProjectProps {
 }
 
 const projects: ProjectProps[] = [
+
     {
-        title: "City Bites",
-        description: "A small demo site for browsing & liking top restaurants in a given city, built with React, TypeScript, and the Yelp Fusion API.",
-        link: "https://city-bites.vercel.app/",
+        title: "Relyion Energy Site Rebuild",
+        description: "A rebuild and redesign of the Relyion Energy website, built with React, TypeScript, and Next.js. Broken into separate investor and customer-facing sites, to reduce content overload and improve user experience and retention.",
+        link: "https://www.relyionenergy.com/",
         type: "Website"
     },
     {
@@ -37,6 +40,12 @@ const projects: ProjectProps[] = [
         description: " Wage Wizard is a mobile application for iOS and Andoid, designed by students of Santa Clara University in collaboration with the SCU Frugal Design Hub and Santa Clara Wage Theft Coalition, to help individual workers easily, securly, and verifiably log their time spent working, and combat wage theft. ",
         link: "https://github.com/jackcdavey/WageWizardApp",
         type: "Mobile App"
+    },
+    {
+        title: "City Bites",
+        description: "A small demo site for browsing & liking top restaurants in a given city, built with React, TypeScript, and the Yelp Fusion API.",
+        link: "https://city-bites.vercel.app/",
+        type: "Website"
     },
     {
         title: "Bloom Space",
@@ -126,7 +135,7 @@ export default function Projects() {
                         <ProjRowRight
                             key={index}
                             initial={{
-                                y: 300
+                                y: projectOffset
                             }}
                             whileInView={{
                                 y: 0
@@ -175,7 +184,7 @@ export default function Projects() {
                         <ProjRowLeft
                             key={index}
                             initial={{
-                                y: 200
+                                y: projectOffset
                             }}
                             whileInView={{
                                 y: 0

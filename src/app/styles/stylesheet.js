@@ -213,7 +213,7 @@ export const ProfileImageWrap = styled.div`
 `
 export const ProfileImage = styled.img`
 	border-radius: 1.5rem !important;
-	width: 20vw;
+	width: 18vw;
 	
 	
 	@media (max-width: 710px) {
