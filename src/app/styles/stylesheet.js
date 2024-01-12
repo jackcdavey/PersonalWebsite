@@ -1,16 +1,16 @@
 'use client'
 
 import styled from "styled-components"
-import { LIGHTCOLORS, DARKCOLORS } from "../styles/colors"
 import { motion } from "framer-motion"
 
 
 import "./fonts.css"
 
-const COLORS = window.matchMedia("(prefers-color-scheme: dark )").matches ? DARKCOLORS : LIGHTCOLORS
 
-// const TitleFont = "jeanne-moderno-geometrique, sans-serif"
-// const TextFont = "minion-pro-condensed-caption, serif"
+const COLORS = () => {
+	const { theme } = useContext(ThemeContext);
+	return theme === 'dark' ? DARKCOLORS : LIGHTCOLORS;
+}
 
 export const AppContainer = styled.div`
 	overflow-x: hidden;
@@ -35,7 +35,7 @@ export const SplashWrap = styled.section`
 	height: 100vh;
 	min-height: 30rem;
 	width: 100vw;
-	background: ${COLORS.lightShade};
+	background: ${(props) => props.theme.lightShade};
 	opacity: 0.5;
 	padding-left: 10vw;
 	padding-top: 10vw;
@@ -49,7 +49,7 @@ export const SplashTitleWrap = styled.h1`
 	text-align: left;
 	grid-column: 1 / 3;
 	grid-row: 1;
-	color: ${COLORS.mainBrand};
+	color: ${(props) => props.theme.mainBrand};
 
 	@media (max-width: 710px) {
 		font-size: 4.5em;
@@ -83,7 +83,7 @@ export const SplashTaglineWrap = styled.div`
 `
 
 export const ScrollArrowSegment = styled.div`
-		// border-color: ${COLORS.red} !important;
+		// border-color: ${(props) => props.theme.red} !important;
 		
 `
 
@@ -97,13 +97,13 @@ export const TransparentSectionWrap = styled.div`
 	min-height: 30vh;
 	margin-bottom: 3rem;
 	overflow: hidden;
-	// color: ${COLORS.darkShade};
+	// color: ${(props) => props.theme.darkShade};
 
 `
 
 export const SectionWrap = styled(TransparentSectionWrap)`
-	background-color: ${COLORS.lightAccent};
-	color: ${COLORS.darkShade};
+	background-color: ${(props) => props.theme.lightAccent};
+	color: ${(props) => props.theme.darkShade};
     width: 100vw;
 `
 
@@ -114,7 +114,7 @@ export const TaglineTxt = styled.h2`
 	font-weight: 400;
 	text-align: center;
 	text-overflow: ellipsis;
-	color: ${COLORS.darkShade};
+	color: ${(props) => props.theme.darkShade};
 	direction: rtl;
 	max-width: 30vw;
 
@@ -133,7 +133,7 @@ export const SectionTitle = styled.h1`
 	padding-left: 3%;
 	padding-top: 3%;
 	font-family: jeanne-moderno-geometrique, sans-serif;
-	color: ${COLORS.mainBrand};
+	color: ${(props) => props.theme.mainBrand};
 `
 
 export const SectionRow = styled(motion.div)`
@@ -183,7 +183,7 @@ export const ChipContainer = styled(motion.div)`
 	margin: 2%;
 	padding: 1rem 1.5rem;
 	border-radius: 2rem;
-	background: ${COLORS.lightShade};
+	background: ${(props) => props.theme.lightShade};
 	transition: 0.4s;
 
 	//Too confusing, implies a link
@@ -201,7 +201,7 @@ export const ChipLabel = styled.h3`
 	font-size: 1em;
 	font-family: Raileway, sans-serif;
 	font-weight: 400;
-	color: ${COLORS.mainBrand};
+	color: ${(props) => props.theme.mainBrand};
 `
 
 export const ProfileImageWrap = styled.div`
@@ -231,17 +231,17 @@ export const ResumeDownload = styled.div`
 	margin-top: 1.5vh;
 	margin-bottom: 1.5vh;
 	border-radius: 3rem;
-	background: ${COLORS.mainBrand};
+	background: ${(props) => props.theme.mainBrand};
 	transition: 0.2s;
 	text-align: center;
 	font-family: Raileway, sans-serif;
 	font-weight: bold;
-	color: ${COLORS.lightAccent};
+	color: ${(props) => props.theme.lightAccent};
 	font-size: 1em;
 
 	&:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
-		color: ${COLORS.lightShade};
+		color: ${(props) => props.theme.lightShade};
 	}
 `
 
@@ -254,7 +254,7 @@ export const FramerContainer = styled.div`
 	left: 0;
 	z-index: -1;
 	filter: blur(20px);
-	background: ${COLORS.lightShade};
+	background: ${(props) => props.theme.lightShade};
 `
 
 
@@ -263,7 +263,7 @@ export const FramerContainer = styled.div`
 ////// PROJECT SECTION STYLES //////
 
 export const ProjectCard = styled.div`
-	background: ${COLORS.mainBrand};
+	background: ${(props) => props.theme.mainBrand};
 	/* Eventually add custom colors for each project */
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	display: flex;
@@ -276,11 +276,11 @@ export const ProjectCard = styled.div`
 	border-radius: 15px;
 	margin: 5%;
     z-index: 1;
-	color: ${COLORS.lightShade};
+	color: ${(props) => props.theme.lightShade};
 
 	&:hover {
 		box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 1);
-		color: ${COLORS.lightAccent};
+		color: ${(props) => props.theme.lightAccent};
 	}
 
 	@media (max-width: 710px) {
@@ -328,7 +328,7 @@ export const ProjectDescription = styled.div`
   justify-content: center;
   font-family: Raleway, sans-serif;
   font-size: 1em;
-  color: ${COLORS.darkShade};
+  color: ${(props) => props.theme.darkShade};
   text-align: center;
   width: 100%;
   position: relative; // Added for pseudo-element positioning
@@ -345,7 +345,7 @@ export const ProjectDescription = styled.div`
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: ${COLORS.lightShade};
+      background-color: ${(props) => props.theme.lightShade};
       mix-blend-mode: soft-light; 
       opacity: 0.4; 
       z-index: -1; 
@@ -364,7 +364,7 @@ export const ProjectCategoryChip = styled.div`
 	margin: 2rem;
 	font-family: Raileway, sans-serif;
 	font-size: 0.9em;
-	color: ${COLORS.mainBrand};
+	color: ${(props) => props.theme.mainBrand};
 `
 
 export const ProjRowLeft = styled(SectionRow)`
@@ -410,7 +410,7 @@ export const ContactForm = styled.form`
 	// padding: 1%;
 	padding-bottom: 5%;
 	font-family: Raleway, sans-serif;
-	color: ${COLORS.darkShade};
+	color: ${(props) => props.theme.darkShade};
 	width: 100%;
 
 	@media (max-width: 710px) {
@@ -459,8 +459,8 @@ export const EmailInput = styled.input`
 	margin-top: 3%;
 	font-family: Raleway, sans-serif;
 	font-size: 1em;
-	color: ${COLORS.darkShade};
-	background-color: ${COLORS.lightShade};
+	color: ${(props) => props.theme.darkShade};
+	background-color: ${(props) => props.theme.lightShade};
 	transition: 0.3s;
 
 	:focus {
@@ -481,8 +481,8 @@ export const MessageInput = styled.textarea`
 	margin-top: 1%;
 	font-family: Raleway, sans-serif;
 	font-size: 1em;
-	color: ${COLORS.darkShade};
-	background-color: ${COLORS.lightShade};
+	color: ${(props) => props.theme.darkShade};
+	background-color: ${(props) => props.theme.lightShade};
 	transition: 0.3s;
 	resize: vertical;
 
@@ -515,15 +515,15 @@ export const ContactSubmit = styled.button`
 	justify-content: center;
 	font-family: Raleway, sans-serif;
 	font-size: 2.5em;
-	color: ${COLORS.lightAccent};
-	background-color: ${COLORS.mainBrand};
+	color: ${(props) => props.theme.lightAccent};
+	background-color: ${(props) => props.theme.mainBrand};
 	transition: 0.3s;
 	cursor: pointer;
 	
 
 	&:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
-		color: ${COLORS.lightShade};
+		color: ${(props) => props.theme.lightShade};
 	}
 
 	@media (max-width: 710px) {
