@@ -41,7 +41,7 @@ const chipVariants: Variants = {
 export default function AboutMe() {
     const skills = ["Web Design", "Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics Repair", "Figma", "Git / VCS"]
 
-    const technologies = ["React", "NextJS", "TypeScript", "JavaScript", "Swift", "C", "PHP", "SQL", "Ruby", "Python", "SiwftUI", "Tailwind", "GraphQL"]
+    const technologies = ["React", "NextJS", "TypeScript", "JavaScript", "Swift", "C", "PHP", "SQL", "Ruby", "Python", "SwiftUI", "Tailwind", "GraphQL"]
 
     const isLargeScreen = useMediaQuery({ query: '(min-width: 901px)' });
     const isMediumScreen = useMediaQuery({ query: '(min-width: 711px) and (max-width: 900px)' });
@@ -73,11 +73,16 @@ export default function AboutMe() {
                         </ResumeDownload>
                     </ProjectLink>
                 </ProfileImageWrap>
-                <div>
-                    <h3>Intro</h3>
+                <div style={{ display: "flex", flexDirection: "column", paddingBottom: '1rem' }}>
+                    {/* <h3>Intro</h3> */}
                     <p>
-                        Led by a lifelong passion for technology and aesthetics, I graduated from Santa Clara University with a B.S. in Web Design and Engineering in 2022, followed by earning my M.S. in Engineering Management and Leadership in 2023. Having spent my entire life in California, I grew up with an immense appreciation for the beauty and simplicity of nature. I love to tinker, design, and create, but when I’m not working away at my desk, you’ll likely find me hooking the majority of my shots at the driving range, or out exploring the mountains with my hammock and camera.					</p>
-                    <br></br>
+                        Led by a lifelong passion for technology and aesthetics, I graduated from Santa Clara University with a B.S. in Web Design and Engineering in 2022, followed by earning my M.S. in Engineering Management and Leadership in 2023. Having spent my entire life in California, I grew up with an immense appreciation for the beauty and simplicity of nature. I've honed my skills through my experience as a UI Developer at Relyion Energy and as a development Research Assistant at SCU, blending technical expertise with creative design. I love to tinker, design, and create, but when I’m not working away at my desk, you’ll likely find me hooking the majority of my shots at the driving range, or out exploring the mountains with my hammock and camera.				</p>
+                </div>
+
+            </SectionRow>
+            <SectionRow>
+                <div>
+
 
                     <ContentBox>
                         <ContentRow>
@@ -127,6 +132,6 @@ export default function AboutMe() {
                     </ContentBox>
                 </div>
             </SectionRow>
-        </SectionWrap>
+        </SectionWrap >
     )
 }
