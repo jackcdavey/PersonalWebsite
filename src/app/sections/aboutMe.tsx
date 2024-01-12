@@ -34,7 +34,7 @@ const containerVariants: Variants = {
 };
 
 const chipVariants: Variants = {
-    initial: { y: 300 },
+    initial: { y: 700 },
     animate: { y: 0 },
 };
 
