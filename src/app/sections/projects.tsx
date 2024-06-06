@@ -26,7 +26,7 @@ const projects: ProjectProps[] = [
     {
         title: "Relyion Energy Site Rebuild",
         description: "A rebuild and redesign of the Relyion Energy website, built with React, TypeScript, and Next.js. Broken into separate investor and customer-facing sites, to reduce content overload and improve user experience and retention.",
-        link: "https://www.relyionenergy.com/",
+        link: "https://www.investor.relyionenergy.com/",
         type: "Website"
     },
     {
