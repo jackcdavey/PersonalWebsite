@@ -24,62 +24,65 @@ export const Word = styled(motion.span)`
 `
 
 export const Character = styled(motion.span)`
-	display: inline-block;
-	margin-right: -0.05em;
+	height: 1em;
 `
 
 export const SplashWrap = styled.section`
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	height: 100vh;
-	min-height: 30rem;
-	width: 100vw;
-	background: ${(props) => props.theme.lightShade};
-	opacity: 0.5;
-	padding-left: 10vw;
-	padding-top: 10vw;
-	// overflow: hidden;
-	
-`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100vh;
+    min-height: 30rem;
+    width: 100vw;
+    background: ${(props) => props.theme.lightShade};
+    opacity: 0.5;
+    padding-left: 10vw;
+    padding-top: 10vw;
+
+    @media (max-width: 710px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        padding-left: 5vw;
+        padding-top: 5vw;
+    }
+`;
 
 export const SplashTitleWrap = styled.h1`
-	font-size: 7em;
-	font-family: jeanne-moderno-geometrique, sans-serif;
-	text-align: left;
-	grid-column: 1 / 3;
-	grid-row: 1;
-	color: ${(props) => props.theme.mainBrand};
+    font-size: 7em;
+    font-family: jeanne-moderno-geometrique, sans-serif;
+    text-align: left;
+    grid-column: 1 / 3;
+    grid-row: 1;
+    color: ${(props) => props.theme.mainBrand};
+    line-height: 1.2; /* Adjusted line height to reduce spacing */
 
-	@media (max-width: 710px) {
-		font-size: 4.5em;
-		padding-bottom: 10vh;
-	}
+    @media (max-width: 710px) {
+        font-size: 4em;
+        padding-bottom: 5vh;
+    }
 
-	@media (max-height: 710px) {
-		font-size: 4.5em;
-		padding-bottom: 10vh;
-	}
+    @media (max-width: 500px) {
+        font-size: 3em;
+        padding-bottom: 3vh;
+    }
 `
 
 export const SplashTaglineWrap = styled.div`
-	margin-left: auto;
-	margin-right: auto;
-	grid-column: 2 / 4;
-	grid-row: 2 / 3;
-	padding: 3vw;
+    margin-left: auto;
+    margin-right: auto;
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    padding: 3vw;
+    line-height: 1.2; /* Adjusted line height to reduce spacing */
 
+    @media (max-width: 710px) {
+        grid-column: 1 / 2;
+        padding-right: 10%;
+    }
 
-
-	@media (max-width: 710px) {
-		padding-right: 15%;
-	}
-
-	@media (max-width: 500px) {
-		padding-right: 20%;
-	}
-
-
+    @media (max-width: 500px) {
+        padding-right: 5%;
+    }
 `
 
 export const ScrollArrowSegment = styled.div`

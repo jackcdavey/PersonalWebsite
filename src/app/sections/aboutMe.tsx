@@ -41,7 +41,7 @@ const chipVariants: Variants = {
 export default function AboutMe() {
     const skills = ["Web Design", "Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics Repair", "Figma", "Git / VCS"]
 
-    const technologies = ["React", "NextJS", "TypeScript", "JavaScript", "Swift", "C", "PHP", "SQL", "Ruby", "Python", "SwiftUI", "Tailwind", "GraphQL"]
+    const technologies = ["React", "Angular", "NextJS", "TypeScript", "JavaScript", "Swift", "C", "CSS3", "PHP", "SQL", "Ruby", "Python", "SwiftUI", "Tailwind", "GraphQL"]
 
     const isLargeScreen = useMediaQuery({ query: '(min-width: 901px)' });
     const isMediumScreen = useMediaQuery({ query: '(min-width: 711px) and (max-width: 900px)' });
