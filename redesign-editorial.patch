@@ -1,0 +1,2553 @@
+From 93f4685daf78de768662e1a23b240f3a6147947c Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 9 Jul 2026 05:38:54 +0000
+Subject: [PATCH] Redesign site with refined editorial direction
+
+- Typography: self-hosted Fraunces (display) + Figtree (body) via
+  next/font, replacing Typekit + Google CSS imports
+- Sticky nav with react-scroll spy links, absorbing the Styles
+  version switcher as a popover
+- Splash: lower-third composition with oversized display title,
+  left-aligned rotating tagline, minimal scroll cue
+- Background: slow-drifting corner-anchored gradient blobs
+  (CSS-only, reuses BALL_COLORS), renamed framerBG -> background
+- Projects: numbered editorial index rows with hairlines replacing
+  alternating cards; GitHub entry becomes an outro link
+- About: asymmetric grid with bio lede pull-out and ghost chips
+- Contact: single-column underline-input form, normal-sized submit
+- Split stylesheet.js into per-section style files + shared.tsx
+- Fix resume href case (/Resume.png) and tagline clearInterval bug
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01CFWAhZXn31TB9Bzz86CDzC
+---
+ README.md                           |   2 +-
+ src/app/components/background.tsx   |  58 ++++
+ src/app/components/framerBG.tsx     |  70 ----
+ src/app/components/nav.tsx          | 103 ++++++
+ src/app/components/switcher.tsx     |  70 ----
+ src/app/components/tagline.tsx      |  13 +-
+ src/app/globals.css                 |  81 +----
+ src/app/hooks/env.ts                |  13 +
+ src/app/hooks/revealText.js         |   7 +-
+ src/app/layout.tsx                  |  18 +-
+ src/app/page.tsx                    |   8 +-
+ src/app/sections/aboutMe.tsx        | 182 +++++-----
+ src/app/sections/contact.tsx        |  81 +++--
+ src/app/sections/projects.tsx       | 154 ++++-----
+ src/app/sections/splash.tsx         |  38 ++-
+ src/app/styles/about.styles.js      |  98 ++++++
+ src/app/styles/background.styles.js |  15 +
+ src/app/styles/contact.styles.js    | 109 ++++++
+ src/app/styles/nav.styles.js        | 155 +++++++++
+ src/app/styles/page.module.css      |   3 +-
+ src/app/styles/projects.styles.js   | 133 ++++++++
+ src/app/styles/shared.tsx           |  85 +++++
+ src/app/styles/splash.styles.js     |  97 ++++++
+ src/app/styles/stylesheet.js        | 501 ----------------------------
+ src/app/styles/switcher.module.css  |  82 -----
+ 25 files changed, 1123 insertions(+), 1053 deletions(-)
+ create mode 100644 src/app/components/background.tsx
+ delete mode 100644 src/app/components/framerBG.tsx
+ create mode 100644 src/app/components/nav.tsx
+ delete mode 100644 src/app/components/switcher.tsx
+ create mode 100644 src/app/hooks/env.ts
+ create mode 100644 src/app/styles/about.styles.js
+ create mode 100644 src/app/styles/background.styles.js
+ create mode 100644 src/app/styles/contact.styles.js
+ create mode 100644 src/app/styles/nav.styles.js
+ create mode 100644 src/app/styles/projects.styles.js
+ create mode 100644 src/app/styles/shared.tsx
+ create mode 100644 src/app/styles/splash.styles.js
+ delete mode 100644 src/app/styles/stylesheet.js
+ delete mode 100644 src/app/styles/switcher.module.css
+
+diff --git a/README.md b/README.md
+index c403366..1b58376 100644
+--- a/README.md
++++ b/README.md
+@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
+ 
+ You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ 
+-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
++This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and self-host Fraunces (display) and Figtree (body), two Google Fonts.
+ 
+ ## Learn More
+ 
+diff --git a/src/app/components/background.tsx b/src/app/components/background.tsx
+new file mode 100644
+index 0000000..8f93b8d
+--- /dev/null
++++ b/src/app/components/background.tsx
+@@ -0,0 +1,58 @@
++'use client'
++
++import styled, { keyframes } from "styled-components"
++import { BackgroundLayer } from "../styles/background.styles"
++import { BALL_COLORS } from "../styles/colors"
++
++// Slow corner-anchored drift: a few vw of travel and a gentle swell,
++// GPU-composited, zero JS per frame.
++const drift = keyframes`
++    from { transform: translate(0, 0) scale(1); }
++    to { transform: translate(var(--dx), var(--dy)) scale(1.08); }
++`
++
++const Blob = styled.div<{ $dur: number; $delay: number }>`
++    position: absolute;
++    width: var(--size);
++    height: var(--size);
++    border-radius: 50%;
++    animation: ${drift} ${(props) => props.$dur}s ease-in-out infinite alternate;
++    animation-delay: ${(props) => -props.$delay}s;
++
++    @media (prefers-reduced-motion: reduce) {
++        animation-play-state: paused;
++    }
++`
++
++// Offsets pull each blob partly off-canvas so only a soft field is visible
++const BLOBS = [
++    { size: "min(70vw, 45rem)", top: "-20%", left: "-15%", dx: "6vw", dy: "4vh", dur: 90, delay: 15 },
++    { size: "min(60vw, 40rem)", top: "25%", right: "-20%", dx: "-5vw", dy: "6vh", dur: 120, delay: 45 },
++    { size: "min(65vw, 42rem)", bottom: "-25%", left: "5%", dx: "4vw", dy: "-5vh", dur: 150, delay: 70 },
++]
++
++export default function Background({ theme }: { theme?: string }) {
++    const colors = theme === "dark" ? BALL_COLORS.dark : BALL_COLORS.light
++
++    return (
++        <BackgroundLayer aria-hidden="true">
++            {BLOBS.map((blob, i) => (
++                <Blob
++                    key={i}
++                    $dur={blob.dur}
++                    $delay={blob.delay}
++                    style={{
++                        "--size": blob.size,
++                        "--dx": blob.dx,
++                        "--dy": blob.dy,
++                        top: blob.top,
++                        left: blob.left,
++                        right: blob.right,
++                        bottom: blob.bottom,
++                        background: `radial-gradient(circle at 30% 30%, ${colors[i]}, transparent 70%)`,
++                    } as React.CSSProperties}
++                />
++            ))}
++        </BackgroundLayer>
++    )
++}
+diff --git a/src/app/components/framerBG.tsx b/src/app/components/framerBG.tsx
+deleted file mode 100644
+index 84a291e..0000000
+--- a/src/app/components/framerBG.tsx
++++ /dev/null
+@@ -1,70 +0,0 @@
+-'use client'
+-
+-import styled, { keyframes } from "styled-components"
+-import { FramerContainer } from "../styles/stylesheet"
+-import { BALL_COLORS } from "../styles/colors"
+-
+-// DVD-logo drift: one axis per wrapper, GPU-composited, zero JS per frame.
+-const driftX = keyframes`
+-    from { transform: translateX(0); }
+-    to { transform: translateX(calc(100vw - var(--size))); }
+-`
+-
+-const driftY = keyframes`
+-    from { transform: translateY(0); }
+-    to { transform: translateY(calc(100vh - var(--size))); }
+-`
+-
+-const BallTrackX = styled.div<{ $dur: number; $delay: number }>`
+-    position: absolute;
+-    top: 0;
+-    left: 0;
+-    animation: ${driftX} ${(props) => props.$dur}s linear infinite alternate;
+-    animation-delay: ${(props) => -props.$delay}s;
+-
+-    @media (prefers-reduced-motion: reduce) {
+-        animation-play-state: paused;
+-    }
+-`
+-
+-const Ball = styled.div<{ $dur: number; $delay: number }>`
+-    width: var(--size);
+-    height: var(--size);
+-    border-radius: 50%;
+-    animation: ${driftY} ${(props) => props.$dur}s linear infinite alternate;
+-    animation-delay: ${(props) => -props.$delay}s;
+-
+-    @media (prefers-reduced-motion: reduce) {
+-        animation-play-state: paused;
+-    }
+-`
+-
+-// Prime-ish durations so the paths don't visibly repeat
+-const BALLS = [
+-    { size: "min(45vw, 26rem)", durX: 23, durY: 17, delayX: 5, delayY: 11 },
+-    { size: "min(32vw, 19rem)", durX: 29, durY: 19, delayX: 13, delayY: 3 },
+-    { size: "min(22vw, 13rem)", durX: 31, durY: 13, delayX: 21, delayY: 7 },
+-]
+-
+-export default function FramerBG({ theme }: { theme?: string }) {
+-    const colors = theme === "dark" ? BALL_COLORS.dark : BALL_COLORS.light
+-
+-    return (
+-        <FramerContainer aria-hidden="true">
+-            {BALLS.map((ball, i) => (
+-                <BallTrackX
+-                    key={i}
+-                    $dur={ball.durX}
+-                    $delay={ball.delayX}
+-                    style={{ "--size": ball.size } as React.CSSProperties}
+-                >
+-                    <Ball
+-                        $dur={ball.durY}
+-                        $delay={ball.delayY}
+-                        style={{ background: colors[i] }}
+-                    />
+-                </BallTrackX>
+-            ))}
+-        </FramerContainer>
+-    )
+-}
+diff --git a/src/app/components/nav.tsx b/src/app/components/nav.tsx
+new file mode 100644
+index 0000000..02ace21
+--- /dev/null
++++ b/src/app/components/nav.tsx
+@@ -0,0 +1,103 @@
++'use client'
++
++import { useState, useEffect, useRef } from 'react'
++import { smoothScrollEnabled } from '../hooks/env'
++import {
++    NavBar,
++    NavWordmark,
++    NavLinks,
++    NavLink,
++    StylesMenu,
++    StylesButton,
++    StylesDropdown,
++} from '../styles/nav.styles'
++
++const NAV_OFFSET = -72;
++
++const sections = [
++    { to: 'aboutme', label: 'About' },
++    { to: 'projects', label: 'Projects' },
++    { to: 'contact', label: 'Contact' },
++]
++
++const scrollProps = {
++    spy: true,
++    smooth: smoothScrollEnabled,
++    duration: 600,
++    offset: NAV_OFFSET,
++}
++
++export default function Nav() {
++    const [stylesOpen, setStylesOpen] = useState(false)
++    const menuRef = useRef<HTMLDivElement>(null)
++
++    useEffect(() => {
++        const handleClickOutside = (event: MouseEvent) => {
++            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
++                setStylesOpen(false)
++            }
++        }
++
++        const handleEscape = (event: KeyboardEvent) => {
++            if (event.key === 'Escape') {
++                setStylesOpen(false)
++            }
++        }
++
++        document.addEventListener('mousedown', handleClickOutside)
++        document.addEventListener('keydown', handleEscape)
++        return () => {
++            document.removeEventListener('mousedown', handleClickOutside)
++            document.removeEventListener('keydown', handleEscape)
++        }
++    }, [])
++
++    return (
++        <NavBar aria-label="Main navigation">
++            <NavWordmark
++                to="splash"
++                smooth={smoothScrollEnabled}
++                duration={600}
++                href="#splash"
++                aria-label="Scroll to top"
++            >
++                <span className="full">Jack Davey</span>
++                <span className="short">JD</span>
++            </NavWordmark>
++
++            <NavLinks>
++                {sections.map((section) => (
++                    <NavLink
++                        key={section.to}
++                        to={section.to}
++                        activeClass="active"
++                        href={`#${section.to}`}
++                        {...scrollProps}
++                    >
++                        {section.label}
++                    </NavLink>
++                ))}
++
++                <StylesMenu ref={menuRef}>
++                    <StylesButton
++                        type="button"
++                        onClick={() => setStylesOpen(!stylesOpen)}
++                        aria-expanded={stylesOpen}
++                        aria-label="Other versions of this site"
++                    >
++                        Styles
++                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
++                            <polyline points="6 9 12 15 18 9"></polyline>
++                        </svg>
++                    </StylesButton>
++                    {stylesOpen && (
++                        <StylesDropdown>
++                            <a href="https://jackcdavey.github.io/" title="First version of my portfolio">V0.1</a>
++                            <a href="https://terminal-demo-two.vercel.app/" title="A CLI-based website">CLI</a>
++                        </StylesDropdown>
++                    )}
++                </StylesMenu>
++            </NavLinks>
++        </NavBar>
++    )
++}
+diff --git a/src/app/components/switcher.tsx b/src/app/components/switcher.tsx
+deleted file mode 100644
+index e282919..0000000
+--- a/src/app/components/switcher.tsx
++++ /dev/null
+@@ -1,70 +0,0 @@
+-import React, { useState, useEffect, useRef } from 'react';
+-import styles from '../styles/switcher.module.css';
+-
+-const MenuSwitcher: React.FC = () => {
+-    const [isExpanded, setIsExpanded] = useState(false);
+-    const menuRef = useRef<HTMLButtonElement>(null);
+-
+-    const toggleMenu = () => {
+-        setIsExpanded(!isExpanded);
+-    };
+-
+-    useEffect(() => {
+-        const handleClickOutside = (event: MouseEvent) => {
+-            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+-                setIsExpanded(false);
+-            }
+-        };
+-
+-        const handleEscape = (event: KeyboardEvent) => {
+-            if (event.key === 'Escape') {
+-                setIsExpanded(false);
+-            }
+-        };
+-
+-        document.addEventListener('mousedown', handleClickOutside);
+-        document.addEventListener('keydown', handleEscape);
+-        return () => {
+-            document.removeEventListener('mousedown', handleClickOutside);
+-            document.removeEventListener('keydown', handleEscape);
+-        };
+-    }, []);
+-
+-    return (
+-        <button
+-            type="button"
+-            ref={menuRef}
+-            className={`${styles.menuSwitcher} ${isExpanded ? styles.expanded : ''}`}
+-            onClick={toggleMenu}
+-            aria-expanded={isExpanded}
+-            aria-label="Other versions of this site"
+-        >
+-            <div style={{
+-                display: "flex",
+-                flexDirection: "column",
+-                alignItems: "center",
+-            }}>
+-                <p>Styles</p>
+-                <div className={`${styles.menuArrow} ${isExpanded ? styles.rotated : ''}`}>
+-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+-                        <polyline points="15 18 9 12 15 6"></polyline>
+-                    </svg>
+-                </div>
+-            </div>
+-            {
+-                isExpanded && (
+-                    <div className={styles.menuLinks}>
+-                        <a href="https://jackcdavey.github.io/" title='First version of my portfolio'>
+-                            <p> V0.1</p>
+-                        </a>
+-                        <a href="https://terminal-demo-two.vercel.app/" title='A CLI-based website'>
+-                            <p>CLI</p>
+-                        </a>
+-                    </div>
+-                )
+-            }
+-        </button>
+-    );
+-};
+-
+-export default MenuSwitcher;
+diff --git a/src/app/components/tagline.tsx b/src/app/components/tagline.tsx
+index ba2d9b6..f041555 100644
+--- a/src/app/components/tagline.tsx
++++ b/src/app/components/tagline.tsx
+@@ -1,6 +1,6 @@
+ import React, { useEffect, useState } from "react"
+ import { motion, AnimatePresence } from "framer-motion"
+-import { TaglineTxt } from "../styles/stylesheet"
++import { TaglineTxt } from "../styles/splash.styles"
+ 
+ // const words = ["Developer", "Designer", "Tinkerer", "Photographer", "Audiophile", "Ordained Minister", "Pinewood Derby State Champ (2007-09)", "Plant Dad", "Sudoku Enthusiast"]
+ 
+@@ -19,23 +19,22 @@ const shuffleArray = (array: string[]) => {
+ 
+ export default function Tagline() {
+     const [index, setIndex] = useState(0)
+-    const [shuffledWords, setShuffledWords] = useState([...initialWords, ...shuffleArray(otherWords)])
++    const [shuffledWords] = useState(() => [...initialWords, ...shuffleArray(otherWords)])
+ 
+     useEffect(() => {
+-        const intervalId = setInterval(() => setIndex((index) => index + 1), 2000)
++        const intervalId = setInterval(() => setIndex((index) => index + 1), 2800)
+         return () => {
+-            clearTimeout(intervalId)
++            clearInterval(intervalId)
+         }
+     }, [])
+ 
+     return (
+-        // <AnimatePresence exitBeforeEnter>
+         <AnimatePresence mode="wait">
+             <motion.div
+                 key={index}
+                 animate={{ opacity: 1, y: 0 }}
+-                initial={{ opacity: 0, y: 20 }}
+-                exit={{ opacity: 0, y: -20 }}
++                initial={{ opacity: 0, y: 12 }}
++                exit={{ opacity: 0, y: -12 }}
+                 transition={{ ease: "easeInOut", duration: 0.5 }}
+             >
+                 <TaglineTxt>{shuffledWords[index % shuffledWords.length]}</TaglineTxt>
+diff --git a/src/app/globals.css b/src/app/globals.css
+index 712e47d..7a6ff19 100644
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -1,10 +1,10 @@
+-@import url("https://use.typekit.net/pzl7jlg.css");
+-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap");
+-
++/* Base colors mirror styles/colors.tsx (LIGHTCOLORS/DARKCOLORS). The page is
++   fully client-rendered, so these prevent a flash before hydration. */
+ html {
+   background-color: #FAFCFB;
+   color: #1E2A26;
+   color-scheme: light dark;
++  scroll-padding-top: 4.5rem;
+ }
+ 
+ @media (prefers-color-scheme: dark) {
+@@ -32,82 +32,13 @@ body {
+   }
+ }
+ 
+-p {
+-  font-family: 'Raleway', sans-serif;
+-  text-decoration: none;
++body {
++  font-family: var(--font-body), sans-serif;
+ }
+ 
+-span,
+ p,
+ a {
+-  font-size: 1.2em;
+-}
+-
+-h3 {
+-  font-size: 1.5em;
+-  font-family: 'Raleway', sans-serif;
+-}
+-
+-@media screen and (max-height: 600px) {
+-  div.arrow {
+-    display: none;
+-  }
+-}
+-
+-div.arrow {
+-  width: 4rem;
+-  height: 4rem;
+-  box-sizing: border-box;
+-  position: relative;
+-  transform: rotate(135deg);
+-  cursor: pointer;
+-}
+-
+-div.arrow::before {
+-  content: '';
+-  width: 100%;
+-  height: 100%;
+-  border-width: 0.3rem 0.3rem 0 0;
+-  border-style: solid;
+-  border-color: currentColor;
+-  transition: .1s ease;
+-  display: block;
+-  transform-origin: 100% 0;
+-}
+-
+-div.arrow:after {
+-  content: '';
+-  float: left;
+-  position: relative;
+-  top: -100%;
+-  width: 100%;
+-  height: 100%;
+-  border-width: 0 0.3rem 0 0;
+-  border-style: solid;
+-  border-color: currentColor;
+-  transform-origin: 100% 0;
+-  transition: .2s ease;
+-}
+-
+-div.arrow:hover::after {
+-  transform: rotate(45deg) translateX(-.16vmin) translateY(.4vmin);
+-  height: 110%;
+-}
+-
+-div.arrow:hover::before {
+-  transform: scale(.8);
+-}
+-
+-.scroll-link {
+-  box-sizing: border-box;
+-  position: absolute;
+-  left: 0;
+-  top: 85%;
+-  width: 100%;
+-  height: 4rem;
+-  display: flex;
+-  justify-content: center;
+-  align-items: center;
++  text-decoration: none;
+ }
+ 
+ ul,
+diff --git a/src/app/hooks/env.ts b/src/app/hooks/env.ts
+new file mode 100644
+index 0000000..8a2fb38
+--- /dev/null
++++ b/src/app/hooks/env.ts
+@@ -0,0 +1,13 @@
++// Browser environment checks shared by nav, splash, and any smooth-scroll
++// callers. Safari's smooth scrolling stutters with react-scroll, so it gets
++// instant jumps, as do users who prefer reduced motion.
++export const isSafari: boolean =
++    typeof window !== "undefined" &&
++    /Safari/.test(window.navigator.userAgent) &&
++    !/Chrome/.test(window.navigator.userAgent);
++
++export const prefersReducedMotion: boolean =
++    typeof window !== "undefined" &&
++    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
++
++export const smoothScrollEnabled: boolean = !isSafari && !prefersReducedMotion;
+diff --git a/src/app/hooks/revealText.js b/src/app/hooks/revealText.js
+index ed5399e..09e32c1 100644
+--- a/src/app/hooks/revealText.js
++++ b/src/app/hooks/revealText.js
+@@ -3,7 +3,7 @@
+ import { useEffect } from "react"
+ import { useAnimation } from "framer-motion"
+ import { useInView } from "react-intersection-observer"
+-import { Word, Character } from "../styles/stylesheet"
++import { Word, Character } from "../styles/shared"
+ 
+ export default function AnimatedTitle(props) {
+ 	const text = props.title ?? ""
+@@ -69,11 +69,6 @@ export default function AnimatedTitle(props) {
+ 									aria-hidden="true"
+ 									key={index}
+ 									variants={characterAnimation}
+-									whileHover={{
+-										scale: 1.2,
+-										rotate: Math.random() * 90 + 15,
+-										transition: { duration: 0.2 },
+-									}}
+ 								>
+ 									{character}
+ 								</Character>
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index b4a0f01..fb4e971 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -2,8 +2,22 @@ import type { Metadata, Viewport } from 'next'
+ import { SpeedInsights } from "@vercel/speed-insights/next"
+ import { Analytics } from '@vercel/analytics/react'
+ import Script from 'next/script'
++import { Fraunces, Figtree } from 'next/font/google'
+ import './globals.css'
+ 
++const fraunces = Fraunces({
++  subsets: ['latin'],
++  axes: ['opsz'],
++  variable: '--font-display',
++  display: 'swap',
++})
++
++const figtree = Figtree({
++  subsets: ['latin'],
++  variable: '--font-body',
++  display: 'swap',
++})
++
+ 
+ export const metadata: Metadata = {
+   title: 'Jack Davey',
+@@ -24,8 +38,8 @@ export default function RootLayout({
+   children: React.ReactNode
+ }) {
+   return (
+-    <html lang="en">
+-      
++    <html lang="en" className={`${fraunces.variable} ${figtree.variable}`}>
++
+       <body>
+         {children}
+         <SpeedInsights />
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index de21e34..8a58904 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -7,9 +7,9 @@ import { ThemeProvider } from 'styled-components'
+ import { MotionConfig } from 'framer-motion'
+ import { useState, useEffect } from 'react'
+ import { DARKCOLORS, LIGHTCOLORS } from './styles/colors'
+-import MenuSwitcher from './components/switcher'
+ 
+-const FramerBG = dynamic(() => import('./components/framerBG'), { ssr: false })
++const Nav = dynamic(() => import('./components/nav'), { ssr: false })
++const Background = dynamic(() => import('./components/background'), { ssr: false })
+ const AboutMe = dynamic(() => import('./sections/aboutMe'), { ssr: false })
+ const Splash = dynamic(() => import('./sections/splash'), { ssr: false })
+ const Projects = dynamic(() => import('./sections/projects'), { ssr: false })
+@@ -35,8 +35,8 @@ export default function Home() {
+     <ThemeProvider theme={theme === 'dark' ? DARKCOLORS : LIGHTCOLORS}>
+       <MotionConfig reducedMotion="user">
+         <main className={styles.main}>
+-          <MenuSwitcher />
+-          <FramerBG theme={theme} />
++          <Nav />
++          <Background theme={theme} />
+           <Element name="splash">
+             <Splash />
+           </Element>
+diff --git a/src/app/sections/aboutMe.tsx b/src/app/sections/aboutMe.tsx
+index ac720fa..ddb5445 100644
+--- a/src/app/sections/aboutMe.tsx
++++ b/src/app/sections/aboutMe.tsx
+@@ -4,120 +4,114 @@ import AnimatedTitle from "../hooks/revealText"
+ import { Variants } from "framer-motion"
+ 
+ import {
+-    SectionWrap,
+-    SectionRow,
+-    ContentColumn,
+-    ContentRow,
+-    ContentBox,
+-    ChipContainer,
+-    ChipLabel,
+-    SectionTitle,
+-    ProfileImageWrap,
+-    ResumeDownload,
++    SectionShell,
++    SectionInner,
++    SectionHeading,
++    Eyebrow,
+     ProjectLink,
+-    ProfileImage,
+     GraphicPath,
+-} from "../styles/stylesheet.js"
++} from "../styles/shared"
++import {
++    AboutGrid,
++    PortraitColumn,
++    Portrait,
++    ResumeButton,
++    BioColumn,
++    BioLede,
++    BioBody,
++    ChipSection,
++    ChipGroup,
++    Chip,
++} from "../styles/about.styles"
+ 
+-const containerVariants: Variants = {
++const groupVariants: Variants = {
+     animate: {
+         transition: {
+-            staggerChildren: 0.1,
++            staggerChildren: 0.04,
+         },
+     },
+ };
+ 
+ const chipVariants: Variants = {
+-    initial: { y: 700 },
+-    animate: { y: 0 },
++    initial: { opacity: 0, y: 16 },
++    animate: { opacity: 1, y: 0 },
+ };
+ 
++const bioLede = "Led by a lifelong passion for technology and aesthetics, I graduated from Santa Clara University with a B.S. in Web Design and Engineering in 2022, followed by earning my M.S. in Engineering Management and Leadership in 2023."
++
+ export default function AboutMe() {
+     const skills = ["Web Design", "Creative Cloud", "Professional Writing", "UI / UX", "SolidWorks", "Graphic Design", "Electronics Repair", "Figma", "Git / VCS"]
+ 
+     const technologies = ["React", "Angular", "NextJS", "TypeScript", "JavaScript", "Swift", "C", "CSS3", "PHP", "SQL", "Ruby", "Python", "SwiftUI", "Tailwind", "GraphQL"]
+ 
+     return (
+-        <SectionWrap>
+-            <SectionRow>
+-                <SectionTitle>
++        <SectionShell $band>
++            <SectionInner>
++                <Eyebrow>01 — About</Eyebrow>
++                <SectionHeading>
+                     <AnimatedTitle {...{ "title": "About Me" }} />
+-                </SectionTitle>
+-            </SectionRow>
+-            <SectionRow>
+-                <ProfileImageWrap>
+-                    <ProfileImage
+-                        src="/me-large.webp"
+-                        srcSet="/me-small.webp 250w, /me-medium.webp 500w, /me-large.webp 1000w"
+-                        sizes="(max-width: 640px) 40vw, 18vw"
+-                        alt="Jack Davey"
+-                    />
++                </SectionHeading>
++
++                <AboutGrid>
++                    <PortraitColumn>
++                        <Portrait
++                            src="/me-large.webp"
++                            srcSet="/me-small.webp 250w, /me-medium.webp 500w, /me-large.webp 1000w"
++                            sizes="(max-width: 900px) 20rem, 25vw"
++                            alt="Jack Davey"
++                        />
++
++                        <ProjectLink href="/Resume.png" target="_blank" rel="noopener noreferrer" download="JackDaveyResume.png">
++                            <ResumeButton>
++                                Resume
++                                <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" aria-hidden="true">
++                                    <GraphicPath d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
++                                </svg>
++                            </ResumeButton>
++                        </ProjectLink>
++                    </PortraitColumn>
+ 
+-                    <ProjectLink href="/resume.png" target="_blank" rel="noopener noreferrer" download="JackDaveyResume.png">
+-                        <ResumeDownload>
+-                            Resume
+-                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" aria-hidden="true">
+-                                <GraphicPath d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
+-                            </svg>
+-                        </ResumeDownload>
+-                    </ProjectLink>
+-                </ProfileImageWrap>
+-                <div style={{ display: "flex", flexDirection: "column", paddingBottom: '1rem' }}>
+-                    <p>
+-                        Led by a lifelong passion for technology and aesthetics, I graduated from Santa Clara University with a B.S. in Web Design and Engineering in 2022, followed by earning my M.S. in Engineering Management and Leadership in 2023. Having spent my entire life in California, I grew up with an immense appreciation for the beauty and simplicity of nature. I&apos;ve honed my skills through my experience as a UI Developer at Relyion Energy and as a development Research Assistant at SCU, and now as a Front‑End Engineer at LPL Financial, where I build and maintain an Angular/Tailwind portal used daily by thousands of advisors, blending technical expertise with creative design. I love to tinker, design, and create, but when I&apos;m not working away at my desk, you&apos;ll likely find me hooking some shots at the driving range, or out exploring the mountains with my hammock and camera.				</p>
+-                </div>
++                    <BioColumn>
++                        <BioLede>{bioLede}</BioLede>
++                        <BioBody>
++                            Having spent my entire life in California, I grew up with an immense appreciation for the beauty and simplicity of nature. I&apos;ve honed my skills through my experience as a UI Developer at Relyion Energy and as a development Research Assistant at SCU, and now as a Front‑End Engineer at LPL Financial, where I build and maintain an Angular/Tailwind portal used daily by thousands of advisors, blending technical expertise with creative design. I love to tinker, design, and create, but when I&apos;m not working away at my desk, you&apos;ll likely find me hooking some shots at the driving range, or out exploring the mountains with my hammock and camera.
++                        </BioBody>
++                    </BioColumn>
++                </AboutGrid>
+ 
+-            </SectionRow>
+-            <SectionRow>
+-                <div>
+-                    <ContentBox>
+-                        <ContentRow>
+-                            <ContentColumn>
+-                                <h3>Technologies</h3>
+-                            </ContentColumn>
+-                            <ContentColumn>
+-                                <h3>Skills</h3>
+-                            </ContentColumn>
+-                        </ContentRow>
+-                        <ContentRow>
+-                            <ContentColumn>
+-                                <ContentBox
+-                                    variants={containerVariants}
+-                                    initial="initial"
+-                                    viewport={{ once: true }}
+-                                    whileInView="animate"
+-                                >
+-                                    {technologies.map((tech) => (
+-                                        <ChipContainer
+-                                            key={tech}
+-                                            variants={chipVariants}
+-                                        >
+-                                            <ChipLabel>{tech}</ChipLabel>
+-                                        </ChipContainer>
+-                                    ))}
+-                                </ContentBox>
+-                            </ContentColumn>
+-                            <ContentColumn>
+-                                <ContentBox
+-                                    variants={containerVariants}
+-                                    initial="initial"
+-                                    viewport={{ once: true }}
+-                                    whileInView="animate"
+-                                >
+-                                    {skills.map((skill) => (
+-                                        <ChipContainer
+-                                            key={skill}
+-                                            variants={chipVariants}
+-                                        >
+-                                            <ChipLabel>{skill}</ChipLabel>
+-                                        </ChipContainer>
+-                                    ))}
+-                                </ContentBox>
+-                            </ContentColumn>
+-                        </ContentRow>
+-                    </ContentBox>
+-                </div>
+-            </SectionRow>
+-        </SectionWrap >
++                <ChipSection>
++                    <div>
++                        <Eyebrow>Technologies</Eyebrow>
++                        <ChipGroup
++                            variants={groupVariants}
++                            initial="initial"
++                            viewport={{ once: true }}
++                            whileInView="animate"
++                        >
++                            {technologies.map((tech) => (
++                                <Chip key={tech} variants={chipVariants}>
++                                    {tech}
++                                </Chip>
++                            ))}
++                        </ChipGroup>
++                    </div>
++                    <div>
++                        <Eyebrow>Skills</Eyebrow>
++                        <ChipGroup
++                            variants={groupVariants}
++                            initial="initial"
++                            viewport={{ once: true }}
++                            whileInView="animate"
++                        >
++                            {skills.map((skill) => (
++                                <Chip key={skill} variants={chipVariants}>
++                                    {skill}
++                                </Chip>
++                            ))}
++                        </ChipGroup>
++                    </div>
++                </ChipSection>
++            </SectionInner>
++        </SectionShell>
+     )
+ }
+diff --git a/src/app/sections/contact.tsx b/src/app/sections/contact.tsx
+index 503a3f1..e999921 100644
+--- a/src/app/sections/contact.tsx
++++ b/src/app/sections/contact.tsx
+@@ -1,43 +1,54 @@
+ 'use client'
+ 
+ import AnimatedTitle from "../hooks/revealText"
+-import { SectionWrap, SectionRow, SectionTitle, ContactForm, ContactFormWrap, MessageInput, EmailInput, ContactSubmit, InnerContactFormWrap, ContactLabel, ContactLabelText, MessageLabelText } from "../styles/stylesheet.js"
++import {
++    SectionShell,
++    SectionInner,
++    SectionHeading,
++    Eyebrow,
++} from "../styles/shared"
++import {
++    ContactColumn,
++    ContactInvite,
++    Field,
++    FieldLabel,
++    TextInput,
++    TextArea,
++    SubmitButton,
++} from "../styles/contact.styles"
+ 
+ export default function Contact() {
+     return (
+-        <SectionWrap
+-            //Contact section is displayed at the end of the page
+-            style={{ marginBottom: 0 }}
+-        >
+-            <SectionRow>
+-                <SectionTitle>
+-                    {" "}
+-                    <AnimatedTitle {...{ "title": "Contact Me!" }} />{" "}
+-                </SectionTitle>
+-            </SectionRow>
+-            <SectionRow>
+-                <ContactForm action="https://formspree.io/f/xgedrjkp" method="POST">
+-                    <ContactFormWrap>
+-                        <InnerContactFormWrap>
+-                            <ContactLabel>
+-                                <ContactLabelText>Name:</ContactLabelText>
+-                                <EmailInput type="text" name="contactname" autoComplete="name" />
+-                            </ContactLabel>
+-                            <ContactLabel>
+-                                <ContactLabelText>Email:</ContactLabelText>
+-                                <EmailInput type="email" name="email" autoComplete="email" />
+-                            </ContactLabel>
+-                        </InnerContactFormWrap>
+-                        <InnerContactFormWrap>
+-                            <ContactLabel>
+-                                <MessageLabelText>Message:</MessageLabelText>
+-                                <MessageInput name="message"></MessageInput>
+-                            </ContactLabel>
+-                        </InnerContactFormWrap>
+-                    </ContactFormWrap>
+-                    <ContactSubmit type="submit">Send</ContactSubmit>
+-                </ContactForm>
+-            </SectionRow>
+-        </SectionWrap>
++        <SectionShell $band $last>
++            <SectionInner>
++                <Eyebrow>03 — Contact</Eyebrow>
++                <SectionHeading>
++                    <AnimatedTitle {...{ "title": "Contact Me!" }} />
++                </SectionHeading>
++
++                <ContactColumn action="https://formspree.io/f/xgedrjkp" method="POST">
++                    <ContactInvite>
++                        Have a project in mind, or just want to say hi?
++                    </ContactInvite>
++
++                    <Field>
++                        <FieldLabel>Name</FieldLabel>
++                        <TextInput type="text" name="contactname" autoComplete="name" required />
++                    </Field>
++
++                    <Field>
++                        <FieldLabel>Email</FieldLabel>
++                        <TextInput type="email" name="email" autoComplete="email" required />
++                    </Field>
++
++                    <Field>
++                        <FieldLabel>Message</FieldLabel>
++                        <TextArea name="message" required></TextArea>
++                    </Field>
++
++                    <SubmitButton type="submit">Send</SubmitButton>
++                </ContactColumn>
++            </SectionInner>
++        </SectionShell>
+     )
+ }
+diff --git a/src/app/sections/projects.tsx b/src/app/sections/projects.tsx
+index ac77cc9..977be7f 100644
+--- a/src/app/sections/projects.tsx
++++ b/src/app/sections/projects.tsx
+@@ -3,18 +3,28 @@
+ import AnimatedTitle from "../hooks/revealText"
+ import { CATEGORY_COLORS } from "../styles/colors"
+ 
+-import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, ProjectDescription, GraphicPath, ProjectLink, TransparentSectionWrap, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
+-
+-
+-const isSafari: boolean = typeof window !== "undefined" && /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
+-
+-const projectOffset = 200;
++import {
++    SectionShell,
++    SectionInner,
++    SectionHeading,
++    Eyebrow,
++    GraphicPath,
++    EASE,
++} from "../styles/shared"
++import {
++    ProjectIndex,
++    ProjectRow,
++    ProjectNumber,
++    ProjectName,
++    ProjectMeta,
++    ProjectCategoryChip,
++    ProjectBlurb,
++    GithubOutro,
++} from "../styles/projects.styles"
+ 
+ interface ProjectProps {
+     title: string
+     description: string
+-    graphic?: boolean
+-    svgPath?: string
+     link?: string
+     type?: string
+ }
+@@ -57,91 +67,63 @@ const projects: ProjectProps[] = [
+         link: "https://github.com/jackcdavey/BoredAtTheNews",
+         type: "Web App"
+     },
+-    {
+-        title: "GitHub",
+-        description: "Check out all my other work and projects over on GitHub!",
+-        link: "https://github.com/jackcdavey",
+-        svgPath: "M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z",
+-        graphic: true,
+-    }
+ ]
+ 
++const githubSvgPath = "M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+ 
+-const CategoryChip = ({ type }: { type?: string }) => {
+-    if (!type || !CATEGORY_COLORS[type]) return null;
+-    return (
+-        <div>
+-            <ProjectCategoryChip style={{ backgroundColor: CATEGORY_COLORS[type] }}>
+-                {type}
+-            </ProjectCategoryChip>
+-        </div>
+-    )
++const rowMotion = {
++    initial: { opacity: 0, y: 24 },
++    whileInView: { opacity: 1, y: 0 },
++    transition: { duration: 0.5, ease: EASE },
++    viewport: { once: true, margin: "-10% 0px" },
+ }
+ 
+-
+ export default function Projects() {
+ 
+     return (
+-        <TransparentSectionWrap>
+-            <SectionRow>
+-                <SectionTitle>
+-                    {" "}
+-                    <AnimatedTitle {...{ "title": "Work & Projects" }} />{" "}
+-                </SectionTitle>
+-            </SectionRow>
+-
+-            {projects.map((project, index) => {
+-                const card = (
+-                    <ProjectLink href={project.link} target='_blank' rel="noopener noreferrer">
+-                        <ProjectCard>
+-                            <ProjectTitle>
+-                                {project.title}
+-                            </ProjectTitle>
+-                            <CategoryChip type={project.type} />
+-                            {project.graphic &&
+-                                <ProjectGraphic viewBox="0 0 98 96" aria-hidden="true">
+-                                    <GraphicPath d={project.svgPath} />
+-                                </ProjectGraphic>
+-                            }
+-                        </ProjectCard>
+-                    </ProjectLink>
+-                );
+-
+-                const description = (
+-                    <ProjectDescription>
+-                        <span style={{ width: "70%" }}>
+-                            {project.description}
+-                        </span>
+-                    </ProjectDescription>
+-                );
+-
+-                const rowProps = {
+-                    initial: { y: projectOffset },
+-                    whileInView: { y: 0 },
+-                    transition: {
+-                        type: isSafari ? "tween" as const : "spring" as const,
+-                        stiffness: 300,
+-                        damping: 20
+-                    },
+-                    viewport: { once: true },
+-                };
+-
+-                if (index % 2 === 0) {
+-                    return (
+-                        <ProjRowRight key={index} {...rowProps}>
+-                            {description}
+-                            {card}
+-                        </ProjRowRight>
+-                    )
+-                }
+-                return (
+-                    <ProjRowLeft key={index} {...rowProps}>
+-                        {card}
+-                        {description}
+-                    </ProjRowLeft>
+-                )
+-            })}
+-
+-        </TransparentSectionWrap>
++        <SectionShell>
++            <SectionInner>
++                <Eyebrow>02 — Work</Eyebrow>
++                <SectionHeading>
++                    <AnimatedTitle {...{ "title": "Work & Projects" }} />
++                </SectionHeading>
++
++                <ProjectIndex>
++                    {projects.map((project, index) => (
++                        <ProjectRow
++                            key={project.title}
++                            href={project.link}
++                            target="_blank"
++                            rel="noopener noreferrer"
++                            {...rowMotion}
++                        >
++                            <ProjectNumber>{String(index + 1).padStart(2, "0")}</ProjectNumber>
++                            <ProjectName>{project.title}</ProjectName>
++                            <ProjectMeta>
++                                {project.type && CATEGORY_COLORS[project.type] && (
++                                    <ProjectCategoryChip style={{ backgroundColor: CATEGORY_COLORS[project.type] }}>
++                                        {project.type}
++                                    </ProjectCategoryChip>
++                                )}
++                                <span className="arrow-glyph" aria-hidden="true">→</span>
++                            </ProjectMeta>
++                            <ProjectBlurb>{project.description}</ProjectBlurb>
++                        </ProjectRow>
++                    ))}
++                </ProjectIndex>
++
++                <GithubOutro
++                    href="https://github.com/jackcdavey"
++                    target="_blank"
++                    rel="noopener noreferrer"
++                    {...rowMotion}
++                >
++                    <svg viewBox="0 0 98 96" aria-hidden="true">
++                        <GraphicPath d={githubSvgPath} />
++                    </svg>
++                    More on GitHub →
++                </GithubOutro>
++            </SectionInner>
++        </SectionShell>
+     )
+ }
+diff --git a/src/app/sections/splash.tsx b/src/app/sections/splash.tsx
+index f354d20..87ed83e 100644
+--- a/src/app/sections/splash.tsx
++++ b/src/app/sections/splash.tsx
+@@ -2,36 +2,38 @@
+ 
+ import Tagline from "../components/tagline"
+ import AnimatedTitle from "../hooks/revealText"
+-import { SplashTitleWrap, SplashTaglineWrap, SplashWrap, ScrollArrowSegment } from "../styles/stylesheet"
+-import { Link } from "react-scroll"
+-
+-const isSafari: boolean = typeof window !== "undefined" && /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
+-
+-const prefersReducedMotion: boolean = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+-
++import { smoothScrollEnabled } from "../hooks/env"
++import {
++    SplashWrap,
++    SplashTitle,
++    SplashTaglineRow,
++    ScrollCueLink,
++    ScrollCueLabel,
++    ScrollCueLine,
++} from "../styles/splash.styles"
+ 
+ export default function Splash() {
+     return (
+         <SplashWrap>
+-            <SplashTitleWrap>
++            <SplashTitle>
+                 <AnimatedTitle {...{ "title": "Hey, I'm Jack" }} />
+-            </SplashTitleWrap>
++            </SplashTitle>
+ 
+-            <SplashTaglineWrap>
++            <SplashTaglineRow>
+                 <Tagline />
+-            </SplashTaglineWrap>
+-            <Link
+-                activeClass="active"
++            </SplashTaglineRow>
++
++            <ScrollCueLink
+                 to="aboutme"
+-                spy={true}
+-                smooth={!isSafari && !prefersReducedMotion}
++                smooth={smoothScrollEnabled}
+                 duration={700}
+-                className="scroll-link"
++                offset={-72}
+                 href="#aboutme"
+                 aria-label="Scroll to About Me section"
+             >
+-                <ScrollArrowSegment className="arrow" />
+-            </Link>
++                <ScrollCueLabel>Scroll</ScrollCueLabel>
++                <ScrollCueLine />
++            </ScrollCueLink>
+         </SplashWrap>
+     )
+ }
+diff --git a/src/app/styles/about.styles.js b/src/app/styles/about.styles.js
+new file mode 100644
+index 0000000..c05d06a
+--- /dev/null
++++ b/src/app/styles/about.styles.js
+@@ -0,0 +1,98 @@
++'use client'
++
++import styled from "styled-components"
++import { motion } from "framer-motion"
++import { media } from "./breakpoints"
++
++export const AboutGrid = styled.div`
++	display: grid;
++	grid-template-columns: minmax(14rem, 1fr) 2fr;
++	gap: clamp(2rem, 5vw, 5rem);
++	align-items: start;
++
++	${media.md} {
++		grid-template-columns: 1fr;
++	}
++`
++
++export const PortraitColumn = styled.div`
++	display: flex;
++	flex-direction: column;
++	align-items: center;
++	gap: 1.5rem;
++
++	${media.md} {
++		max-width: 20rem;
++		margin-inline: auto;
++	}
++`
++
++export const Portrait = styled.img`
++	width: 100%;
++	height: auto;
++	border-radius: 1rem;
++	border: 1px solid ${(props) => props.theme.darkShade}1A;
++`
++
++export const ResumeButton = styled.span`
++	display: inline-flex;
++	align-items: center;
++	gap: 0.5rem;
++	padding: 0.7rem 1.4rem;
++	border-radius: 999px;
++	background: ${(props) => props.theme.mainBrand};
++	color: ${(props) => props.theme.lightShade};
++	font-family: var(--font-body), sans-serif;
++	font-size: 0.95rem;
++	font-weight: 600;
++	transition: transform 0.2s ease, box-shadow 0.2s ease;
++
++	&:hover {
++		transform: translateY(-2px);
++		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
++	}
++`
++
++export const BioColumn = styled.div`
++	display: flex;
++	flex-direction: column;
++	gap: 1.5rem;
++`
++
++export const BioLede = styled.p`
++	font-family: var(--font-display), serif;
++	font-size: clamp(1.4rem, 2.6vw, 2rem);
++	line-height: 1.3;
++	color: ${(props) => props.theme.darkShade};
++`
++
++export const BioBody = styled.p`
++	font-size: 1.1rem;
++	line-height: 1.7;
++	max-width: 62ch;
++	color: ${(props) => props.theme.darkShade};
++`
++
++export const ChipSection = styled.div`
++	margin-top: clamp(2.5rem, 6vh, 4rem);
++	display: flex;
++	flex-direction: column;
++	gap: 2rem;
++`
++
++export const ChipGroup = styled(motion.div)`
++	display: flex;
++	flex-wrap: wrap;
++	gap: 0.5rem;
++`
++
++export const Chip = styled(motion.span)`
++	padding: 0.45rem 0.95rem;
++	border-radius: 999px;
++	border: 1px solid ${(props) => props.theme.darkAccent}66;
++	background: transparent;
++	color: ${(props) => props.theme.darkAccent};
++	font-family: var(--font-body), sans-serif;
++	font-size: 0.9rem;
++	font-weight: 400;
++`
+diff --git a/src/app/styles/background.styles.js b/src/app/styles/background.styles.js
+new file mode 100644
+index 0000000..04e37a9
+--- /dev/null
++++ b/src/app/styles/background.styles.js
+@@ -0,0 +1,15 @@
++'use client'
++
++import styled from "styled-components"
++
++export const BackgroundLayer = styled.div`
++	height: 100vh;
++	width: 100%;
++	position: fixed;
++	top: 0;
++	left: 0;
++	z-index: -1;
++	overflow: hidden;
++	filter: blur(60px);
++	background: ${(props) => props.theme.lightShade};
++`
+diff --git a/src/app/styles/contact.styles.js b/src/app/styles/contact.styles.js
+new file mode 100644
+index 0000000..4a3545c
+--- /dev/null
++++ b/src/app/styles/contact.styles.js
+@@ -0,0 +1,109 @@
++'use client'
++
++import styled from "styled-components"
++
++export const ContactColumn = styled.form`
++	display: flex;
++	flex-direction: column;
++	gap: 1.75rem;
++	width: min(100%, 38rem);
++	margin-inline: auto;
++`
++
++export const ContactInvite = styled.p`
++	font-size: 1.1rem;
++	line-height: 1.6;
++	color: ${(props) => props.theme.darkShade};
++	margin-bottom: 1rem;
++`
++
++export const Field = styled.label`
++	display: flex;
++	flex-direction: column;
++	gap: 0.35rem;
++	width: 100%;
++`
++
++export const FieldLabel = styled.span`
++	font-family: var(--font-body), sans-serif;
++	font-size: 0.8rem;
++	font-weight: 500;
++	letter-spacing: 0.18em;
++	text-transform: uppercase;
++	color: ${(props) => props.theme.darkAccent};
++	text-align: left;
++`
++
++export const TextInput = styled.input`
++	background: transparent;
++	border: none;
++	border-bottom: 1px solid ${(props) => props.theme.darkShade}59;
++	border-radius: 0;
++	padding: 0.6rem 0.1rem;
++	font-family: var(--font-body), sans-serif;
++	font-size: 1.05rem;
++	color: ${(props) => props.theme.darkShade};
++	width: 100%;
++	box-sizing: border-box;
++	transition: border-color 0.2s ease;
++
++	&:focus {
++		border-bottom-color: ${(props) => props.theme.mainBrand};
++		outline: none;
++	}
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: 2px;
++	}
++`
++
++export const TextArea = styled.textarea`
++	background: transparent;
++	border: none;
++	border-bottom: 1px solid ${(props) => props.theme.darkShade}59;
++	border-radius: 0;
++	padding: 0.6rem 0.1rem;
++	font-family: var(--font-body), sans-serif;
++	font-size: 1.05rem;
++	color: ${(props) => props.theme.darkShade};
++	width: 100%;
++	box-sizing: border-box;
++	min-height: 7rem;
++	resize: vertical;
++	transition: border-color 0.2s ease;
++
++	&:focus {
++		border-bottom-color: ${(props) => props.theme.mainBrand};
++		outline: none;
++	}
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: 2px;
++	}
++`
++
++export const SubmitButton = styled.button`
++	align-self: flex-start;
++	padding: 0.85rem 2.25rem;
++	border: none;
++	border-radius: 999px;
++	font-family: var(--font-body), sans-serif;
++	font-size: 1rem;
++	font-weight: 600;
++	color: ${(props) => props.theme.lightShade};
++	background-color: ${(props) => props.theme.mainBrand};
++	cursor: pointer;
++	transition: transform 0.2s ease, box-shadow 0.2s ease;
++
++	&:hover {
++		transform: translateY(-2px);
++		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
++	}
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: 2px;
++	}
++`
+diff --git a/src/app/styles/nav.styles.js b/src/app/styles/nav.styles.js
+new file mode 100644
+index 0000000..373cf05
+--- /dev/null
++++ b/src/app/styles/nav.styles.js
+@@ -0,0 +1,155 @@
++'use client'
++
++import styled from "styled-components"
++import { Link } from "react-scroll"
++import { media } from "./breakpoints"
++
++export const NavBar = styled.nav`
++	position: fixed;
++	top: 0;
++	left: 0;
++	right: 0;
++	z-index: 100;
++	display: flex;
++	justify-content: space-between;
++	align-items: center;
++	padding: 0.9rem clamp(1rem, 4vw, 3rem);
++	/* Hex-alpha over the theme color keeps the animated backdrop visible */
++	background: ${(props) => props.theme.lightShade}CC;
++	backdrop-filter: blur(12px);
++	-webkit-backdrop-filter: blur(12px);
++	border-bottom: 1px solid ${(props) => props.theme.darkShade}14;
++	box-sizing: border-box;
++
++	${media.sm} {
++		padding: 0.6rem 1rem;
++	}
++`
++
++export const NavWordmark = styled(Link)`
++	font-family: var(--font-display), serif;
++	font-size: 1.15rem;
++	font-weight: 600;
++	color: ${(props) => props.theme.mainBrand};
++	cursor: pointer;
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: 2px;
++	}
++
++	.full {
++		display: inline;
++	}
++	.short {
++		display: none;
++	}
++
++	${media.sm} {
++		.full {
++			display: none;
++		}
++		.short {
++			display: inline;
++		}
++	}
++`
++
++export const NavLinks = styled.div`
++	display: flex;
++	align-items: center;
++	gap: clamp(0.75rem, 3vw, 2rem);
++`
++
++export const NavLink = styled(Link)`
++	font-family: var(--font-body), sans-serif;
++	font-size: 0.9rem;
++	letter-spacing: 0.06em;
++	text-transform: uppercase;
++	color: ${(props) => props.theme.darkShade};
++	cursor: pointer;
++	padding-bottom: 2px;
++	border-bottom: 2px solid transparent;
++	transition: color 0.2s ease, border-color 0.2s ease;
++
++	&.active {
++		color: ${(props) => props.theme.darkAccent};
++		border-bottom-color: ${(props) => props.theme.mainBrand};
++	}
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: 2px;
++	}
++
++	${media.sm} {
++		font-size: 0.8rem;
++	}
++`
++
++export const StylesMenu = styled.div`
++	position: relative;
++`
++
++export const StylesButton = styled.button`
++	font-family: var(--font-body), sans-serif;
++	font-size: 0.9rem;
++	letter-spacing: 0.06em;
++	text-transform: uppercase;
++	color: ${(props) => props.theme.darkShade};
++	background: none;
++	border: none;
++	cursor: pointer;
++	padding: 0 0 2px 0;
++	display: flex;
++	align-items: center;
++	gap: 0.3rem;
++
++	svg {
++		transition: transform 0.2s ease;
++	}
++
++	&[aria-expanded="true"] svg {
++		transform: rotate(180deg);
++	}
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: 2px;
++	}
++
++	${media.sm} {
++		font-size: 0.8rem;
++	}
++`
++
++export const StylesDropdown = styled.div`
++	position: absolute;
++	top: calc(100% + 0.75rem);
++	right: 0;
++	display: flex;
++	flex-direction: column;
++	gap: 0.6rem;
++	min-width: 8rem;
++	padding: 0.9rem 1.1rem;
++	border-radius: 0.75rem;
++	background: ${(props) => props.theme.lightShade}E6;
++	backdrop-filter: blur(12px);
++	-webkit-backdrop-filter: blur(12px);
++	border: 1px solid ${(props) => props.theme.darkShade}14;
++
++	a {
++		font-family: var(--font-body), sans-serif;
++		font-size: 0.95rem;
++		color: ${(props) => props.theme.darkShade};
++
++		&:hover {
++			color: ${(props) => props.theme.darkAccent};
++		}
++
++		&:focus-visible {
++			outline: 2px solid ${(props) => props.theme.darkAccent};
++			outline-offset: 2px;
++		}
++	}
++`
+diff --git a/src/app/styles/page.module.css b/src/app/styles/page.module.css
+index 7341c4b..2ba593a 100644
+--- a/src/app/styles/page.module.css
++++ b/src/app/styles/page.module.css
+@@ -1,8 +1,7 @@
+ .main {
+   display: flex;
+   flex-direction: column;
+-  justify-content: space-between;
+-  align-items: center;
++  align-items: stretch;
+   min-height: 100vh;
+   overflow: hidden;
+ }
+diff --git a/src/app/styles/projects.styles.js b/src/app/styles/projects.styles.js
+new file mode 100644
+index 0000000..c8001c5
+--- /dev/null
++++ b/src/app/styles/projects.styles.js
+@@ -0,0 +1,133 @@
++'use client'
++
++import styled from "styled-components"
++import { motion } from "framer-motion"
++import { media } from "./breakpoints"
++
++export const ProjectIndex = styled.div`
++	display: flex;
++	flex-direction: column;
++	width: 100%;
++`
++
++// The whole row is the link
++export const ProjectRow = styled(motion.a)`
++	display: grid;
++	grid-template-columns: 4.5rem 1fr auto;
++	column-gap: clamp(1rem, 3vw, 2.5rem);
++	align-items: baseline;
++	padding: clamp(1.5rem, 4vh, 2.5rem) clamp(0.5rem, 2vw, 1.5rem);
++	border-top: 1px solid ${(props) => props.theme.darkShade}26;
++	text-decoration: none;
++	transition: background 0.25s ease;
++
++	&:last-of-type {
++		border-bottom: 1px solid ${(props) => props.theme.darkShade}26;
++	}
++
++	&:hover {
++		background: ${(props) => props.theme.lightAccent}99;
++
++		.arrow-glyph {
++			transform: translateX(4px);
++		}
++
++		h3 {
++			color: ${(props) => props.theme.darkAccent};
++		}
++	}
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: -2px;
++	}
++
++	${media.sm} {
++		grid-template-columns: 3rem 1fr;
++		row-gap: 0.75rem;
++	}
++`
++
++export const ProjectNumber = styled.span`
++	font-family: var(--font-display), serif;
++	font-size: clamp(1.1rem, 2vw, 1.5rem);
++	color: ${(props) => props.theme.darkShade}59;
++`
++
++export const ProjectName = styled.h3`
++	font-family: var(--font-display), serif;
++	font-size: clamp(1.6rem, 3.5vw, 2.75rem);
++	font-weight: 500;
++	line-height: 1.1;
++	color: ${(props) => props.theme.darkShade};
++	transition: color 0.25s ease;
++`
++
++export const ProjectMeta = styled.span`
++	display: flex;
++	align-items: center;
++	gap: 0.75rem;
++
++	.arrow-glyph {
++		display: inline-block;
++		font-size: 1.25rem;
++		color: ${(props) => props.theme.darkAccent};
++		transition: transform 0.25s ease;
++	}
++
++	${media.sm} {
++		grid-column: 2;
++		grid-row: 2;
++	}
++`
++
++export const ProjectCategoryChip = styled.span`
++	display: inline-flex;
++	align-items: center;
++	padding: 0.3rem 0.75rem;
++	border-radius: 1.5rem;
++	font-family: var(--font-body), sans-serif;
++	font-size: 0.75rem;
++	font-weight: 700;
++	color: #FFFFFF;
++`
++
++export const ProjectBlurb = styled.p`
++	grid-column: 2;
++	font-size: 1rem;
++	line-height: 1.6;
++	color: ${(props) => props.theme.darkShade}D9;
++	max-width: 58ch;
++	margin-top: 0.5rem;
++
++	${media.sm} {
++		grid-row: 3;
++	}
++`
++
++export const GithubOutro = styled(motion.a)`
++	display: flex;
++	justify-content: center;
++	align-items: center;
++	gap: 0.75rem;
++	padding: clamp(2rem, 6vh, 3.5rem) 1rem;
++	font-family: var(--font-display), serif;
++	font-size: clamp(1.3rem, 2.5vw, 1.9rem);
++	color: ${(props) => props.theme.darkAccent};
++	text-decoration: none;
++	transition: color 0.25s ease;
++
++	svg {
++		width: 1.5rem;
++		height: auto;
++	}
++
++	&:hover {
++		color: ${(props) => props.theme.mainBrand};
++	}
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: 2px;
++	}
++`
+diff --git a/src/app/styles/shared.tsx b/src/app/styles/shared.tsx
+new file mode 100644
+index 0000000..1bcf2d9
+--- /dev/null
++++ b/src/app/styles/shared.tsx
+@@ -0,0 +1,85 @@
++'use client'
++
++import styled from "styled-components"
++import { motion } from "framer-motion"
++
++export const AppContainer = styled.div`
++	overflow-x: hidden;
++	-webkit-overflow-scrolling: touch;
++`
++
++export const Word = styled(motion.span)`
++	display: inline-block;
++	margin-right: 0.25em;
++	white-space: nowrap;
++`
++
++export const Character = styled(motion.span)`
++	height: 1em;
++`
++
++// Full-width section band. $band paints the lightAccent background;
++// transparent sections let the animated backdrop show through.
++export const SectionShell = styled.section<{ $band?: boolean; $last?: boolean }>`
++	width: 100%;
++	box-sizing: border-box;
++	padding: clamp(4rem, 10vh, 8rem) clamp(1.25rem, 6vw, 6rem);
++	margin-bottom: ${(props) => (props.$last ? "0" : "3rem")};
++	background-color: ${(props) =>
++		props.$band ? props.theme.lightAccent : "transparent"};
++	color: ${(props) => props.theme.darkShade};
++	overflow: hidden;
++`
++
++export const SectionInner = styled.div`
++	max-width: 72rem;
++	margin-inline: auto;
++`
++
++export const SectionHeading = styled.h2`
++	font-family: var(--font-display), serif;
++	font-size: clamp(2.5rem, 6vw, 4.5rem);
++	font-weight: 500;
++	line-height: 1.05;
++	letter-spacing: -0.01em;
++	color: ${(props) => props.theme.mainBrand};
++	margin-bottom: clamp(2rem, 5vh, 3.5rem);
++`
++
++export const Eyebrow = styled.span`
++	display: block;
++	font-family: var(--font-body), sans-serif;
++	font-size: 0.8rem;
++	font-weight: 500;
++	letter-spacing: 0.18em;
++	text-transform: uppercase;
++	color: ${(props) => props.theme.darkAccent};
++	margin-bottom: 0.75rem;
++`
++
++export const GraphicPath = styled.path`
++	fill: currentColor;
++`
++
++export const ProjectLink = styled.a`
++	align-items: center;
++	display: flex;
++	flex-direction: column;
++	text-decoration: none;
++
++	&:focus-visible {
++		outline: 2px solid ${(props) => props.theme.darkAccent};
++		outline-offset: 2px;
++		border-radius: 15px;
++	}
++`
++
++// Shared motion vocabulary: restrained fades and short rises only.
++export const EASE = [0.22, 1, 0.36, 1]
++
++export const revealProps = {
++	initial: { opacity: 0, y: 24 },
++	whileInView: { opacity: 1, y: 0 },
++	transition: { duration: 0.5, ease: EASE },
++	viewport: { once: true },
++}
+diff --git a/src/app/styles/splash.styles.js b/src/app/styles/splash.styles.js
+new file mode 100644
+index 0000000..89bd658
+--- /dev/null
++++ b/src/app/styles/splash.styles.js
+@@ -0,0 +1,97 @@
++'use client'
++
++import styled, { keyframes } from "styled-components"
++import { Link } from "react-scroll"
++import { media } from "./breakpoints"
++
++export const SplashWrap = styled.section`
++    position: relative;
++    display: flex;
++    flex-direction: column;
++    justify-content: flex-end;
++    min-height: 100vh;
++    min-height: 100svh;
++    width: 100%;
++    box-sizing: border-box;
++    padding: 6rem clamp(1.25rem, 8vw, 8rem) 16vh;
++    /* Hex-alpha lets the blurred background show through without dimming content */
++    background: ${(props) => props.theme.lightShade}B3;
++
++    ${media.sm} {
++        padding-bottom: 20vh;
++    }
++`
++
++export const SplashTitle = styled.h1`
++    font-family: var(--font-display), serif;
++    font-size: clamp(3.25rem, 11vw, 8.5rem);
++    font-weight: 500;
++    line-height: 0.98;
++    letter-spacing: -0.02em;
++    color: ${(props) => props.theme.mainBrand};
++    max-width: 12ch;
++`
++
++export const SplashTaglineRow = styled.div`
++    display: flex;
++    align-items: baseline;
++    gap: 0.6rem;
++    margin-top: 1.5rem;
++    /* Fixed height so word swaps never reflow the composition */
++    min-height: 2.6em;
++`
++
++export const TaglineTxt = styled.p`
++    font-family: var(--font-body), sans-serif;
++    font-size: clamp(1.25rem, 3vw, 2rem);
++    font-weight: 400;
++    text-align: left;
++    color: ${(props) => props.theme.darkShade};
++    max-width: 100%;
++    overflow-wrap: break-word;
++`
++
++const cueDrift = keyframes`
++    from { transform: translateY(0); }
++    to { transform: translateY(6px); }
++`
++
++export const ScrollCueLink = styled(Link)`
++    position: absolute;
++    bottom: 2.5rem;
++    left: 50%;
++    transform: translateX(-50%);
++    display: flex;
++    flex-direction: column;
++    align-items: center;
++    gap: 0.6rem;
++    cursor: pointer;
++
++    &:focus-visible {
++        outline: 2px solid ${(props) => props.theme.darkAccent};
++        outline-offset: 4px;
++    }
++
++    @media screen and (max-height: 600px) {
++        display: none;
++    }
++`
++
++export const ScrollCueLabel = styled.span`
++    font-family: var(--font-body), sans-serif;
++    font-size: 0.7rem;
++    letter-spacing: 0.22em;
++    text-transform: uppercase;
++    color: ${(props) => props.theme.darkAccent};
++`
++
++export const ScrollCueLine = styled.span`
++    width: 1px;
++    height: 3rem;
++    background: ${(props) => props.theme.darkAccent};
++    animation: ${cueDrift} 2.5s ease-in-out infinite alternate;
++
++    @media (prefers-reduced-motion: reduce) {
++        animation: none;
++    }
++`
+diff --git a/src/app/styles/stylesheet.js b/src/app/styles/stylesheet.js
+deleted file mode 100644
+index c7c8546..0000000
+--- a/src/app/styles/stylesheet.js
++++ /dev/null
+@@ -1,501 +0,0 @@
+-'use client'
+-
+-import styled from "styled-components"
+-import { motion } from "framer-motion"
+-import { media } from "./breakpoints"
+-
+-export const AppContainer = styled.div`
+-	overflow-x: hidden;
+-	-webkit-overflow-scrolling: touch;
+-`
+-
+-export const Word = styled(motion.span)`
+-	display: inline-block;
+-	margin-right: 0.25em;
+-	white-space: nowrap;
+-`
+-
+-export const Character = styled(motion.span)`
+-	height: 1em;
+-`
+-
+-export const SplashWrap = styled.section`
+-    display: grid;
+-    grid-template-columns: repeat(3, 1fr);
+-    grid-template-rows: repeat(3, 1fr);
+-    height: 100vh;
+-    min-height: 30rem;
+-    width: 100%;
+-    /* Hex-alpha lets the blurred background show through without dimming content */
+-    background: ${(props) => props.theme.lightShade}B3;
+-    padding-left: 10vw;
+-    padding-top: 6rem;
+-    box-sizing: border-box;
+-
+-    ${media.sm} {
+-        grid-template-columns: 1fr;
+-        grid-template-rows: auto;
+-        padding-left: 5vw;
+-        padding-top: 4rem;
+-    }
+-`;
+-
+-export const SplashTitleWrap = styled.h1`
+-    font-size: clamp(3rem, 9vw, 7rem);
+-    font-family: jeanne-moderno-geometrique, sans-serif;
+-    text-align: left;
+-    grid-column: 1 / 3;
+-    grid-row: 1;
+-    color: ${(props) => props.theme.mainBrand};
+-    line-height: 1.2;
+-`
+-
+-export const SplashTaglineWrap = styled.div`
+-    margin-left: auto;
+-    margin-right: auto;
+-    grid-column: 2 / 4;
+-    grid-row: 2 / 3;
+-    padding: 3vw;
+-    line-height: 1.2;
+-
+-    ${media.sm} {
+-        grid-column: 1 / 2;
+-        padding-right: 10%;
+-    }
+-`
+-
+-export const ScrollArrowSegment = styled.div`
+-	color: ${(props) => props.theme.darkAccent};
+-`
+-
+-export const TransparentSectionWrap = styled.div`
+-	display: flex;
+-	flex-direction: column;
+-	justify-content: center;
+-	align-items: center;
+-	z-index: 10;
+-	min-height: 30vh;
+-	margin-bottom: 3rem;
+-	overflow: hidden;
+-`
+-
+-export const SectionWrap = styled(TransparentSectionWrap)`
+-	background-color: ${(props) => props.theme.lightAccent};
+-	color: ${(props) => props.theme.darkShade};
+-    width: 100%;
+-`
+-
+-export const TaglineTxt = styled.h2`
+-	font-size: clamp(1.5rem, 4vw, 2.5rem);
+-	font-family: Raleway, sans-serif;
+-	font-weight: 400;
+-	text-align: center;
+-	color: ${(props) => props.theme.darkShade};
+-	max-width: 100%;
+-	overflow-wrap: break-word;
+-`
+-
+-export const SectionTitle = styled.h1`
+-	text-align: left;
+-	width: 100%;
+-	padding-left: 3%;
+-	padding-top: 3%;
+-	font-family: jeanne-moderno-geometrique, sans-serif;
+-	color: ${(props) => props.theme.mainBrand};
+-`
+-
+-export const SectionRow = styled(motion.div)`
+-	display: flex;
+-	width: 95%;
+-	max-width: 70rem;
+-	justify-content: center;
+-	align-items: center;
+-
+-	${media.sm} {
+-		flex-direction: column;
+-	}
+-`
+-
+-export const ContentColumn = styled.div`
+-	display: flex;
+-	flex-direction: column;
+-	height: 100%;
+-	align-items: center;
+-	justify-content: center;
+-	margin: 0 2% 0 2%;
+-	width: 100%;
+-`
+-
+-export const ContentRow = styled.div`
+-	display: flex;
+-	flex-direction: row;
+-	width: 100%;
+-	justify-content: center;
+-	align-items: center;
+-`
+-
+-export const ContentBox = styled(motion.div)`
+-	display: flex;
+-	flex-direction: row;
+-	flex-wrap: wrap;
+-	width: 100%;
+-	padding: 1%;
+-	justify-content: center;
+-`
+-
+-export const ChipContainer = styled(motion.div)`
+-	display: flex;
+-	align-items: center;
+-	justify-content: center;
+-	text-align: center;
+-	margin: 2%;
+-	padding: 1rem 1.5rem;
+-	border-radius: 2rem;
+-	background: ${(props) => props.theme.lightShade};
+-	transition: 0.4s;
+-
+-	${media.sm} {
+-		margin: 1%;
+-		padding: 0.7rem 1.2rem;
+-	}
+-`
+-
+-export const ChipLabel = styled.h3`
+-	font-size: 1em;
+-	font-family: Raleway, sans-serif;
+-	font-weight: 400;
+-	color: ${(props) => props.theme.darkAccent};
+-`
+-
+-export const ProfileImageWrap = styled.div`
+-	display: flex;
+-	flex-direction: column;
+-	padding: 3%;
+-	justify-content: center;
+-	align-items: center;
+-`
+-export const ProfileImage = styled.img`
+-	border-radius: 1.5rem !important;
+-	width: 18vw;
+-	max-width: 15rem;
+-	height: auto;
+-
+-	${media.sm} {
+-		width: 40vw;
+-	}
+-`
+-
+-export const ResumeDownload = styled.div`
+-	display: flex;
+-	flex-direction: row;
+-	justify-content: center;
+-	align-items: center;
+-	gap: 0.5rem;
+-	padding: 0.75rem 2rem;
+-	margin-top: 1.5vh;
+-	margin-bottom: 1.5vh;
+-	border-radius: 3rem;
+-	background: ${(props) => props.theme.mainBrand};
+-	transition: 0.2s;
+-	text-align: center;
+-	font-family: Raleway, sans-serif;
+-	font-weight: 700;
+-	color: ${(props) => props.theme.lightShade};
+-	font-size: 1.2em;
+-
+-	&:hover {
+-		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+-	}
+-`
+-
+-
+-export const FramerContainer = styled.div`
+-	height: 100vh;
+-	width: 100%;
+-	position: fixed;
+-	top: 0;
+-	left: 0;
+-	z-index: -1;
+-	filter: blur(20px);
+-	background: ${(props) => props.theme.lightShade};
+-`
+-
+-
+-
+-
+-////// PROJECT SECTION STYLES //////
+-
+-export const ProjectCard = styled.div`
+-	background: ${(props) => props.theme.mainBrand};
+-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+-	display: flex;
+-	flex-direction: column;
+-	align-items: center;
+-	justify-content: space-evenly;
+-	transition: 0.3s;
+-	width: 20rem;
+-	height: 15rem;
+-	border-radius: 15px;
+-	margin: 5%;
+-    z-index: 1;
+-	color: ${(props) => props.theme.lightShade};
+-
+-	&:hover {
+-		box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 1);
+-	}
+-
+-	${media.sm} {
+-		margin-top: 5rem;
+-		width: 80vw;
+-		max-width: 20rem;
+-	}
+-`
+-
+-export const ProjectTitle = styled.h2`
+-	font-family: jeanne-moderno-geometrique, sans-serif;
+-	font-size: 1.5em;
+-	text-align: center;
+-	margin-top: 0;
+-	margin-bottom: 0;
+-	padding-left: 1vw;
+-	padding-right: 1vw;
+-`
+-
+-export const ProjectGraphic = styled.svg`
+-	width: 4rem;
+-	height: auto;
+-	max-height: 40%;
+-`
+-
+-export const GraphicPath = styled.path`
+-	fill: currentColor;
+-`
+-
+-export const ProjectLink = styled.a`
+-	align-items: center;
+-	display: flex;
+-	flex-direction: column;
+-	text-decoration: none;
+-
+-	&:focus-visible {
+-		outline: 2px solid ${(props) => props.theme.darkAccent};
+-		outline-offset: 2px;
+-		border-radius: 15px;
+-	}
+-`
+-export const ProjectDescription = styled.div`
+-  display: flex;
+-  align-items: center;
+-  justify-content: center;
+-  font-family: Raleway, sans-serif;
+-  font-size: 1em;
+-  color: ${(props) => props.theme.darkShade};
+-  text-align: center;
+-  width: 100%;
+-  position: relative;
+-
+-  span {
+-    position: relative;
+-    z-index: 1;
+-	padding: 5%;
+-
+-    &::before {
+-      content: "";
+-      position: absolute;
+-      top: 0;
+-      left: 0;
+-      right: 0;
+-      bottom: 0;
+-      background-color: ${(props) => props.theme.lightShade};
+-      mix-blend-mode: soft-light;
+-      opacity: 0.4;
+-      z-index: -1;
+-      border-radius: 1rem;
+-    }
+-  }
+-`;
+-
+-export const ProjectCategoryChip = styled.div`
+-	display: flex;
+-	align-items: center;
+-	justify-content: center;
+-	text-align: center;
+-	padding: 0.5rem 1rem;
+-	border-radius: 1.5rem;
+-	margin: 2rem;
+-	font-family: Raleway, sans-serif;
+-	font-size: 0.9em;
+-	font-weight: 700;
+-	color: #FFFFFF;
+-`
+-
+-export const ProjRowLeft = styled(SectionRow)`
+-		justify-content: flex-start;
+-		align-items: center;
+-		flex-direction: row !important;
+-		width: 100%;
+-		margin-left: 2rem;
+-
+-		${media.sm} {
+-			justify-content: center !important;
+-			flex-wrap: wrap;
+-			margin-left: 0rem;
+-		}
+-	`
+-
+-	export const ProjRowRight = styled(SectionRow)`
+-		justify-content: flex-end;
+-		align-items: center;
+-		flex-direction: row !important;
+-		width: 100%;
+-		margin-right: 2rem;
+-
+-		${media.sm} {
+-			flex-wrap: wrap;
+-			flex-direction: column-reverse !important;
+-			justify-content: center !important;
+-			margin-right: 0rem;
+-		}
+-	`
+-
+-
+-
+-////// END PROJECT SECTION STYLES //////
+-
+-export const ContactForm = styled.form`
+-	display: flex;
+-	flex-direction: row;
+-	justify-content: space-evenly;
+-	align-items: center;
+-	padding-bottom: 5%;
+-	font-family: Raleway, sans-serif;
+-	color: ${(props) => props.theme.darkShade};
+-	width: 100%;
+-
+-	${media.sm} {
+-		flex-direction: column;
+-	}
+-`
+-
+-export const ContactFormWrap = styled.div`
+-	display: flex;
+-	flex-direction: column;
+-	align-items: center;
+-	text-align: center;
+-	width: 80%;
+-
+-	${media.sm} {
+-		width: 100%;
+-	}
+-`
+-
+-export const InnerContactFormWrap = styled.div`
+-	display: flex;
+-	width: 100%;
+-	flex-direction: row;
+-	align-items: center;
+-
+-	${media.sm} {
+-		flex-direction: column;
+-	}
+-`
+-
+-export const ContactLabelText = styled.span`
+-	display: block;
+-	text-align: left;
+-	font-weight: 700;
+-	font-size: 1rem;
+-	padding: 0.75rem 0 0.25rem 20%;
+-
+-	${media.sm} {
+-		text-align: center;
+-		padding-left: 0;
+-	}
+-`
+-
+-// The message input is wider (80%), so its label aligns to a 10% inset
+-export const MessageLabelText = styled(ContactLabelText)`
+-	padding-left: 10%;
+-
+-	${media.sm} {
+-		padding-left: 0;
+-	}
+-`
+-
+-export const EmailInput = styled.input`
+-	height: 3rem;
+-	width: 60%;
+-	border-radius: 1rem;
+-	border: none;
+-	padding-left: 10%;
+-	margin-top: 3%;
+-	font-family: Raleway, sans-serif;
+-	font-size: 1em;
+-	color: ${(props) => props.theme.darkShade};
+-	background-color: ${(props) => props.theme.lightShade};
+-	transition: 0.3s;
+-
+-	&:focus-visible {
+-		outline: 2px solid ${(props) => props.theme.darkAccent};
+-		outline-offset: 2px;
+-	}
+-
+-	${media.sm} {
+-		width: 85%;
+-	}
+-`
+-
+-export const MessageInput = styled.textarea`
+-	height: 5rem;
+-	width: 80%;
+-	border-radius: 1rem;
+-	border: none;
+-	padding: 3%;
+-	margin-top: 1%;
+-	font-family: Raleway, sans-serif;
+-	font-size: 1em;
+-	color: ${(props) => props.theme.darkShade};
+-	background-color: ${(props) => props.theme.lightShade};
+-	transition: 0.3s;
+-	resize: vertical;
+-
+-	&:focus-visible {
+-		outline: 2px solid ${(props) => props.theme.darkAccent};
+-		outline-offset: 2px;
+-	}
+-
+-	${media.sm} {
+-		width: 90%;
+-	}
+-`
+-
+-export const ContactLabel = styled.label`
+-	width: 100%;
+-`
+-
+-export const ContactSubmit = styled.button`
+-	border-radius: 25px;
+-	border: none;
+-	padding: 1rem 1.5rem;
+-	align-items: center;
+-	justify-content: center;
+-	font-family: Raleway, sans-serif;
+-	font-size: 2.5em;
+-	color: ${(props) => props.theme.lightShade};
+-	background-color: ${(props) => props.theme.mainBrand};
+-	transition: 0.3s;
+-	cursor: pointer;
+-
+-	&:hover {
+-		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
+-	}
+-
+-	&:focus-visible {
+-		outline: 2px solid ${(props) => props.theme.darkAccent};
+-		outline-offset: 2px;
+-	}
+-
+-	${media.sm} {
+-		margin-top: 3%;
+-	}
+-`
+diff --git a/src/app/styles/switcher.module.css b/src/app/styles/switcher.module.css
+deleted file mode 100644
+index 401b63d..0000000
+--- a/src/app/styles/switcher.module.css
++++ /dev/null
+@@ -1,82 +0,0 @@
+-.menuSwitcher {
+-    position: fixed;
+-    top: 10px;
+-    right: 10px;
+-    border: none;
+-    border-radius: 5px;
+-    padding: 10px;
+-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+-    cursor: pointer;
+-    transition: width 0.3s ease;
+-    width: 50px;
+-    height: 50px;
+-    display: flex;
+-    justify-content: space-between;
+-    align-items: center;
+-    z-index: 1000;
+-    overflow: hidden;
+-    background-color: rgba(255, 255, 255, 0.6);
+-    backdrop-filter: blur(10px);
+-    font: inherit;
+-    text-align: left;
+-    color: #333;
+-}
+-
+-.menuSwitcher:focus-visible {
+-    outline: 2px solid #1F7257;
+-    outline-offset: 2px;
+-}
+-
+-.menuSwitcher.expanded {
+-    width: 200px;
+-}
+-
+-.menuArrow {
+-    font-size: 24px;
+-    transition: transform 0.3s ease;
+-}
+-
+-.rotated {
+-    transform: rotate(180deg);
+-}
+-
+-.menuLinks {
+-    display: none;
+-    flex-direction: column;
+-    align-items: flex-start;
+-    padding: 1rem;
+-    gap: 10px;
+-}
+-
+-.menuSwitcher.expanded .menuLinks {
+-    display: flex;
+-}
+-
+-.menuLinks a {
+-    text-decoration: none;
+-    color: #333;
+-    font-size: 1.1rem;
+-}
+-
+-.menuLinks a:hover {
+-    color: #1F7257;
+-}
+-
+-@media (prefers-color-scheme: dark) {
+-    .menuSwitcher {
+-        background-color: rgba(16, 22, 19, 0.6);
+-        color: #E6F2EB;
+-    }
+-
+-    .menuSwitcher:focus-visible {
+-        outline-color: #9DB4A8;
+-    }
+-
+-    .menuLinks a {
+-        color: #E6F2EB;
+-    }
+-
+-    .menuLinks a:hover {
+-        color: #7FE0B8;
+-    }
+-}
+-- 
+2.43.0
+
