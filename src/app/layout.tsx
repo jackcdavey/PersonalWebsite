@@ -2,7 +2,21 @@ import type { Metadata, Viewport } from 'next'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/react'
 import Script from 'next/script'
+import { Fraunces, Figtree } from 'next/font/google'
 import './globals.css'
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  axes: ['opsz'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+const figtree = Figtree({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+})
 
 
 export const metadata: Metadata = {
@@ -24,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      
+    <html lang="en" className={`${fraunces.variable} ${figtree.variable}`}>
+
       <body>
         {children}
         <SpeedInsights />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { TaglineTxt } from "../styles/stylesheet"
+import { TaglineTxt } from "../styles/splash.styles"
 
 // const words = ["Developer", "Designer", "Tinkerer", "Photographer", "Audiophile", "Ordained Minister", "Pinewood Derby State Champ (2007-09)", "Plant Dad", "Sudoku Enthusiast"]
 
@@ -19,23 +19,22 @@ const shuffleArray = (array: string[]) => {
 
 export default function Tagline() {
     const [index, setIndex] = useState(0)
-    const [shuffledWords, setShuffledWords] = useState([...initialWords, ...shuffleArray(otherWords)])
+    const [shuffledWords] = useState(() => [...initialWords, ...shuffleArray(otherWords)])
 
     useEffect(() => {
-        const intervalId = setInterval(() => setIndex((index) => index + 1), 2000)
+        const intervalId = setInterval(() => setIndex((index) => index + 1), 2800)
         return () => {
-            clearTimeout(intervalId)
+            clearInterval(intervalId)
         }
     }, [])
 
     return (
-        // <AnimatePresence exitBeforeEnter>
         <AnimatePresence mode="wait">
             <motion.div
                 key={index}
                 animate={{ opacity: 1, y: 0 }}
-                initial={{ opacity: 0, y: 20 }}
-                exit={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: 12 }}
+                exit={{ opacity: 0, y: -12 }}
                 transition={{ ease: "easeInOut", duration: 0.5 }}
             >
                 <TaglineTxt>{shuffledWords[index % shuffledWords.length]}</TaglineTxt>

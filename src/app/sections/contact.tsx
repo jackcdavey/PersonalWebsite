@@ -1,43 +1,54 @@
 'use client'
 
 import AnimatedTitle from "../hooks/revealText"
-import { SectionWrap, SectionRow, SectionTitle, ContactForm, ContactFormWrap, MessageInput, EmailInput, ContactSubmit, InnerContactFormWrap, ContactLabel, ContactLabelText, MessageLabelText } from "../styles/stylesheet.js"
+import {
+    SectionShell,
+    SectionInner,
+    SectionHeading,
+    Eyebrow,
+} from "../styles/shared"
+import {
+    ContactColumn,
+    ContactInvite,
+    Field,
+    FieldLabel,
+    TextInput,
+    TextArea,
+    SubmitButton,
+} from "../styles/contact.styles"
 
 export default function Contact() {
     return (
-        <SectionWrap
-            //Contact section is displayed at the end of the page
-            style={{ marginBottom: 0 }}
-        >
-            <SectionRow>
-                <SectionTitle>
-                    {" "}
-                    <AnimatedTitle {...{ "title": "Contact Me!" }} />{" "}
-                </SectionTitle>
-            </SectionRow>
-            <SectionRow>
-                <ContactForm action="https://formspree.io/f/xgedrjkp" method="POST">
-                    <ContactFormWrap>
-                        <InnerContactFormWrap>
-                            <ContactLabel>
-                                <ContactLabelText>Name:</ContactLabelText>
-                                <EmailInput type="text" name="contactname" autoComplete="name" />
-                            </ContactLabel>
-                            <ContactLabel>
-                                <ContactLabelText>Email:</ContactLabelText>
-                                <EmailInput type="email" name="email" autoComplete="email" />
-                            </ContactLabel>
-                        </InnerContactFormWrap>
-                        <InnerContactFormWrap>
-                            <ContactLabel>
-                                <MessageLabelText>Message:</MessageLabelText>
-                                <MessageInput name="message"></MessageInput>
-                            </ContactLabel>
-                        </InnerContactFormWrap>
-                    </ContactFormWrap>
-                    <ContactSubmit type="submit">Send</ContactSubmit>
-                </ContactForm>
-            </SectionRow>
-        </SectionWrap>
+        <SectionShell $band $last>
+            <SectionInner>
+                <Eyebrow>03 — Contact</Eyebrow>
+                <SectionHeading>
+                    <AnimatedTitle {...{ "title": "Contact Me!" }} />
+                </SectionHeading>
+
+                <ContactColumn action="https://formspree.io/f/xgedrjkp" method="POST">
+                    <ContactInvite>
+                        Have a project in mind, or just want to say hi?
+                    </ContactInvite>
+
+                    <Field>
+                        <FieldLabel>Name</FieldLabel>
+                        <TextInput type="text" name="contactname" autoComplete="name" required />
+                    </Field>
+
+                    <Field>
+                        <FieldLabel>Email</FieldLabel>
+                        <TextInput type="email" name="email" autoComplete="email" required />
+                    </Field>
+
+                    <Field>
+                        <FieldLabel>Message</FieldLabel>
+                        <TextArea name="message" required></TextArea>
+                    </Field>
+
+                    <SubmitButton type="submit">Send</SubmitButton>
+                </ContactColumn>
+            </SectionInner>
+        </SectionShell>
     )
 }

@@ -2,36 +2,38 @@
 
 import Tagline from "../components/tagline"
 import AnimatedTitle from "../hooks/revealText"
-import { SplashTitleWrap, SplashTaglineWrap, SplashWrap, ScrollArrowSegment } from "../styles/stylesheet"
-import { Link } from "react-scroll"
-
-const isSafari: boolean = typeof window !== "undefined" && /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
-
-const prefersReducedMotion: boolean = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
+import { smoothScrollEnabled } from "../hooks/env"
+import {
+    SplashWrap,
+    SplashTitle,
+    SplashTaglineRow,
+    ScrollCueLink,
+    ScrollCueLabel,
+    ScrollCueLine,
+} from "../styles/splash.styles"
 
 export default function Splash() {
     return (
         <SplashWrap>
-            <SplashTitleWrap>
+            <SplashTitle>
                 <AnimatedTitle {...{ "title": "Hey, I'm Jack" }} />
-            </SplashTitleWrap>
+            </SplashTitle>
 
-            <SplashTaglineWrap>
+            <SplashTaglineRow>
                 <Tagline />
-            </SplashTaglineWrap>
-            <Link
-                activeClass="active"
+            </SplashTaglineRow>
+
+            <ScrollCueLink
                 to="aboutme"
-                spy={true}
-                smooth={!isSafari && !prefersReducedMotion}
+                smooth={smoothScrollEnabled}
                 duration={700}
-                className="scroll-link"
+                offset={-72}
                 href="#aboutme"
                 aria-label="Scroll to About Me section"
             >
-                <ScrollArrowSegment className="arrow" />
-            </Link>
+                <ScrollCueLabel>Scroll</ScrollCueLabel>
+                <ScrollCueLine />
+            </ScrollCueLink>
         </SplashWrap>
     )
 }

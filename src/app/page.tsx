@@ -7,9 +7,9 @@ import { ThemeProvider } from 'styled-components'
 import { MotionConfig } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { DARKCOLORS, LIGHTCOLORS } from './styles/colors'
-import MenuSwitcher from './components/switcher'
 
-const FramerBG = dynamic(() => import('./components/framerBG'), { ssr: false })
+const Nav = dynamic(() => import('./components/nav'), { ssr: false })
+const Background = dynamic(() => import('./components/background'), { ssr: false })
 const AboutMe = dynamic(() => import('./sections/aboutMe'), { ssr: false })
 const Splash = dynamic(() => import('./sections/splash'), { ssr: false })
 const Projects = dynamic(() => import('./sections/projects'), { ssr: false })
@@ -35,8 +35,8 @@ export default function Home() {
     <ThemeProvider theme={theme === 'dark' ? DARKCOLORS : LIGHTCOLORS}>
       <MotionConfig reducedMotion="user">
         <main className={styles.main}>
-          <MenuSwitcher />
-          <FramerBG theme={theme} />
+          <Nav />
+          <Background theme={theme} />
           <Element name="splash">
             <Splash />
           </Element>

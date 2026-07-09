@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 import { useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Word, Character } from "../styles/stylesheet"
+import { Word, Character } from "../styles/shared"
 
 export default function AnimatedTitle(props) {
 	const text = props.title ?? ""
@@ -69,11 +69,6 @@ export default function AnimatedTitle(props) {
 									aria-hidden="true"
 									key={index}
 									variants={characterAnimation}
-									whileHover={{
-										scale: 1.2,
-										rotate: Math.random() * 90 + 15,
-										transition: { duration: 0.2 },
-									}}
 								>
 									{character}
 								</Character>
