@@ -1,84 +1,70 @@
 'use client'
 
-import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import styled, { keyframes } from "styled-components"
 import { FramerContainer } from "../styles/stylesheet"
+import { BALL_COLORS } from "../styles/colors"
 
-const colorOptions = ["#d04a4a", "#d04a8f", "#4f4ad0"]
+// DVD-logo drift: one axis per wrapper, GPU-composited, zero JS per frame.
+const driftX = keyframes`
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw - var(--size))); }
+`
 
-let speed = 1;
+const driftY = keyframes`
+    from { transform: translateY(0); }
+    to { transform: translateY(calc(100vh - var(--size))); }
+`
 
-interface BallProps {
-    id: number
-    xPos: number
-    yPos: number
-    xDir: number
-    yDir: number
-    bWidth: number
-    color: string
-    change?: boolean
-}
+const BallTrackX = styled.div<{ $dur: number; $delay: number }>`
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: ${driftX} ${(props) => props.$dur}s linear infinite alternate;
+    animation-delay: ${(props) => -props.$delay}s;
 
-const bouncingElements = [] as BallProps[];
+    @media (prefers-reduced-motion: reduce) {
+        animation-play-state: paused;
+    }
+`
 
-for (let i = 0; i < 3; i++) {
-    const unusedColors = colorOptions.filter((color) => color !== bouncingElements[i - 1]?.color)
-    const color = unusedColors[Math.floor(Math.random() * unusedColors.length)]
-    bouncingElements.push({
-        id: i,
-        xPos: Math.random() * (window.innerWidth / (9 - i * 3), 300 - i), // ensure initial position is within the window
-        yPos: Math.random() * (window.innerHeight / (9 - i * 3), 300 - i),
-        xDir: speed,
-        yDir: speed,
-        bWidth: Math.max(window.innerWidth / (9 - i * 3), 300 - i * 100),
-        color: color,
-        change: false,
-    })
-}
+const Ball = styled.div<{ $dur: number; $delay: number }>`
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    animation: ${driftY} ${(props) => props.$dur}s linear infinite alternate;
+    animation-delay: ${(props) => -props.$delay}s;
 
-// Collision detection and repositioning logic
-const updateBallPositions = () => {
-    bouncingElements.forEach(ball => {
-        if (ball.xPos + ball.bWidth > window.innerWidth || ball.xPos < 0) {
-            ball.xDir *= -1;
-        }
-        if (ball.yPos + ball.bWidth > window.innerHeight || ball.yPos < 0) {
-            ball.yDir *= -1;
-        }
-        ball.xPos += ball.xDir;
-        ball.yPos += ball.yDir;
-    });
-};
+    @media (prefers-reduced-motion: reduce) {
+        animation-play-state: paused;
+    }
+`
 
-export default function FramerBG() {
-    const [_, setTick] = useState(0); // Updated state to trigger re-renders
+// Prime-ish durations so the paths don't visibly repeat
+const BALLS = [
+    { size: "min(45vw, 26rem)", durX: 23, durY: 17, delayX: 5, delayY: 11 },
+    { size: "min(32vw, 19rem)", durX: 29, durY: 19, delayX: 13, delayY: 3 },
+    { size: "min(22vw, 13rem)", durX: 31, durY: 13, delayX: 21, delayY: 7 },
+]
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            updateBallPositions();
-            setTick(tick => tick + 1); // Trigger re-render
-        }, 16); // 60fps (approximately)
-        return () => clearInterval(intervalId);
-    }, []);
+export default function FramerBG({ theme }: { theme?: string }) {
+    const colors = theme === "dark" ? BALL_COLORS.dark : BALL_COLORS.light
 
     return (
-        <FramerContainer>
-            {bouncingElements.map(ball => (
-                <motion.div
-                    key={ball.id}
-                    style={{
-                        position: "absolute",
-                        width: ball.bWidth,
-                        height: ball.bWidth,
-                        borderRadius: ball.bWidth / 2,
-                        background: ball.color,
-                    }}
-                    animate={{
-                        x: ball.xPos,
-                        y: ball.yPos,
-                    }}
-                />
+        <FramerContainer aria-hidden="true">
+            {BALLS.map((ball, i) => (
+                <BallTrackX
+                    key={i}
+                    $dur={ball.durX}
+                    $delay={ball.delayX}
+                    style={{ "--size": ball.size } as React.CSSProperties}
+                >
+                    <Ball
+                        $dur={ball.durY}
+                        $delay={ball.delayY}
+                        style={{ background: colors[i] }}
+                    />
+                </BallTrackX>
             ))}
         </FramerContainer>
-    );
+    )
 }

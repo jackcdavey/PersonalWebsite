@@ -2,38 +2,39 @@
     position: fixed;
     top: 10px;
     right: 10px;
-    /* background-color: #f0f0f0; */
-    /* Feel free to change the color */
+    border: none;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: width 0.3s ease;
     width: 50px;
-    /* Adjust as necessary */
     height: 50px;
-    /* Adjust as necessary */
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(10px);
-    /* Ensure it stays on top */
+    font: inherit;
+    text-align: left;
+    color: #333;
+}
+
+.menuSwitcher:focus-visible {
+    outline: 2px solid #1F7257;
+    outline-offset: 2px;
 }
 
 .menuSwitcher.expanded {
     width: 200px;
-    /* Adjust width when expanded */
 }
 
 .menuArrow {
     font-size: 24px;
-    /* Adjust size of the arrow */
     transition: transform 0.3s ease;
 }
-
 
 .rotated {
     transform: rotate(180deg);
@@ -45,10 +46,7 @@
     align-items: flex-start;
     padding: 1rem;
     gap: 10px;
-
-
 }
-
 
 .menuSwitcher.expanded .menuLinks {
     display: flex;
@@ -57,13 +55,28 @@
 .menuLinks a {
     text-decoration: none;
     color: #333;
-    /* Change as needed */
     font-size: 1.1rem;
-    /* Adjust as needed */
 }
 
 .menuLinks a:hover {
-    color: #5661dd;
-    text-shadow: 0 0 5px rgba(86, 97, 221, 0.5);
-    /* Change as needed */
+    color: #1F7257;
+}
+
+@media (prefers-color-scheme: dark) {
+    .menuSwitcher {
+        background-color: rgba(16, 22, 19, 0.6);
+        color: #E6F2EB;
+    }
+
+    .menuSwitcher:focus-visible {
+        outline-color: #9DB4A8;
+    }
+
+    .menuLinks a {
+        color: #E6F2EB;
+    }
+
+    .menuLinks a:hover {
+        color: #7FE0B8;
+    }
 }

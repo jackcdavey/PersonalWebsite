@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/react'
 import Script from 'next/script'
@@ -8,6 +8,14 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Jack Davey',
   description: 'A portfolio website for Jack Davey',
+}
+
+export const viewport: Viewport = {
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FAFCFB' },
+    { media: '(prefers-color-scheme: dark)', color: '#101613' },
+  ],
 }
 
 export default function RootLayout({

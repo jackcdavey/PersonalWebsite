@@ -4,17 +4,9 @@ import { useEffect } from "react"
 import { useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Word, Character } from "../styles/stylesheet"
+
 export default function AnimatedTitle(props) {
-	let text = ""
-	if (props.title)
-		props = props.title;
-
-
-	let i = 0
-	while (props[i]) {
-		text += props[i]
-		i++
-	}
+	const text = props.title ?? ""
 
 	const ctrls = useAnimation()
 
@@ -41,7 +33,6 @@ export default function AnimatedTitle(props) {
 	const characterAnimation = {
 		hidden: {
 			opacity: 0,
-
 			y: `1em`,
 		},
 
@@ -56,7 +47,8 @@ export default function AnimatedTitle(props) {
 	}
 
 	return (
-		<>
+		// The per-character spans are aria-hidden, so expose the full title here
+		<span aria-label={text} role="text">
 			{text.split(" ").map((word, index) => {
 				return (
 					<Word
@@ -82,7 +74,6 @@ export default function AnimatedTitle(props) {
 										rotate: Math.random() * 90 + 15,
 										transition: { duration: 0.2 },
 									}}
-									
 								>
 									{character}
 								</Character>
@@ -91,6 +82,6 @@ export default function AnimatedTitle(props) {
 					</Word>
 				)
 			})}
-		</>
+		</span>
 	)
 }

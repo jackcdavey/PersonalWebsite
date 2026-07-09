@@ -5,7 +5,9 @@ import AnimatedTitle from "../hooks/revealText"
 import { SplashTitleWrap, SplashTaglineWrap, SplashWrap, ScrollArrowSegment } from "../styles/stylesheet"
 import { Link } from "react-scroll"
 
-const isSafari: boolean = /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
+const isSafari: boolean = typeof window !== "undefined" && /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
+
+const prefersReducedMotion: boolean = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
 export default function Splash() {
@@ -22,9 +24,11 @@ export default function Splash() {
                 activeClass="active"
                 to="aboutme"
                 spy={true}
-                smooth={!isSafari}
+                smooth={!isSafari && !prefersReducedMotion}
                 duration={700}
                 className="scroll-link"
+                href="#aboutme"
+                aria-label="Scroll to About Me section"
             >
                 <ScrollArrowSegment className="arrow" />
             </Link>

@@ -1,7 +1,7 @@
 'use client'
 
 import AnimatedTitle from "../hooks/revealText"
-import { SectionWrap, SectionRow, SectionTitle, ContactForm, ContactFormWrap, MessageInput, EmailInput, ContactSubmit, InnerContactFormWrap, ContactLabel } from "../styles/stylesheet.js"
+import { SectionWrap, SectionRow, SectionTitle, ContactForm, ContactFormWrap, MessageInput, EmailInput, ContactSubmit, InnerContactFormWrap, ContactLabel, ContactLabelText, MessageLabelText } from "../styles/stylesheet.js"
 
 export default function Contact() {
     return (
@@ -20,17 +20,17 @@ export default function Contact() {
                     <ContactFormWrap>
                         <InnerContactFormWrap>
                             <ContactLabel>
-                                <h4>Name:</h4>
-                                <EmailInput type="name" name="contactname" />
+                                <ContactLabelText>Name:</ContactLabelText>
+                                <EmailInput type="text" name="contactname" autoComplete="name" />
                             </ContactLabel>
                             <ContactLabel>
-                                <h4>Email:</h4>
-                                <EmailInput type="email" name="email" />
+                                <ContactLabelText>Email:</ContactLabelText>
+                                <EmailInput type="email" name="email" autoComplete="email" />
                             </ContactLabel>
                         </InnerContactFormWrap>
                         <InnerContactFormWrap>
                             <ContactLabel>
-                                <h4 style={{ paddingTop: "3%", paddingLeft: '10%' }}>Message:</h4>
+                                <MessageLabelText>Message:</MessageLabelText>
                                 <MessageInput name="message"></MessageInput>
                             </ContactLabel>
                         </InnerContactFormWrap>

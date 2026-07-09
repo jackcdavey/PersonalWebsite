@@ -2,15 +2,7 @@
 
 import styled from "styled-components"
 import { motion } from "framer-motion"
-
-
-import "./fonts.css"
-
-
-const COLORS = () => {
-	const { theme } = useContext(ThemeContext);
-	return theme === 'dark' ? DARKCOLORS : LIGHTCOLORS;
-}
+import { media } from "./breakpoints"
 
 export const AppContainer = styled.div`
 	overflow-x: hidden;
@@ -33,38 +25,29 @@ export const SplashWrap = styled.section`
     grid-template-rows: repeat(3, 1fr);
     height: 100vh;
     min-height: 30rem;
-    width: 100vw;
-    background: ${(props) => props.theme.lightShade};
-    opacity: 0.5;
+    width: 100%;
+    /* Hex-alpha lets the blurred background show through without dimming content */
+    background: ${(props) => props.theme.lightShade}B3;
     padding-left: 10vw;
-    padding-top: 10vw;
+    padding-top: 6rem;
+    box-sizing: border-box;
 
-    @media (max-width: 710px) {
+    ${media.sm} {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         padding-left: 5vw;
-        padding-top: 5vw;
+        padding-top: 4rem;
     }
 `;
 
 export const SplashTitleWrap = styled.h1`
-    font-size: 7em;
+    font-size: clamp(3rem, 9vw, 7rem);
     font-family: jeanne-moderno-geometrique, sans-serif;
     text-align: left;
     grid-column: 1 / 3;
     grid-row: 1;
     color: ${(props) => props.theme.mainBrand};
-    line-height: 1.2; /* Adjusted line height to reduce spacing */
-
-    @media (max-width: 710px) {
-        font-size: 4em;
-        padding-bottom: 5vh;
-    }
-
-    @media (max-width: 500px) {
-        font-size: 3em;
-        padding-bottom: 3vh;
-    }
+    line-height: 1.2;
 `
 
 export const SplashTaglineWrap = styled.div`
@@ -73,61 +56,43 @@ export const SplashTaglineWrap = styled.div`
     grid-column: 2 / 4;
     grid-row: 2 / 3;
     padding: 3vw;
-    line-height: 1.2; /* Adjusted line height to reduce spacing */
+    line-height: 1.2;
 
-    @media (max-width: 710px) {
+    ${media.sm} {
         grid-column: 1 / 2;
         padding-right: 10%;
-    }
-
-    @media (max-width: 500px) {
-        padding-right: 5%;
     }
 `
 
 export const ScrollArrowSegment = styled.div`
-		// border-color: ${(props) => props.theme.red} !important;
-		
+	color: ${(props) => props.theme.darkAccent};
 `
 
 export const TransparentSectionWrap = styled.div`
 	display: flex;
 	flex-direction: column;
-	
 	justify-content: center;
 	align-items: center;
 	z-index: 10;
 	min-height: 30vh;
 	margin-bottom: 3rem;
 	overflow: hidden;
-	// color: ${(props) => props.theme.darkShade};
-
 `
 
 export const SectionWrap = styled(TransparentSectionWrap)`
 	background-color: ${(props) => props.theme.lightAccent};
 	color: ${(props) => props.theme.darkShade};
-    width: 100vw;
+    width: 100%;
 `
 
-
 export const TaglineTxt = styled.h2`
-	font-size: 2.5em;
+	font-size: clamp(1.5rem, 4vw, 2.5rem);
 	font-family: Raleway, sans-serif;
 	font-weight: 400;
 	text-align: center;
-	text-overflow: ellipsis;
 	color: ${(props) => props.theme.darkShade};
-	direction: rtl;
-	max-width: 30vw;
-
-	@media (max-width: 710px) {
-		font-size: 2em;
-	}
-
-	@media (max-height: 710px) {
-		font-size: 2em;
-	}
+	max-width: 100%;
+	overflow-wrap: break-word;
 `
 
 export const SectionTitle = styled.h1`
@@ -146,7 +111,7 @@ export const SectionRow = styled(motion.div)`
 	justify-content: center;
 	align-items: center;
 
-	@media (max-width: 710px) {
+	${media.sm} {
 		flex-direction: column;
 	}
 `
@@ -189,12 +154,7 @@ export const ChipContainer = styled(motion.div)`
 	background: ${(props) => props.theme.lightShade};
 	transition: 0.4s;
 
-	//Too confusing, implies a link
-	// :hover {
-	// 	box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
-	// }
-
-	@media (max-width: 710px) {
+	${media.sm} {
 		margin: 1%;
 		padding: 0.7rem 1.2rem;
 	}
@@ -202,9 +162,9 @@ export const ChipContainer = styled(motion.div)`
 
 export const ChipLabel = styled.h3`
 	font-size: 1em;
-	font-family: Raileway, sans-serif;
+	font-family: Raleway, sans-serif;
 	font-weight: 400;
-	color: ${(props) => props.theme.mainBrand};
+	color: ${(props) => props.theme.darkAccent};
 `
 
 export const ProfileImageWrap = styled.div`
@@ -217,11 +177,12 @@ export const ProfileImageWrap = styled.div`
 export const ProfileImage = styled.img`
 	border-radius: 1.5rem !important;
 	width: 18vw;
-	
-	
-	@media (max-width: 710px) {
+	max-width: 15rem;
+	height: auto;
+
+	${media.sm} {
 		width: 40vw;
-	}	
+	}
 `
 
 export const ResumeDownload = styled.div`
@@ -229,29 +190,28 @@ export const ResumeDownload = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
-	padding: 10%;
+	gap: 0.5rem;
+	padding: 0.75rem 2rem;
 	margin-top: 1.5vh;
 	margin-bottom: 1.5vh;
 	border-radius: 3rem;
 	background: ${(props) => props.theme.mainBrand};
 	transition: 0.2s;
 	text-align: center;
-	font-family: Raileway, sans-serif;
-	font-weight: bold;
-	color: ${(props) => props.theme.lightAccent};
-	font-size: 1em;
+	font-family: Raleway, sans-serif;
+	font-weight: 700;
+	color: ${(props) => props.theme.lightShade};
+	font-size: 1.2em;
 
 	&:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
-		color: ${(props) => props.theme.lightShade};
 	}
 `
 
 
 export const FramerContainer = styled.div`
 	height: 100vh;
-	width: 100vw;
+	width: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -267,7 +227,6 @@ export const FramerContainer = styled.div`
 
 export const ProjectCard = styled.div`
 	background: ${(props) => props.theme.mainBrand};
-	/* Eventually add custom colors for each project */
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	display: flex;
 	flex-direction: column;
@@ -283,10 +242,9 @@ export const ProjectCard = styled.div`
 
 	&:hover {
 		box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 1);
-		color: ${(props) => props.theme.lightAccent};
 	}
 
-	@media (max-width: 710px) {
+	${media.sm} {
 		margin-top: 5rem;
 		width: 80vw;
 		max-width: 20rem;
@@ -296,7 +254,6 @@ export const ProjectCard = styled.div`
 export const ProjectTitle = styled.h2`
 	font-family: jeanne-moderno-geometrique, sans-serif;
 	font-size: 1.5em;
-	
 	text-align: center;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -304,26 +261,27 @@ export const ProjectTitle = styled.h2`
 	padding-right: 1vw;
 `
 
-
 export const ProjectGraphic = styled.svg`
-	max-width: 100%;
+	width: 4rem;
+	height: auto;
 	max-height: 40%;
-	// A hacky compromise to get the SVG to center, only looks off on extremely narrow screens
-	margin-left: 65%;
-	`
+`
 
 export const GraphicPath = styled.path`
 	fill: currentColor;
-
-	
-	`
+`
 
 export const ProjectLink = styled.a`
 	align-items: center;
 	display: flex;
 	flex-direction: column;
 	text-decoration: none;
-	
+
+	&:focus-visible {
+		outline: 2px solid ${(props) => props.theme.darkAccent};
+		outline-offset: 2px;
+		border-radius: 15px;
+	}
 `
 export const ProjectDescription = styled.div`
   display: flex;
@@ -334,11 +292,11 @@ export const ProjectDescription = styled.div`
   color: ${(props) => props.theme.darkShade};
   text-align: center;
   width: 100%;
-  position: relative; // Added for pseudo-element positioning
+  position: relative;
 
   span {
-    position: relative; // Added for pseudo-element positioning
-    z-index: 1; // Make sure the text appears above the background
+    position: relative;
+    z-index: 1;
 	padding: 5%;
 
     &::before {
@@ -349,9 +307,9 @@ export const ProjectDescription = styled.div`
       right: 0;
       bottom: 0;
       background-color: ${(props) => props.theme.lightShade};
-      mix-blend-mode: soft-light; 
-      opacity: 0.4; 
-      z-index: -1; 
+      mix-blend-mode: soft-light;
+      opacity: 0.4;
+      z-index: -1;
       border-radius: 1rem;
     }
   }
@@ -365,9 +323,10 @@ export const ProjectCategoryChip = styled.div`
 	padding: 0.5rem 1rem;
 	border-radius: 1.5rem;
 	margin: 2rem;
-	font-family: Raileway, sans-serif;
+	font-family: Raleway, sans-serif;
 	font-size: 0.9em;
-	color: ${(props) => props.theme.mainBrand};
+	font-weight: 700;
+	color: #FFFFFF;
 `
 
 export const ProjRowLeft = styled(SectionRow)`
@@ -377,9 +336,7 @@ export const ProjRowLeft = styled(SectionRow)`
 		width: 100%;
 		margin-left: 2rem;
 
-        
-
-		@media (max-width: 710px) {
+		${media.sm} {
 			justify-content: center !important;
 			flex-wrap: wrap;
 			margin-left: 0rem;
@@ -393,7 +350,7 @@ export const ProjRowLeft = styled(SectionRow)`
 		width: 100%;
 		margin-right: 2rem;
 
-		@media (max-width: 710px) {
+		${media.sm} {
 			flex-wrap: wrap;
 			flex-direction: column-reverse !important;
 			justify-content: center !important;
@@ -410,13 +367,12 @@ export const ContactForm = styled.form`
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-	// padding: 1%;
 	padding-bottom: 5%;
 	font-family: Raleway, sans-serif;
 	color: ${(props) => props.theme.darkShade};
 	width: 100%;
 
-	@media (max-width: 710px) {
+	${media.sm} {
 		flex-direction: column;
 	}
 `
@@ -428,8 +384,9 @@ export const ContactFormWrap = styled.div`
 	text-align: center;
 	width: 80%;
 
-	@media (max-width: 710px) {
+	${media.sm} {
 		width: 100%;
+	}
 `
 
 export const InnerContactFormWrap = styled.div`
@@ -438,18 +395,30 @@ export const InnerContactFormWrap = styled.div`
 	flex-direction: row;
 	align-items: center;
 
-	h4 {
-		text-align: left;
-		padding: 0% 0% 0% 20%;
-	}
-
-	@media (max-width: 710px) {
+	${media.sm} {
 		flex-direction: column;
+	}
+`
 
-		h4 {
-			text-align: center;
-			padding: 0% 0% 0% 0%;
-		}
+export const ContactLabelText = styled.span`
+	display: block;
+	text-align: left;
+	font-weight: 700;
+	font-size: 1rem;
+	padding: 0.75rem 0 0.25rem 20%;
+
+	${media.sm} {
+		text-align: center;
+		padding-left: 0;
+	}
+`
+
+// The message input is wider (80%), so its label aligns to a 10% inset
+export const MessageLabelText = styled(ContactLabelText)`
+	padding-left: 10%;
+
+	${media.sm} {
+		padding-left: 0;
 	}
 `
 
@@ -466,11 +435,12 @@ export const EmailInput = styled.input`
 	background-color: ${(props) => props.theme.lightShade};
 	transition: 0.3s;
 
-	:focus {
-		outline: none;
+	&:focus-visible {
+		outline: 2px solid ${(props) => props.theme.darkAccent};
+		outline-offset: 2px;
 	}
 
-	@media (max-width: 710px) {
+	${media.sm} {
 		width: 85%;
 	}
 `
@@ -489,28 +459,21 @@ export const MessageInput = styled.textarea`
 	transition: 0.3s;
 	resize: vertical;
 
-	:focus {
-		outline: none;
+	&:focus-visible {
+		outline: 2px solid ${(props) => props.theme.darkAccent};
+		outline-offset: 2px;
 	}
 
-	@media (max-width: 710px) {
+	${media.sm} {
 		width: 90%;
 	}
 `
 
 export const ContactLabel = styled.label`
 	width: 100%;
-
-	@media (max-width: 710px) {
-	h4 {
-		padding-left: 0 !important;
-		padding-top: 5% !important;
-	}
-}
 `
 
 export const ContactSubmit = styled.button`
-	
 	border-radius: 25px;
 	border: none;
 	padding: 1rem 1.5rem;
@@ -518,18 +481,21 @@ export const ContactSubmit = styled.button`
 	justify-content: center;
 	font-family: Raleway, sans-serif;
 	font-size: 2.5em;
-	color: ${(props) => props.theme.lightAccent};
+	color: ${(props) => props.theme.lightShade};
 	background-color: ${(props) => props.theme.mainBrand};
 	transition: 0.3s;
 	cursor: pointer;
-	
 
 	&:hover {
 		box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.9);
-		color: ${(props) => props.theme.lightShade};
 	}
 
-	@media (max-width: 710px) {
+	&:focus-visible {
+		outline: 2px solid ${(props) => props.theme.darkAccent};
+		outline-offset: 2px;
+	}
+
+	${media.sm} {
 		margin-top: 3%;
 	}
 `

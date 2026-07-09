@@ -17,7 +17,6 @@
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.5.3",
-    "react-responsive": "^9.0.2",
     "react-scroll": "^1.9.0",
     "styled-components": "^6.1.8"
   },
@@ -26,7 +25,6 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-scroll": "^1.8.10",
-    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "typescript": "^5"

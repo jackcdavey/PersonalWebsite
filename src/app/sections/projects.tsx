@@ -1,16 +1,14 @@
 'use client'
 
 import AnimatedTitle from "../hooks/revealText"
-import dynamic from 'next/dynamic'
+import { CATEGORY_COLORS } from "../styles/colors"
 
 import { SectionRow, SectionTitle, ProjectCard, ProjectTitle, ProjectGraphic, ProjectDescription, GraphicPath, ProjectLink, TransparentSectionWrap, ProjectCategoryChip, ProjRowLeft, ProjRowRight } from "../styles/stylesheet.js"
 
 
-const isSafari: boolean = /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
+const isSafari: boolean = typeof window !== "undefined" && /Safari/.test(window.navigator.userAgent) && !/Chrome/.test(window.navigator.userAgent);
 
 const projectOffset = 200;
-
-// const isSafari: boolean = false;
 
 interface ProjectProps {
     title: string
@@ -69,53 +67,16 @@ const projects: ProjectProps[] = [
 ]
 
 
-// Chip Variations
-const Website = () => {
+const CategoryChip = ({ type }: { type?: string }) => {
+    if (!type || !CATEGORY_COLORS[type]) return null;
     return (
         <div>
-            <ProjectCategoryChip
-                style={{
-                    backgroundColor: '#d04a4a',
-                    fontWeight: 'bold',
-                    justifySelf: 'flex-end'
-                }}
-            >
-                Website
+            <ProjectCategoryChip style={{ backgroundColor: CATEGORY_COLORS[type] }}>
+                {type}
             </ProjectCategoryChip>
         </div>
     )
 }
-
-const MobileApp = () => {
-    return (
-        <div>
-            <ProjectCategoryChip
-                style={{
-                    backgroundColor: '#d04a8f',
-                    fontWeight: 'bold'
-                }}
-            >
-                Mobile App
-            </ProjectCategoryChip>
-        </div>
-    )
-}
-
-const WebApp = () => {
-    return (
-        <div>
-            <ProjectCategoryChip
-                style={{
-                    backgroundColor: '#4f4ad0',
-                    fontWeight: 'bold'
-                }}
-            >
-                Web App
-            </ProjectCategoryChip>
-        </div>
-    )
-}
-
 
 
 export default function Projects() {
@@ -130,103 +91,55 @@ export default function Projects() {
             </SectionRow>
 
             {projects.map((project, index) => {
+                const card = (
+                    <ProjectLink href={project.link} target='_blank' rel="noopener noreferrer">
+                        <ProjectCard>
+                            <ProjectTitle>
+                                {project.title}
+                            </ProjectTitle>
+                            <CategoryChip type={project.type} />
+                            {project.graphic &&
+                                <ProjectGraphic viewBox="0 0 98 96" aria-hidden="true">
+                                    <GraphicPath d={project.svgPath} />
+                                </ProjectGraphic>
+                            }
+                        </ProjectCard>
+                    </ProjectLink>
+                );
+
+                const description = (
+                    <ProjectDescription>
+                        <span style={{ width: "70%" }}>
+                            {project.description}
+                        </span>
+                    </ProjectDescription>
+                );
+
+                const rowProps = {
+                    initial: { y: projectOffset },
+                    whileInView: { y: 0 },
+                    transition: {
+                        type: isSafari ? "tween" as const : "spring" as const,
+                        stiffness: 300,
+                        damping: 20
+                    },
+                    viewport: { once: true },
+                };
+
                 if (index % 2 === 0) {
                     return (
-                        <ProjRowRight
-                            key={index}
-                            initial={{
-                                y: projectOffset
-                            }}
-                            whileInView={{
-                                y: 0
-                            }}
-                            transition={{
-                                type: isSafari ? "tween" : "spring",
-                                stiffness: 300,
-                                damping: 20
-                            }}
-                            viewport={{ once: true }}
-                        >
-                            <ProjectDescription>
-                                <span style={{ width: "70%" }}>
-                                    {project.description}
-                                </span>
-                            </ProjectDescription>
-
-                            <ProjectLink href={project.link} target='_blank'  >
-
-                                <ProjectCard >
-
-                                    <ProjectTitle>
-                                        {project.title}
-                                    </ProjectTitle>
-                                    {project.type === "Website" &&
-                                        <Website />
-                                    }
-                                    {project.type === "Mobile App" &&
-                                        <MobileApp />
-                                    }
-                                    {project.type === "Web App" &&
-                                        <WebApp />
-                                    }
-                                    {project.graphic &&
-                                        <ProjectGraphic>
-                                            <GraphicPath d={project.svgPath} />
-                                        </ProjectGraphic>
-                                    }
-                                </ProjectCard>
-                            </ProjectLink>
+                        <ProjRowRight key={index} {...rowProps}>
+                            {description}
+                            {card}
                         </ProjRowRight>
                     )
                 }
-                else {
-                    return (
-                        <ProjRowLeft
-                            key={index}
-                            initial={{
-                                y: projectOffset
-                            }}
-                            whileInView={{
-                                y: 0
-                            }}
-                            transition={{
-                                type: isSafari ? "tween" : "spring",
-                                stiffness: 300,
-                                damping: 20
-                            }}
-                            viewport={{ once: true }}
-                        >
-                            <ProjectLink href={project.link} target='_blank' >
-                                <ProjectCard>
-
-                                    <ProjectTitle>
-                                        {project.title}
-                                    </ProjectTitle>
-                                    {project.type === "Website" &&
-                                        <Website />
-                                    }
-                                    {project.type === "Mobile App" &&
-                                        <MobileApp />
-                                    }
-                                    {project.type === "Web App" &&
-                                        <WebApp />
-                                    }
-                                    {project.graphic &&
-                                        <ProjectGraphic>
-                                            <GraphicPath d={project.svgPath} />
-                                        </ProjectGraphic>
-                                    }
-                                </ProjectCard>
-                            </ProjectLink>
-
-                            <ProjectDescription>
-                                <span style={{ width: "70%" }}>
-                                    {project.description}
-                                </span>
-                            </ProjectDescription>
-                        </ProjRowLeft>
-                    )
-                }
+                return (
+                    <ProjRowLeft key={index} {...rowProps}>
+                        {card}
+                        {description}
+                    </ProjRowLeft>
+                )
             })}
 
         </TransparentSectionWrap>
