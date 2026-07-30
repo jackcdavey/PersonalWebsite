@@ -1,0 +1,108 @@
+/* Palette mirrors LIGHTCOLORS / DARKCOLORS in ../styles/colors.tsx. It is
+   restated here as CSS custom properties so the page renders fully on the
+   server: styled-components has no SSR registry in this project, so themed
+   styles would arrive only after hydration and flash unstyled first. */
+
+.page {
+  --bg: #cddde4;          /* LIGHTCOLORS.lightAccent */
+  --text: #474758;        /* LIGHTCOLORS.darkShade   */
+  --accent: #6abe9d;      /* LIGHTCOLORS.mainBrand   */
+  --rule: #838793;        /* LIGHTCOLORS.darkAccent  */
+
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  width: 100%;
+  padding: 4rem 1.5rem 6rem;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --bg: #2b3c2f;        /* DARKCOLORS.lightAccent */
+    --text: #94a098;      /* DARKCOLORS.darkShade   */
+    --accent: #edffc3;    /* DARKCOLORS.mainBrand   */
+    --rule: #94a098;      /* DARKCOLORS.darkAccent  */
+  }
+}
+
+@media (max-width: 710px) {
+  .page {
+    padding: 2.5rem 1.25rem 4rem;
+  }
+}
+
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.wrap p {
+  margin-bottom: 1rem;
+  line-height: 1.65;
+}
+
+.wrap a {
+  color: inherit;
+}
+
+.title {
+  font-family: jeanne-moderno-geometrique, sans-serif;
+  color: var(--accent);
+  font-size: 4em;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 710px) {
+  .title {
+    font-size: 2.5em;
+  }
+}
+
+.subtitle {
+  font-size: 0.8em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 2.5rem;
+}
+
+.heading {
+  font-family: minion-pro-condensed-subhead, serif;
+  color: var(--text);
+  font-size: 1.6em;
+  margin-top: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.list {
+  margin: 0 0 1rem 0;
+  padding-left: 1.4rem;
+}
+
+.list li {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
+  list-style: disc;
+}
+
+.note {
+  font-size: 0.95em;
+  opacity: 0.8;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  opacity: 0.4;
+  margin: 2.5rem 0 1.5rem;
+}
+
+.homeLink {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
